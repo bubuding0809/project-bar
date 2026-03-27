@@ -1,0 +1,67 @@
+{
+  "categories": [
+    {
+      "name": "Cocktails",
+      "items": [
+        {
+          "id": "c1",
+          "name": "Neon Margarita",
+          "description": "Tequila, lime juice, blue curacao, and a salted neon rim.",
+          "price": "$12.00"
+        },
+        {
+          "id": "c2",
+          "name": "Cyberpunk Old Fashioned",
+          "description": "Bourbon, bitters, simple syrup, and an orange peel with a smoked cherry.",
+          "price": "$14.00"
+        },
+        {
+          "id": "c3",
+          "name": "Electric Lemonade",
+          "description": "Vodka, blue raspberry liqueur, lemonade, served over crushed ice.",
+          "price": "$10.00"
+        }
+      ]
+    },
+    {
+      "name": "Beers",
+      "items": [
+        {
+          "id": "b1",
+          "name": "Draft IPA",
+          "description": "Local hazy IPA with citrus and pine notes.",
+          "price": "$7.00"
+        },
+        {
+          "id": "b2",
+          "name": "Neon Stout",
+          "description": "Rich dark stout with coffee and dark chocolate flavors.",
+          "price": "$8.00"
+        },
+        {
+          "id": "b3",
+          "name": "Crisp Lager",
+          "description": "Refreshing and clean local lager.",
+          "price": "$6.00"
+        }
+      ]
+    },
+    {
+      "name": "Non-Alcoholic",
+      "items": [
+        {
+          "id": "na1",
+          "name": "Synthwave Soda",
+          "description": "House-made blackberry and lime soda.",
+          "price": "$5.00"
+        },
+        {
+          "id": "na2",
+          "name": "Glitch Mocktail",
+          "description": "Pineapple, coconut cream, and orange juice.",
+          "price": "$6.00"
+        }
+      ]
+    }
+  ]
+}
