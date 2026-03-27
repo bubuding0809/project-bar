@@ -9,4 +9,5 @@ export interface GameState {
   host: string;
   players: PlayerProfile[];
   roundId: string;
+  loserId?: string;
 }

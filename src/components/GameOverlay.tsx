@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { getClientPusher } from '@/lib/pusher';
 import { GameState } from '@/types/game';
+import SpinWheel from './SpinWheel';
 
 interface GameOverlayProps {
   tableId: string;
@@ -14,6 +15,8 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
   const [emoji, setEmoji] = useState('🎲');
   const [userId, setUserId] = useState<string | null>(null);
   const [isJoining, setIsJoining] = useState(false);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [loserId, setLoserId] = useState<string | null>(null);
 
   useEffect(() => {
     // Basic local user ID for this demo
@@ -32,6 +35,17 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
     
     channel.bind('game-updated', (data: GameState) => {
       setGameState(data);
+    });
+
+    channel.bind('game-spinning', (data: { loserId: string }) => {
+      setLoserId(data.loserId);
+      setIsSpinning(true);
+      
+      // 10s timeout to simulate completion
+      setTimeout(() => {
+        setIsSpinning(false);
+        // Next task handles the transition
+      }, 10000);
     });
 
     return () => {
@@ -69,11 +83,47 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
     }
   };
 
-  if (!gameState || gameState.status !== 'GATHERING') {
+  const handleSpinWheel = async () => {
+    if (!userId) return;
+    try {
+      const response = await fetch('/api/game/spin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tableId,
+          userId,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Failed to spin wheel:', error);
+    }
+  };
+
+  if (!gameState) {
+    return null;
+  }
+
+  if (gameState.status !== 'GATHERING' && gameState.status !== 'SPINNING') {
     return null;
   }
 
   const isPlayerInGame = gameState.players.some(p => p.userId === userId);
+  const isHost = gameState.host === userId;
+  const showWheel = isSpinning || gameState.status === 'SPINNING';
+  const currentLoserId = loserId || gameState.loserId;
+
+  if (showWheel && currentLoserId) {
+    return (
+      <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-4">
+        <SpinWheel players={gameState.players} loserId={currentLoserId} />
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-4">
@@ -115,7 +165,7 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
                   <button
                     key={e}
                     onClick={() => setEmoji(e)}
-                    className={`text-2xl p-2 rounded-lg border ${emoji === e ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-200'} hover:bg-gray-50`}
+                    className={`text-2xl p-2 rounded-lg border cursor-pointer ${emoji === e ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-200'} hover:bg-gray-50`}
                   >
                     {e}
                   </button>
@@ -125,15 +175,27 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
             <button
               onClick={handleJoinGame}
               disabled={!nickname.trim() || isJoining}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
             >
               {isJoining ? 'Joining...' : 'Join Game'}
             </button>
           </div>
         ) : (
-          <div className="text-center p-4 bg-green-50 text-green-800 rounded-lg border border-green-200">
-            <p className="font-medium">You&apos;re in!</p>
-            <p className="text-sm mt-1">Waiting for host to start the game...</p>
+          <div className="space-y-4">
+            <div className="text-center p-4 bg-green-50 text-green-800 rounded-lg border border-green-200">
+              <p className="font-medium">You&apos;re in!</p>
+              <p className="text-sm mt-1">{isHost ? 'Ready to spin?' : 'Waiting for host to start the game...'}</p>
+            </div>
+            
+            {isHost && (
+              <button
+                onClick={handleSpinWheel}
+                disabled={isSpinning}
+                className="w-full py-3 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors shadow-sm"
+              >
+                Spin Wheel!
+              </button>
+            )}
           </div>
         )}
       </div>
