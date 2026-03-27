@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { redis } from '@/lib/redis';
+import { serverPusher } from '@/lib/pusher';
 import { GameState } from '@/types/game';
 
 export async function POST(request: Request) {
@@ -21,6 +22,13 @@ export async function POST(request: Request) {
 
     // Store in Redis with an expiry of 1 hour (3600 seconds)
     await redis.set(gameKey, gameState, { ex: 3600 });
+
+    try {
+      // Broadcast the new game state via Pusher
+      await serverPusher.trigger(`table-${tableId}`, 'game-updated', gameState);
+    } catch (pusherError) {
+      console.error('Failed to trigger Pusher event:', pusherError);
+    }
 
     return NextResponse.json({ success: true, game: gameState });
   } catch (error) {

@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { use } from "react";
 import menuData from "@/data/menu.json";
 import MenuItem from "@/components/MenuItem";
-import Link from "next/link";
+import GameOverlay from "@/components/GameOverlay";
 
 type Props = {
   params: Promise<{
@@ -9,11 +11,44 @@ type Props = {
   }>;
 };
 
-export default async function TableMenuPage({ params }: Props) {
-  const { tableId } = await params;
+export default function TableMenuPage({ params }: Props) {
+  const { tableId } = use(params);
+
+  const handleCreateGame = async () => {
+    let userId = localStorage.getItem('demo_user_id');
+    if (!userId) {
+      userId = `host_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('demo_user_id', userId);
+    }
+
+    try {
+      const response = await fetch('/api/game/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tableId,
+          roundId: `round_${Date.now()}`,
+          hostProfile: {
+            userId,
+            nickname: 'Host Master',
+            emoji: '👑',
+          },
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Failed to create game:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-28 relative">
+      <GameOverlay tableId={tableId} />
+      
       {/* Header */}
       <header className="pt-10 pb-6 px-6 sticky top-0 bg-background/80 backdrop-blur-md z-10 border-b border-surface">
         <div className="flex justify-between items-center">
@@ -52,13 +87,13 @@ export default async function TableMenuPage({ params }: Props) {
 
       {/* Floating CTA Button */}
       <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex justify-center pb-8 z-20">
-        <Link 
-          href={`/table/${tableId}/roulette`}
+        <button 
+          onClick={handleCreateGame}
           className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-violet to-primary shadow-neon-violet text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200"
         >
           <span>Play Drink Roulette</span>
           <span className="text-2xl leading-none">🎰</span>
-        </Link>
+        </button>
       </div>
     </div>
   );

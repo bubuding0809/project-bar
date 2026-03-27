@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { redis } from '@/lib/redis';
-import { GameState, PlayerProfile } from '@/types/game';
+import { serverPusher } from '@/lib/pusher';
+import { GameState } from '@/types/game';
 
 export async function POST(request: Request) {
   try {
@@ -35,6 +36,13 @@ export async function POST(request: Request) {
       // Update the game state in Redis (maintain the remaining TTL or reset to 1 hour; 
       // let's just use keepTtl if supported or reset to 3600, reset is fine per reqs)
       await redis.set(gameKey, gameState, { ex: 3600 });
+      
+      try {
+        // Broadcast the new game state via Pusher
+        await serverPusher.trigger(`table-${tableId}`, 'game-updated', gameState);
+      } catch (pusherError) {
+        console.error('Failed to trigger Pusher event:', pusherError);
+      }
     }
 
     return NextResponse.json({ success: true, game: gameState });
