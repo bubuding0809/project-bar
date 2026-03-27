@@ -10,4 +10,7 @@ export interface GameState {
   players: PlayerProfile[];
   roundId: string;
   loserId?: string;
+  drinkType?: string;
+  drinkQuantity?: number;
+  targetEndTime?: number;
 }
