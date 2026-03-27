@@ -54,11 +54,11 @@ export default function SpinWheel({ players, loserId }: SpinWheelProps) {
     <div className="flex flex-col items-center justify-center py-8">
       <div className="relative w-80 h-80">
         {/* Pointer */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 z-10 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[30px] border-t-gray-800 drop-shadow-md" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 z-10 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[30px] border-t-white drop-shadow-md" />
         
         {/* Wheel */}
         <div 
-          className="w-full h-full rounded-full border-4 border-white shadow-xl overflow-hidden"
+          className="w-full h-full rounded-full border-4 border-slate-800 shadow-neon-violet overflow-hidden"
           style={{
             background: `conic-gradient(${gradientStops})`,
             transform: `rotate(${rotation}deg)`,
@@ -78,7 +78,7 @@ export default function SpinWheel({ players, loserId }: SpinWheelProps) {
               >
                 <div className="flex flex-col items-center gap-1">
                   <span className="text-2xl drop-shadow-md">{player.emoji}</span>
-                  <span className="text-xs font-bold text-white bg-black/30 px-2 py-0.5 rounded-full backdrop-blur-sm truncate max-w-[80px]">
+                  <span className="text-xs font-bold text-white bg-black/50 px-2 py-0.5 rounded-full backdrop-blur-md truncate max-w-[80px] shadow-sm">
                     {player.nickname}
                   </span>
                 </div>
@@ -88,12 +88,12 @@ export default function SpinWheel({ players, loserId }: SpinWheelProps) {
         </div>
         
         {/* Center dot */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-inner border-2 border-gray-200" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-slate-900 rounded-full shadow-neon-violet border-2 border-slate-700 z-10" />
       </div>
       
       <div className="mt-8 text-center animate-pulse">
-        <h3 className="text-xl font-bold text-gray-800">Spinning the Wheel of Destiny...</h3>
-        <p className="text-gray-500">Who will pay the bill?</p>
+        <h3 className="text-2xl font-display font-bold text-white mb-2">Spinning the Wheel of Destiny...</h3>
+        <p className="text-slate-400">Who will pay the bill?</p>
       </div>
     </div>
   );
