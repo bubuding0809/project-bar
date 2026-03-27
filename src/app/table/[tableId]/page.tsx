@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import menuData from "@/data/menu.json";
 import MenuItem from "@/components/MenuItem";
 import GameOverlay from "@/components/GameOverlay";
@@ -13,6 +13,10 @@ type Props = {
 
 export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
+  const [quantity, setQuantity] = useState(1);
+  const price = 10; // Mock price
 
   const handleCreateGame = async () => {
     let userId = localStorage.getItem('demo_user_id');
@@ -35,13 +39,17 @@ export default function TableMenuPage({ params }: Props) {
             nickname: 'Host Master',
             emoji: '👑',
           },
+          drinkType: selectedDrink,
+          drinkQuantity: quantity
         }),
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      setIsBottomSheetOpen(false);
     } catch (error) {
       console.error('Failed to create game:', error);
+      setIsBottomSheetOpen(false);
     }
   };
 
@@ -88,13 +96,33 @@ export default function TableMenuPage({ params }: Props) {
       {/* Floating CTA Button */}
       <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex justify-center pb-8 z-20">
         <button 
-          onClick={handleCreateGame}
+          onClick={() => setIsBottomSheetOpen(true)}
           className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-violet to-primary shadow-neon-violet text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200"
         >
-          <span>Play Drink Roulette</span>
-          <span className="text-2xl leading-none">🎰</span>
+          <span>Play Drink Roulette 🎰</span>
         </button>
       </div>
+
+      {/* Bottom Sheet */}
+      {isBottomSheetOpen && (
+        <div className="fixed inset-0 z-40 flex items-end bg-black/50">
+          <div className="bg-slate-900 w-full p-6 rounded-t-2xl">
+            <h2 className="text-xl font-bold mb-4 text-white">Set the Stakes</h2>
+            <select value={selectedDrink} onChange={(e) => setSelectedDrink(e.target.value)} className="w-full bg-slate-800 p-2 rounded mb-4 text-white">
+              <option value="Tequila Shots">Tequila Shots</option>
+              <option value="Jager Bombs">Jager Bombs</option>
+            </select>
+            <div className="flex items-center gap-4 mb-6">
+              <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 bg-slate-800 rounded text-white">-</button>
+              <span className="text-xl text-white">{quantity}</span>
+              <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 bg-slate-800 rounded text-white">+</button>
+            </div>
+            <button onClick={handleCreateGame} className="w-full bg-violet-600 p-3 rounded font-bold text-white">
+              Create Game (${price * quantity})
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
