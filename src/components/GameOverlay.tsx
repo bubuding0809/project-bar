@@ -77,11 +77,38 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
       setLoserId(null);
     });
 
+    channel.bind('lobby_closed', () => setGameState(null));
+    channel.bind('payment_timeout', () => setGameState(null));
+
     return () => {
       channel.unbind_all();
       channel.unsubscribe();
     };
   }, [tableId]);
+
+  useEffect(() => {
+    const handleUnload = () => {
+      const currentIsHost = gameState?.host === userId;
+      if (currentIsHost && gameState?.status === 'GATHERING') {
+        fetch('/api/game/cancel', {method: 'POST', body: JSON.stringify({tableId}), keepalive: true});
+      } else if (!currentIsHost && gameState?.status === 'GATHERING') {
+        fetch('/api/game/leave', {method: 'POST', body: JSON.stringify({tableId, userId}), keepalive: true});
+      }
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, [gameState?.status, gameState?.host, tableId, userId]);
+
+  // Reliable 2-minute Payment Timeout (Host enforces)
+  useEffect(() => {
+    const currentIsHost = gameState?.host === userId;
+    if (currentIsHost && showResolution) {
+      const timer = setTimeout(() => {
+        fetch('/api/game/timeout', {method: 'POST', body: JSON.stringify({tableId})});
+      }, 120000);
+      return () => clearTimeout(timer);
+    }
+  }, [gameState?.host, userId, showResolution, tableId]);
 
   const handleJoinGame = async () => {
     if (!userId || !nickname || isJoining) return;
@@ -177,7 +204,7 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
 
   if (showResolution && currentLoserId) {
     if (userId === currentLoserId) {
-      return <PaymentScreen onPay={handlePay} isPaying={isPaying} />;
+      return <PaymentScreen onPay={handlePay} isPaying={isPaying} tableId={tableId} />;
     } else {
       return <WinScreen />;
     }
