@@ -13,10 +13,16 @@ type Props = {
 
 export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
+  
+  // Flatten menu items for easy lookup
+  const allItems = menuData.categories.flatMap(category => category.items);
+  
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
+  const [selectedDrink, setSelectedDrink] = useState(allItems[0]?.name || "Tequila Shots");
   const [quantity, setQuantity] = useState(1);
-  const price = 10; // Mock price
+  
+  const selectedItem = allItems.find(item => item.name === selectedDrink);
+  const price = selectedItem ? parseFloat(selectedItem.price.replace('$', '')) : 10;
 
   const handleCreateGame = async () => {
     let userId = localStorage.getItem('demo_user_id');
@@ -109,8 +115,15 @@ export default function TableMenuPage({ params }: Props) {
           <div className="bg-slate-900 w-full p-6 rounded-t-2xl">
             <h2 className="text-xl font-bold mb-4 text-white">Set the Stakes</h2>
             <select value={selectedDrink} onChange={(e) => setSelectedDrink(e.target.value)} className="w-full bg-slate-800 p-2 rounded mb-4 text-white">
-              <option value="Tequila Shots">Tequila Shots</option>
-              <option value="Jager Bombs">Jager Bombs</option>
+              {menuData.categories.map((category) => (
+                <optgroup key={category.name} label={category.name}>
+                  {category.items.map((item) => (
+                    <option key={item.id} value={item.name}>
+                      {item.name} ({item.price})
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
             <div className="flex items-center gap-4 mb-6">
               <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-2 bg-slate-800 rounded text-white">-</button>
@@ -118,7 +131,7 @@ export default function TableMenuPage({ params }: Props) {
               <button onClick={() => setQuantity(quantity + 1)} className="px-4 py-2 bg-slate-800 rounded text-white">+</button>
             </div>
             <button onClick={handleCreateGame} className="w-full bg-violet-600 p-3 rounded font-bold text-white">
-              Create Game (${price * quantity})
+              Create Game (${(price * quantity).toFixed(2)})
             </button>
           </div>
         </div>
