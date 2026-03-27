@@ -29,8 +29,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Game is not in GATHERING state' }, { status: 400 });
     }
 
-    if (gameState.players.length === 0) {
-      return NextResponse.json({ error: 'No players in the game' }, { status: 400 });
+    if (gameState.players.length < 2) {
+      return NextResponse.json({ error: 'Not enough players' }, { status: 400 });
     }
 
     // Select random loser
@@ -45,8 +45,9 @@ export async function POST(request: Request) {
     await redis.set(gameKey, gameState, { ex: 3600 });
 
     try {
-      // Trigger game-spinning event via Pusher with { loserId }
-      await serverPusher.trigger(`table-${tableId}`, 'game-spinning', { loserId: loser.userId });
+      const targetEndTime = Date.now() + 10000;
+      // Trigger spin_start event via Pusher with { loserId, targetEndTime }
+      await serverPusher.trigger(`table-${tableId}`, 'spin_start', { loserId: loser.userId, targetEndTime });
       // We should also trigger game-updated so state is fully synchronized
       await serverPusher.trigger(`table-${tableId}`, 'game-updated', gameState);
     } catch (pusherError) {

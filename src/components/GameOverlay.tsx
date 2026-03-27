@@ -57,16 +57,16 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
       setGameState(data);
     });
 
-    channel.bind('game-spinning', (data: { loserId: string }) => {
+    channel.bind('spin_start', (data: { loserId: string; targetEndTime: number }) => {
       setLoserId(data.loserId);
       setIsSpinning(true);
       setShowResolution(false);
       
-      // 10s timeout to simulate completion
+      const remainingTime = Math.max(0, data.targetEndTime - Date.now());
       setTimeout(() => {
         setIsSpinning(false);
         setShowResolution(true);
-      }, 10000);
+      }, remainingTime);
     });
 
     channel.bind('game-paid', () => {
@@ -197,6 +197,7 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
         <h2 className="text-3xl font-display font-black text-center mb-6 bg-gradient-to-r from-neon-violet to-primary bg-clip-text text-transparent">Roulette Lobby</h2>
         
         <div className="mb-6">
+          {gameState.drinkType && <p className="text-center text-emerald-400 mb-4 font-bold text-lg">Playing for {gameState.drinkQuantity}x {gameState.drinkType}</p>}
           <h3 className="font-semibold text-slate-300 mb-2">Players Joined ({gameState.players.length})</h3>
           <ul className="space-y-2 max-h-48 overflow-y-auto bg-black/40 rounded-lg p-3 border border-slate-800">
             {gameState.players.map((player) => (
@@ -256,10 +257,10 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
             {isHost && (
               <button
                 onClick={handleSpinWheel}
-                disabled={isSpinning}
+                disabled={isSpinning || gameState.players.length < 2}
                 className="w-full py-3 bg-gradient-to-r from-neon-violet to-primary text-white rounded-lg font-bold hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer transition-all shadow-neon-violet font-display text-lg"
               >
-                Spin Wheel!
+                {gameState.players.length < 2 ? 'Waiting for more players...' : 'Spin Wheel!'}
               </button>
             )}
           </div>
