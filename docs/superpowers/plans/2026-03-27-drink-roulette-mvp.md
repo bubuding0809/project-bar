@@ -13,7 +13,7 @@
 ### Task 1: Scaffold Next.js Project & Design System
 
 **Files:**
-- Create: `package.json`, `tailwind.config.ts`, `app/globals.css`, `app/layout.tsx`
+- Create: `package.json`, `tailwind.config.ts`, `src/app/globals.css`, `src/app/layout.tsx`
 - Modify: `design-system/drink-roulette-mvp/MASTER.md` (Reference)
 
 - [ ] **Step 1: Scaffold Next.js App**
@@ -64,10 +64,10 @@
   Create `src/lib/redis.ts` utilizing `@upstash/redis`. (Expects `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` env vars).
 
 - [ ] **Step 2: Create Game API**
-  Implement `POST /api/game/create`. It takes a `tableId` and `roundId`. It sets a Redis key `table:{tableId}:game` to `{ status: 'GATHERING', host: userId, players: [userId], roundId }`.
+  Implement `POST /api/game/create`. It takes a `tableId`, `roundId`, and `hostProfile` (userId, nickname/emoji). It sets a Redis key `table:{tableId}:game` to `{ status: 'GATHERING', host: hostProfile.userId, players: [hostProfile], roundId }`.
 
 - [ ] **Step 3: Join Game API**
-  Implement `POST /api/game/join`. Takes `tableId` and `userId`. Appends `userId` to the players array in Redis if status is `GATHERING`.
+  Implement `POST /api/game/join`. Takes `tableId` and `playerProfile` (userId, nickname/emoji). Appends `playerProfile` to the players array in Redis if status is `GATHERING`.
 
 - [ ] **Step 4: Write API Tests (Optional/Manual)**
   Use `curl` or Postman to test hitting the create and join routes and verifying the Redis state updates.
@@ -90,7 +90,7 @@
   Update the Create and Join APIs to trigger a Pusher event `game-updated` on channel `table-{tableId}` with the new game state.
 
 - [ ] **Step 3: Build GameOverlay component**
-  Create `GameOverlay.tsx`. It subscribes to Pusher channel `table-{tableId}`. If a game is active (`status === 'GATHERING'`), it renders the Lobby UI over the menu. If inactive, it hides.
+  Create `GameOverlay.tsx`. It subscribes to Pusher channel `table-{tableId}`. If a game is active (`status === 'GATHERING'`), it renders the Lobby UI over the menu, including a prompt for nickname/emoji before joining. If inactive, it hides.
 
 - [ ] **Step 4: Add GameOverlay to Menu Page**
   Mount `<GameOverlay tableId={tableId} />` inside `src/app/table/[tableId]/page.tsx`. Verify that clicking "Play Roulette" calls the API, which updates Redis, triggers Pusher, and shows the lobby.
