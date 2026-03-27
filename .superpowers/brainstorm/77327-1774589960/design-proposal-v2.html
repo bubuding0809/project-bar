@@ -1,0 +1,53 @@
+<div style="max-width: 800px; margin: 0 auto; padding-top: 2rem;">
+  <h2>MVP Design Proposal (Revised): Drink Roulette</h2>
+  <p class="subtitle">Based on your feedback, we are integrating the game as an upsell/feature inside a standard QR ordering menu, rather than a standalone game-only app.</p>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>1. The Core Flow (User Perspective)</h3>
+    <div class="mock-nav" style="background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-md); font-family: monospace; font-size: 13px; line-height: 1.6;">
+      1. <strong>Scan</strong>: Users scan the QR code on the table (e.g., Table 4).<br>
+      2. <strong>Menu View</strong>: They land on a standard digital menu (like TabSquare/Oddle) where they can browse individual drinks/food.<br>
+      3. <strong>Game Discovery</strong>: A prominent floating button or top banner advertises "Play Drink Roulette 🎰".<br>
+      4. <strong>Enter Game & Select</strong>: The first person to tap it ("Host") enters the game lobby. They select a pre-set round (e.g., "6 Tequila Shots - $40").<br>
+      5. <strong>Friends Join</strong>: The Host's screen shows a "Waiting for friends..." state. Other people at the table see "Table 4 is playing Roulette - Join in!" at the top of their menu and tap to enter their name/emoji.<br>
+      6. <strong>The Spin</strong>: Once enough people join, Host hits "Spin". The 10-second synced wheel animation plays.<br>
+      7. <strong>The Reveal & Payment</strong>: The wheel stops on the loser. Their phone prompts Apple Pay. Others see a Win screen.<br>
+      8. <strong>Fulfillment</strong>: Once paid, the pre-set order goes to the bar.
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>2. Architecture & Tech Stack</h3>
+    <div class="split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="pros">
+        <h4>Frontend (The Web App)</h4>
+        <ul style="font-size: 14px; color: var(--color-text-secondary); padding-left: 1.2rem;">
+          <li>Next.js/React SPA for both the menu and game views.</li>
+          <li>Standard e-commerce layout for the menu.</li>
+          <li>CSS/Canvas for the 60fps wheel animation.</li>
+          <li>Stripe Elements for checkout (standard cart + loser checkout).</li>
+        </ul>
+      </div>
+      <div class="pros">
+        <h4>Backend (API & Real-Time Engine)</h4>
+        <ul style="font-size: 14px; color: var(--color-text-secondary); padding-left: 1.2rem;">
+          <li>Node.js + REST API for menu/catalog data.</li>
+          <li>Socket.io server for real-time table state (Is a game active? Who is joined?).</li>
+          <li>Redis to manage table state and sync users viewing the menu vs. in the lobby.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>3. Table State Sync</h3>
+    <div style="background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-md); font-family: monospace; font-size: 13px;">
+      Because the game sits alongside the menu, the backend must broadcast to <em>all</em> users at Table 4 when a game is initiated, so their UI can show the "Join Game" prompt dynamically while they are browsing drinks.
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Does this revised flow capture your vision?</h3>
+    <p class="subtitle" style="margin-top: 0.5rem;">Check the browser (https://dings-macbook-air.tail99a23a.ts.net) to review the updated spec.</p>
+  </div>
+</div>

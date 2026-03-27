@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fredoka);
+}
+
+:root {
+  /* Set global OLED Dark theme */
+  --background: #020617; /* Slate 950 */
+  --foreground: #f8fafc;
+  
+  /* Primary Colors */
+  --color-primary: #E11D48;
+  --color-secondary: #FB7185;
+  --color-cta: #2563EB;
+  
+  /* Neon Accents */
+  --color-violet-500: #8B5CF6;
+  --color-rose-500: #F43F5E;
+  --color-emerald-500: #10B981;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  /* Core Component Styles from Design System */
+  .btn-primary {
+    @apply bg-cta text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 cursor-pointer;
+  }
+  .btn-primary:hover {
+    @apply opacity-90 -translate-y-[1px];
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold transition-all duration-200 cursor-pointer;
+  }
+  .btn-secondary:hover {
+    @apply bg-primary/10;
+  }
+
+  .card {
+    @apply bg-slate-900 rounded-xl p-6 shadow-md transition-all duration-200 cursor-pointer;
+  }
+  .card:hover {
+    @apply shadow-lg -translate-y-[2px];
+  }
+
+  .input {
+    @apply px-4 py-3 border border-slate-800 bg-slate-900 rounded-lg text-base transition-colors duration-200;
+  }
+  .input:focus {
+    @apply border-primary outline-none shadow-[0_0_0_3px_rgba(225,29,72,0.2)];
+  }
+}

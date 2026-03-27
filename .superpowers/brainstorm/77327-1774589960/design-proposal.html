@@ -1,0 +1,52 @@
+<div style="max-width: 800px; margin: 0 auto; padding-top: 2rem;">
+  <h2>MVP Design Proposal: Drink Roulette</h2>
+  <p class="subtitle">Based on our decisions, here is the architecture and user flow for the first iteration.</p>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>1. The Core Flow (User Perspective)</h3>
+    <div class="mock-nav" style="background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-md); font-family: monospace; font-size: 13px; line-height: 1.6;">
+      1. <strong>Scan</strong>: Users scan a static QR code on the table (e.g., Table 4).<br>
+      2. <strong>Join</strong>: They land on a web app, enter a nickname/emoji, and hit "Join Table".<br>
+      3. <strong>Select</strong>: The first person to join ("Host") selects a pre-set round (e.g., "6 Tequila Shots - $40").<br>
+      4. <strong>Ready</strong>: Host sees everyone who joined. Hits "Spin the Wheel".<br>
+      5. <strong>The Spin</strong>: A 10-second CSS/Canvas wheel animation syncs across all connected phones.<br>
+      6. <strong>The Reveal</strong>: The wheel stops on one person. Their phone turns red and prompts Apple Pay. Everyone else gets a "You Win!" confetti screen.<br>
+      7. <strong>Fulfillment</strong>: Once paid, a ticket prints at the bar (or appears on a bartender tablet) for Table 4.
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>2. Architecture & Tech Stack</h3>
+    <div class="split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="pros">
+        <h4>Frontend (The Web App)</h4>
+        <ul style="font-size: 14px; color: var(--color-text-secondary); padding-left: 1.2rem;">
+          <li>Next.js or React SPA (Vercel)</li>
+          <li>Optimized for mobile Safari/Chrome (no app download)</li>
+          <li>CSS/Canvas for the 60fps wheel animation</li>
+          <li>Stripe Elements for Apple Pay / Google Pay</li>
+        </ul>
+      </div>
+      <div class="pros">
+        <h4>Backend (The Real-Time Engine)</h4>
+        <ul style="font-size: 14px; color: var(--color-text-secondary); padding-left: 1.2rem;">
+          <li>Node.js + Socket.io server</li>
+          <li>Redis to manage table state (who is at Table 4? what is the current wheel state?)</li>
+          <li>Webhook endpoint to receive Stripe payment success and trigger the bar ticket.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom: 2rem;">
+    <h3>3. The "State Machine" of a Table</h3>
+    <div style="background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-md); font-family: monospace; font-size: 13px;">
+      <code>IDLE</code> → <code>GATHERING</code> (users joining) → <code>SPINNING</code> (wheel animating) → <code>PAYMENT_PENDING</code> (waiting for loser to pay) → <code>PAID</code> (ticket sent) → <code>IDLE</code>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Does this architecture and flow look right for the MVP?</h3>
+    <p class="subtitle" style="margin-top: 0.5rem;">Check the browser (https://dings-macbook-air.tail99a23a.ts.net) for a summary, then let me know in the terminal.</p>
+  </div>
+</div>

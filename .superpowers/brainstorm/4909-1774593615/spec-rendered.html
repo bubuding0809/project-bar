@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spec: Drink Roulette MVP</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9fafb;
+        }
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1 { font-size: 2.25rem; color: #111827; margin-top: 0; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; margin-top: 2.5rem; }
+        h3 { font-size: 1.25rem; color: #374151; margin-top: 1.5rem; }
+        p { margin-bottom: 1rem; }
+        ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        code { background-color: #f3f4f6; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #ec4899; }
+        .tag { display: inline-block; background: #e0e7ff; color: #4338ca; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; margin-left: 8px; vertical-align: middle; }
+        hr { border: 0; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+        .success-box { background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        .success-box p { margin: 0; color: #065f46; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Drink Roulette MVP <span class="tag">DESIGN SPEC</span></h1>
+    <p style="color: #6b7280; margin-bottom: 2rem;">Date: 2026-03-27 | Status: Approved for Implementation</p>
+
+    <h2>Overview</h2>
+    <p>Drink Roulette is a social-gamified ordering feature embedded directly within a standard digital QR menu (e.g. TabSquare, Oddle) for bars. It turns the mundane act of ordering a round of drinks into a live, multiplayer social experience, driving drink volume through human psychology and gamification.</p>
+
+    <h2>Scope & Decisions</h2>
+    <ul>
+        <li><strong>Core Mechanic:</strong> Drink Roulette (Intra-table) - A wheel spins on everyone's phone, loser pays for the round.</li>
+        <li><strong>Menu Integration:</strong> The game acts as an upsell/feature <em>inside</em> a standard digital menu, not a standalone app.</li>
+        <li><strong>Ordering Scope:</strong> Pre-set rounds only (e.g. "6 Tequila Shots - $40"). No custom cart building for the MVP.</li>
+        <li><strong>Real-Time Engine:</strong> WebSockets for instant, zero-latency sync of the wheel spin.</li>
+        <li><strong>Guardrails:</strong> None for the MVP. Focus is on maximizing volume and frictionless entry.</li>
+    </ul>
+
+    <h2>User Flow</h2>
+    <ol>
+        <li><strong>Browse:</strong> Users scan a table QR code and land on a standard dark-mode digital menu.</li>
+        <li><strong>Discover:</strong> A glowing, sticky "Play Drink Roulette 🎰" button sits at the bottom of the screen.</li>
+        <li><strong>Host:</strong> The first person to tap the button enters the Game Lobby and selects a pre-set round.</li>
+        <li><strong>Broadcast:</strong> The backend broadcasts to all other active sessions at that table. Their UI dynamically updates with a banner: "Table is playing Roulette - Join in!"</li>
+        <li><strong>Gather:</strong> Friends tap the banner, enter an emoji/nickname, and join the lobby.</li>
+        <li><strong>Spin:</strong> The Host taps "Spin". A 10-second CSS/Canvas wheel animation syncs across all connected phones using WebSockets.</li>
+        <li><strong>Reveal & Pay:</strong> The wheel stops. The loser's phone turns red (<code>Rose 500</code>) and prompts Apple Pay. Everyone else sees a "You Win!" confetti screen.</li>
+        <li><strong>Fulfill:</strong> Upon successful Stripe webhook receipt, the order is sent to the bar/POS.</li>
+    </ol>
+
+    <h2>UI/UX Design System</h2>
+    <p><em>Persisted in <code>design-system/drink-roulette-mvp/MASTER.md</code></em></p>
+    <ul>
+        <li><strong>Style:</strong> Cyberpunk / OLED Dark Mode (Optimized for low-light bar environments).</li>
+        <li><strong>Colors:</strong> 
+            <ul>
+                <li>Background: <code>Slate 950</code> (<code>#020617</code>) and <code>Slate 900</code> (<code>#0F172A</code>)</li>
+                <li>Primary Accent (Game UI): <code>Violet 500</code> (<code>#8B5CF6</code>) with glowing drop shadows.</li>
+                <li>Danger/Loser Screen: <code>Rose 500</code> (<code>#F43F5E</code>)</li>
+                <li>Success/Win Screen: <code>Emerald 500</code> (<code>#10B981</code>)</li>
+            </ul>
+        </li>
+        <li><strong>Typography:</strong>
+            <ul>
+                <li>Game Elements (Headers, Buttons): <code>Fredoka</code> (Playful, rounded, arcade-feel)</li>
+                <li>Menu/Body Text: <code>Inter</code> (High legibility sans-serif)</li>
+            </ul>
+        </li>
+        <li><strong>Animation Rules:</strong>
+            <ul>
+                <li>Wheel spin must use an <code>ease-out</code> timing function to slow down naturally.</li>
+                <li>Respect <code>prefers-reduced-motion</code> for accessibility.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Architecture</h2>
+    <ul>
+        <li><strong>Frontend:</strong> Next.js / React SPA (Vercel)</li>
+        <li><strong>Styling:</strong> Tailwind CSS (following the generated design system rules)</li>
+        <li><strong>Payments:</strong> Stripe Elements (Apple Pay / Google Pay heavily prioritized)</li>
+        <li><strong>Real-Time Backend:</strong> Node.js + Socket.io</li>
+        <li><strong>State Management:</strong> Redis (Tracks <code>table_id</code> state: <code>IDLE</code> &rarr; <code>GATHERING</code> &rarr; <code>SPINNING</code> &rarr; <code>PAYMENT_PENDING</code> &rarr; <code>PAID</code>)</li>
+        <li><strong>Menu Data:</strong> Simple REST API or static JSON for the MVP pre-set rounds.</li>
+    </ul>
+
+    <div class="success-box">
+        <p>✓ Subagent spec review passed. All functional boundaries are isolated and MVP constraints (YAGNI) are respected.</p>
+    </div>
+</div>
+
+</body>
+</html>
