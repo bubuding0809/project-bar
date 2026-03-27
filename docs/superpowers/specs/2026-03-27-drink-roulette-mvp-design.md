@@ -7,7 +7,7 @@ Drink Roulette is a social-gamified ordering feature embedded directly within a 
 - **Core Mechanic:** Drink Roulette (Intra-table) - A wheel spins on everyone's phone, loser pays for the round.
 - **Menu Integration:** The game acts as an upsell/feature *inside* a standard digital menu, not a standalone app.
 - **Ordering Scope:** Pre-set rounds only (e.g. "6 Tequila Shots - $40"). No custom cart building for the MVP.
-- **Real-Time Engine:** WebSockets for instant, zero-latency sync of the wheel spin.
+- **Real-Time Engine:** WebSockets via Pusher or Vercel-compatible WebSocket layer (keeping architecture lean and Vercel-deployable without needing a dedicated Node.js server container).
 - **Guardrails:** None for the MVP. Focus is on maximizing volume and frictionless entry.
 
 ## User Flow
@@ -36,10 +36,10 @@ Drink Roulette is a social-gamified ordering feature embedded directly within a 
   - Wheel spin must use an `ease-out` timing function to slow down naturally.
   - Respect `prefers-reduced-motion` for accessibility.
 
-## Architecture
-- **Frontend:** Next.js / React SPA (Vercel)
-- **Styling:** Tailwind CSS (following the generated design system rules)
+## Architecture (Vercel Optimized)
+- **Frontend & API:** Next.js (Vercel deployment)
+- **Styling:** Tailwind CSS
 - **Payments:** Stripe Elements (Apple Pay / Google Pay heavily prioritized)
-- **Real-Time Backend:** Node.js + Socket.io
-- **State Management:** Redis (Tracks `table_id` state: `IDLE` -> `GATHERING` -> `SPINNING` -> `PAYMENT_PENDING` -> `PAID`)
-- **Menu Data:** Simple REST API or static JSON for the MVP pre-set rounds.
+- **Real-Time Layer:** Pusher or similar Vercel-compatible serverless WebSocket provider (avoiding long-running Node.js/Socket.io servers for now to keep deployment trivial).
+- **State Management:** Upstash Redis (Serverless Redis perfect for Vercel) tracking `table_id` state.
+- **Menu Data:** Static JSON for the MVP pre-set rounds.
