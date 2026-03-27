@@ -1,0 +1,4 @@
+1. Go to dashboard.pusher.com
+2. On the left sidebar, under "Channels", click "Apps".
+3. Look for a button that says "Create app" or "Manage apps" at the top right of the Apps list.
+4. If you don't see "Create app", make sure you have selected a "Space" (Workspace) from the very top left dropdown menu. You need to be inside a workspace to create an app.

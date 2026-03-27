@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { redis } from '@/lib/redis';
-import { serverPusher } from '@/lib/pusher';
+import { serverPusher } from '@/lib/pusher-server';
 import { GameState } from '@/types/game';
 
 // This is a placeholder for the actual Stripe webhook.

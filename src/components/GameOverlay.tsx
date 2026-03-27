@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getClientPusher } from '@/lib/pusher';
+import { getClientPusher } from '@/lib/pusher-client';
 import { GameState } from '@/types/game';
 import SpinWheel from './SpinWheel';
 import PaymentScreen from './PaymentScreen';
