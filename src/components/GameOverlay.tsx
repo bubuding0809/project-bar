@@ -103,7 +103,10 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
         }),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 400) {
+          alert('Game has already started');
+        }
+        throw new Error('Failed to join');
       }
     } catch (error) {
       console.error('Failed to join game:', error);

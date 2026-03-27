@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     if (gameState.status !== 'GATHERING') {
-      return NextResponse.json({ error: 'Game is no longer gathering players' }, { status: 400 });
+      return NextResponse.json({ error: 'Game has already started' }, { status: 400 });
     }
 
     // Check if player is already in the game

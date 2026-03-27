@@ -6,18 +6,23 @@ import { GameState } from '@/types/game';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { tableId, roundId, hostProfile } = body;
+    const { tableId, roundId, hostProfile, drinkType, drinkQuantity } = body;
 
     if (!tableId || !roundId || !hostProfile) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const gameKey = `table:${tableId}:game`;
+    if (await redis.exists(gameKey)) {
+      return NextResponse.json({ error: 'Game already exists' }, { status: 400 });
+    }
     const gameState: GameState = {
       status: 'GATHERING',
       host: hostProfile.userId,
       players: [hostProfile],
       roundId,
+      drinkType,
+      drinkQuantity
     };
 
     // Store in Redis with an expiry of 1 hour (3600 seconds)
