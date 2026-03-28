@@ -1,8 +1,8 @@
 "use client";
 
 import React, { use, useState } from "react";
-import menuData from "@/data/menu.json";
-import MenuItem from "@/components/MenuItem";
+import { menuData } from "@/data/menu";
+import Menu from "@/components/Menu";
 import GameOverlay from "@/components/GameOverlay";
 
 type Props = {
@@ -15,14 +15,18 @@ export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
   
   // Flatten menu items for easy lookup
-  const allItems = menuData.categories.flatMap(category => category.items);
+  const allItems = menuData.flatMap(category => category.items);
   
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [selectedDrink, setSelectedDrink] = useState(allItems[0]?.name || "Tequila Shots");
   const [quantity, setQuantity] = useState(1);
   
   const selectedItem = allItems.find(item => item.name === selectedDrink);
-  const price = selectedItem ? parseFloat(selectedItem.price.replace('$', '')) : 10;
+  const price = selectedItem 
+    ? typeof selectedItem.price === 'string' 
+      ? parseFloat(selectedItem.price.replace('$', '')) 
+      : selectedItem.price 
+    : 10;
 
   const handleCreateGame = async () => {
     let userId = localStorage.getItem('demo_user_id');
@@ -64,8 +68,8 @@ export default function TableMenuPage({ params }: Props) {
       <GameOverlay tableId={tableId} />
       
       {/* Header */}
-      <header className="pt-10 pb-6 px-6 sticky top-0 bg-background/80 backdrop-blur-md z-10 border-b border-surface">
-        <div className="flex justify-between items-center">
+      <header className="pt-10 pb-6 px-6 bg-background z-10 border-b border-surface">
+        <div className="flex justify-between items-center max-w-4xl mx-auto">
           <div>
             <h1 className="text-3xl font-display font-black bg-gradient-to-r from-neon-violet to-primary bg-clip-text text-transparent">
               Neon Nights
@@ -77,27 +81,8 @@ export default function TableMenuPage({ params }: Props) {
         </div>
       </header>
 
-      {/* Menu Content */}
-      <main className="px-6 py-8 space-y-12 max-w-2xl mx-auto">
-        {menuData.categories.map((category, index) => (
-          <section key={index} className="space-y-6">
-            <h2 className="text-2xl font-display font-bold text-foreground border-b border-surface pb-2">
-              {category.name}
-            </h2>
-            <div className="space-y-4">
-              {category.items.map((item) => (
-                <MenuItem
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
-      </main>
+      {/* Menu Component handles its own categories, navigation, and sticky behavior */}
+      <Menu />
 
       {/* Floating CTA Button */}
       <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex justify-center pb-8 z-20">
@@ -115,11 +100,11 @@ export default function TableMenuPage({ params }: Props) {
           <div className="bg-slate-900 w-full p-6 rounded-t-2xl">
             <h2 className="text-xl font-bold mb-4 text-white">Set the Stakes</h2>
             <select value={selectedDrink} onChange={(e) => setSelectedDrink(e.target.value)} className="w-full bg-slate-800 p-2 rounded mb-4 text-white">
-              {menuData.categories.map((category) => (
-                <optgroup key={category.name} label={category.name}>
-                  {category.items.map((item) => (
-                    <option key={item.id} value={item.name}>
-                      {item.name} ({item.price})
+              {menuData.map((category) => (
+                <optgroup key={category.category} label={category.category}>
+                  {category.items.map((item, idx) => (
+                    <option key={`${item.name}-${idx}`} value={item.name}>
+                      {item.name} (${item.price})
                     </option>
                   ))}
                 </optgroup>

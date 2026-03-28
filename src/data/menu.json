@@ -1,66 +1,421 @@
 {
+  "restaurant": "Bar @ Lorong 13",
+  "source": "https://to-web.barlorong13.novitee.org/#/categoryList",
+  "api_endpoint": "https://to.barlorong13.novitee.org/api-onlineorder/v1/setupData/GL",
+  "image_base_url": "https://to.barlorong13.novitee.org/jeri-image",
+  "last_synced": "2026-03-28",
   "categories": [
+    {
+      "name": "Promotions",
+      "items": [
+        { "name": "St Pats $8 Guinness", "price": 8.00, "image": null },
+        { "name": "Cocktail Bundle", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/535-6634b3da87cc2.jpg" },
+        { "name": "Soju Bundle Promotion", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/442-6325978384ff0.png" },
+        { "name": "BounceBack Sleeve", "price": 21.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/392-617a7081caa41.png" },
+        { "name": "5-9pm Beer Bucket Promo", "price": 40.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/502-6724a41811799.jpg" }
+      ]
+    },
     {
       "name": "Cocktails",
       "items": [
+        { "name": "Orh Huey", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/188-5fe998e81a6f6.png" },
+        { "name": "Ju Hua", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/189-6512e4655e62b.png" },
+        { "name": "Skittles", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/249-6512e393b814a.png" },
+        { "name": "White Sangria", "price": 16.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/251-6512e40e975ee.png" },
+        { "name": "Red Sangria", "price": 16.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/252-6512e4d724262.png" },
+        { "name": "Suan Mei", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/253-65609c99796ee.jpg" },
+        { "name": "Aroi Cha Yen", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/254-6512e54734306.png" },
+        { "name": "Jerry Old Fashion", "price": 20.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/191-6512e69650bfc.png" },
+        { "name": "Whiskey Sour", "price": 20.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/99-6512e3322858c.png" },
+        { "name": "Negroni", "price": 22.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/471-650adbe233260.png" },
+        { "name": "Long Island Iced Tea", "price": 20.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/473-6513eb459aed1.png" }
+      ]
+    },
+    {
+      "name": "Draught Beer",
+      "subcategories": [
         {
-          "id": "c1",
-          "name": "Neon Margarita",
-          "description": "Tequila, lime juice, blue curacao, and a salted neon rim.",
-          "price": "$12.00"
+          "name": "Tiger Crystal",
+          "items": [
+            { "name": "Tiger Crystal Pint", "price": 13.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/431-627dd39708725.png" },
+            { "name": "Tiger Crystal Jug", "price": 29.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/432-627dd3ce1d123.png" },
+            { "name": "Tiger Crystal Tower (3L)", "price": 65.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/433-627dd3ff15c92.png" }
+          ]
         },
         {
-          "id": "c2",
-          "name": "Cyberpunk Old Fashioned",
-          "description": "Bourbon, bitters, simple syrup, and an orange peel with a smoked cherry.",
-          "price": "$14.00"
+          "name": "Suntory Premium Malt",
+          "items": [
+            { "name": "Suntory Pint", "price": 13.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/384-65b107a47fc64.png" },
+            { "name": "Suntory Tower", "price": 65.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/416-65b107c15c90c.png" }
+          ]
         },
         {
-          "id": "c3",
-          "name": "Electric Lemonade",
-          "description": "Vodka, blue raspberry liqueur, lemonade, served over crushed ice.",
-          "price": "$10.00"
+          "name": "Guinness",
+          "items": [
+            { "name": "Guinness Pint", "price": 12.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/73-5fe9ecce7148f.png" }
+          ]
         }
       ]
     },
     {
-      "name": "Beers",
-      "items": [
+      "name": "Bottled Beer",
+      "subcategories": [
         {
-          "id": "b1",
-          "name": "Draft IPA",
-          "description": "Local hazy IPA with citrus and pine notes.",
-          "price": "$7.00"
+          "name": "Corona",
+          "items": [
+            { "name": "Corona Btl", "price": 12.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/10-5fdc2f9e6744a.png" },
+            { "name": "Corona Bucket", "price": 50.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/13-5fdc2fc86345b.png" }
+          ]
         },
         {
-          "id": "b2",
-          "name": "Neon Stout",
-          "description": "Rich dark stout with coffee and dark chocolate flavors.",
-          "price": "$8.00"
+          "name": "Hoegaarden",
+          "items": [
+            { "name": "Hoegaarden Btl", "price": 12.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/11-5fdc30a8290b0.png" },
+            { "name": "Hoegaarden Bucket", "price": 50.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/12-5fdc30da0aae5.png" }
+          ]
         },
         {
-          "id": "b3",
-          "name": "Crisp Lager",
-          "description": "Refreshing and clean local lager.",
-          "price": "$6.00"
+          "name": "Pure Blonde",
+          "items": [
+            { "name": "Pure Blonde Btl", "price": 12.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/499-656f002ebc3e5.jpeg" },
+            { "name": "Pure Blonde Bucket", "price": 50.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/500-656f0a75b0aa2.png" }
+          ]
+        },
+        {
+          "name": "Asahi Super Dry",
+          "note": "Category exists but items not in active menu",
+          "items": []
         }
+      ]
+    },
+    {
+      "name": "Shots",
+      "subcategories": [
+        {
+          "name": "Iced Jager Shots",
+          "items": [
+            { "name": "Iced Jager", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/508-6724af3b34e03.jpg" },
+            { "name": "Iced Jager Half Dozen", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/509-6724afcceba49.jpg" },
+            { "name": "Iced Jager Dozen", "price": 108.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/510-6724aff58ce1c.jpg" }
+          ]
+        },
+        {
+          "name": "Iced JagerBomb",
+          "items": [
+            { "name": "Iced JagerBomb", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/517-6724b01abc057.jpg" },
+            { "name": "Iced JagerBomb Half Dozen", "price": 70.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/518-6724b035f09c1.jpg" },
+            { "name": "Iced JagerBomb Dozen", "price": 126.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/519-6724b04d37c4e.jpg" }
+          ]
+        },
+        {
+          "name": "Tequila Shots",
+          "items": [
+            { "name": "Tequila", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/514-6724b0853cab1.jpg" },
+            { "name": "Tequila Half Dozen", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/515-6724b0a14a1a6.jpg" },
+            { "name": "Tequila Dozen", "price": 108.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/516-6724b0ce8e80e.jpg" }
+          ]
+        },
+        {
+          "name": "Iced Tequila Shots",
+          "items": [
+            { "name": "Iced Tequila", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/554-6724b10761e25.jpg" },
+            { "name": "Iced Tequila Half Dozen", "price": 70.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/555-6724b1490e407.jpg" },
+            { "name": "Iced Tequila Dozen", "price": 126.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/556-6724b199f085b.jpg" }
+          ]
+        },
+        {
+          "name": "Coconut Tequila",
+          "items": [
+            { "name": "Coconut Tequila", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/536-6724b1c08bbe6.jpg" },
+            { "name": "Coconut Tequila Half Dozen", "price": 75.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/537-6724b1ec0f47e.jpg" }
+          ]
+        },
+        {
+          "name": "Sambuca Shots",
+          "items": [
+            { "name": "Sambuca", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/511-6724b212c9d69.jpg" },
+            { "name": "Sambuca Half Dozen", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/512-6724b23357cf6.jpg" },
+            { "name": "Sambuca Dozen", "price": 108.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/513-6724b24a21b94.jpg" }
+          ]
+        },
+        {
+          "name": "Sour Plum Shots",
+          "items": [
+            { "name": "Sour Plum", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/520-6724b25e27556.jpg" },
+            { "name": "Sour Plum Half Dozen", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/521-6724b27a9348e.jpg" },
+            { "name": "Sour Plum Dozen", "price": 108.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/522-6724b29246017.jpg" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gin",
+      "subcategories": [
+        {
+          "name": "Gordon Gin",
+          "items": [
+            { "name": "Gordon Gin Gls", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/66-5fe9a23694b7e.png" }
+          ]
+        },
+        {
+          "name": "Hendricks",
+          "items": [
+            { "name": "Hendricks Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/51-5fe308438a68d.png" },
+            { "name": "Hendricks Btl", "price": 165.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/53-5fdc3d7b7ef91.png" }
+          ],
+          "subcategories": [
+            {
+              "name": "Hendrick Cabinet of Curiosities",
+              "items": [
+                { "name": "Hendricks Flora Adora Btl", "price": 230.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/539-6639f4c776619.png" },
+                { "name": "Hendricks Neptunia Btl", "price": 230.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/540-6639f534069ef.png" },
+                { "name": "Hendricks Grand Cabaret Btl", "price": 230.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/559-67b6fab6ec957.jpg" },
+                { "name": "Hendricks Flora Adora Gls", "price": 17.00, "image": null },
+                { "name": "Hendricks Neptunia Gls", "price": 17.00, "image": null },
+                { "name": "Hendricks Grand Cabaret Gls", "price": 17.00, "image": null },
+                { "name": "Twin Cabinet Btls", "price": 430.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/541-67b6fd50684a8.jpg" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Roku",
+          "items": [
+            { "name": "Roku Gls", "price": 16.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/196-5fe9e55473c6b.png" },
+            { "name": "Roku Gin Btl", "price": 176.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/166-5fdc3fe1d7fb0.png" }
+          ]
+        },
+        {
+          "name": "GinRaw Gastronomic Gin",
+          "items": [
+            { "name": "GinRaw Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/460-6735e025ad102.jpg" },
+            { "name": "GinRaw Btl", "price": 160.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/459-6735dfd9c48a7.jpg" }
+          ]
+        },
+        {
+          "name": "Sipsmith Sloe Gin",
+          "note": "Category exists but items not in active menu",
+          "items": []
+        }
+      ]
+    },
+    {
+      "name": "Vodka",
+      "subcategories": [
+        {
+          "name": "Smirnoff Red",
+          "items": [
+            { "name": "Smirnoff Vodka Gls", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/67-5fe9acfc672ff.png" },
+            { "name": "Smirnoff Vodka Btl", "price": 120.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/113-5fdc419ce1eb6.png" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tequila",
+      "subcategories": [
+        {
+          "name": "Jose Cuervo",
+          "note": "Category exists but items not in active menu",
+          "items": []
+        }
+      ]
+    },
+    {
+      "name": "Rum",
+      "subcategories": [
+        {
+          "name": "Bacardi",
+          "items": [
+            { "name": "Bacardi Rum Gls", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/68-5fe9a251eb798.png" },
+            { "name": "Bacardi Btl", "price": 120.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/117-5fdc3484dc6ad.png" }
+          ]
+        },
+        {
+          "name": "Sailor Jerry",
+          "items": [
+            { "name": "Sailor Jerry Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/60-5fe9a214b3d7f.png" },
+            { "name": "Sailor Jerry Btl", "price": 170.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/62-5fdc40d169c7b.png" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Whiskey",
+      "subcategories": [
+        {
+          "name": "Ballantines",
+          "items": [
+            { "name": "Ballantines Gls", "price": 12.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/203-5fe9a1efe4d59.png" },
+            { "name": "Ballantines Btl", "price": 110.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/204-5fe9a6aa678af.png" }
+          ]
+        },
+        {
+          "name": "Bulleit Bourbon",
+          "items": [
+            { "name": "Bulleit Bourbon Gls", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/201-5fe9a1c486f49.png" },
+            { "name": "Bulleit Btl", "price": 155.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/205-5fdc3a0f1a17a.png" }
+          ]
+        },
+        {
+          "name": "Jameson",
+          "items": [
+            { "name": "Jameson Gls", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/168-5fe9a12bce11f.png" },
+            { "name": "Jameson Btl", "price": 145.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/153-5fe9ac2a23d2e.png" }
+          ]
+        },
+        {
+          "name": "Monkey Shoulder",
+          "items": [
+            { "name": "Monkey Shoulder Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/48-5fe9a2898044e.png" },
+            { "name": "Monkey Shoulder Btl", "price": 170.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/50-5fdc3f613faf4.png" }
+          ]
+        },
+        {
+          "name": "Kakubin",
+          "items": [
+            { "name": "Kakubin Gls", "price": 14.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/186-5fe309b84d128.png" },
+            { "name": "Kakubin Suntory Whiskey Btl", "price": 170.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/155-5fdc41da4c561.png" }
+          ]
+        },
+        {
+          "name": "Laphroaig",
+          "items": [
+            { "name": "Laphroiag Gls", "price": 20.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/182-5fe9a14131689.png" },
+            { "name": "Laphroaig Btl", "price": 230.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/162-5fdc3e382c36a.png" }
+          ]
+        },
+        {
+          "name": "Lagavulin",
+          "items": [
+            { "name": "Lagavulin Gls", "price": 25.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/183-5fe9a162307b8.png" },
+            { "name": "Lagavulin Btl", "price": 345.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/163-5fe9b0dcdac41.png" }
+          ]
+        },
+        {
+          "name": "Balvenie 12",
+          "items": [
+            { "name": "Balvenie 12 Gls", "price": 20.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/38-5fe30a394270e.png" },
+            { "name": "Balvenie 12 Btl", "price": 275.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/40-5fe9ae4e6db29.png" }
+          ]
+        },
+        {
+          "name": "Balvenie 14",
+          "items": [
+            { "name": "Balvenie 14 Gls", "price": 22.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/41-5fe9ac79e3203.png" }
+          ]
+        },
+        {
+          "name": "Glenfiddich 12",
+          "items": [
+            { "name": "Glenfiddich 12 Gls", "price": 17.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/26-5fe30a8210131.png" },
+            { "name": "Glenfiddich 12 Btl", "price": 230.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/28-5fdc3c4cb2903.png" }
+          ]
+        },
+        {
+          "name": "Glenfiddich 15",
+          "items": [
+            { "name": "Glenfiddich 15 Gls", "price": 18.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/29-5fe30aa4873a6.png" }
+          ]
+        },
+        {
+          "name": "Flaming Pig Black Cask Irish Whiskey",
+          "items": [
+            { "name": "Flaming Pig Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/458-641a6b904baa5.png" },
+            { "name": "Flaming Pig Btl", "price": 175.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/457-641a6b4d79b6d.png" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Liqueur",
+      "subcategories": [
+        {
+          "name": "Jagermeister",
+          "note": "Category exists but items not in active menu",
+          "items": []
+        }
+      ]
+    },
+    {
+      "name": "Cognac",
+      "subcategories": [
+        {
+          "name": "Courvoisier VSOP",
+          "items": [
+            { "name": "Courvoisier VSOP Btl", "price": 154.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/154-5fdc483b5754c.png" }
+          ]
+        },
+        {
+          "name": "Martell VSOP",
+          "items": [
+            { "name": "Martell VSOP Gls", "price": 15.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/16-624d5cc0d3b38.png" },
+            { "name": "Martell Vsop Btl", "price": 215.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/18-5fdc4891991b4.png" }
+          ]
+        },
+        {
+          "name": "Martell Cordon Bleu",
+          "items": [
+            { "name": "Martell Cordon Bleu Btl", "price": 490.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/19-5fdc3e6c60556.png" },
+            { "name": "Twin Martell Cordon Bleu Btl", "price": 869.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/132-5fdc3e9009821.png" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Soju",
+      "items": [
+        { "name": "Soju Bundle Promotion", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/442-6325978384ff0.png" },
+        { "name": "Chuga Lychee Soju", "price": 22.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/443-632598a87604c.png" },
+        { "name": "Chuga White Grape Soju", "price": 22.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/444-632598ca92ae3.png" },
+        { "name": "Chuga Watermelon Soju", "price": 22.00, "image": null },
+        { "name": "Chuga Honeydew Soju", "price": 22.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/446-632599312471c.png" }
+      ]
+    },
+    {
+      "name": "Wines & Champagnes",
+      "items": [
+        { "name": "Jacobs Creek Classic Sauvignon Blanc", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/357-603df8f6335cd.png" },
+        { "name": "Deetlefs StoneCross Chardonnay", "price": 75.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/548-6735de36d37cd.jpg" },
+        { "name": "The Shy Pig Shiraz 2018", "price": 60.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/346-601aa475ec7f7.png" },
+        { "name": "Château Rousseau Vin Rouge", "price": 85.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/470-6735de1db7823.jpg" },
+        { "name": "Moet Champagne Btl", "price": 135.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/351-602a4e5fb6463.png" },
+        { "name": "Barocco Prosecco Btl", "price": 88.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/369-6735dd44528ea.jpg" }
+      ]
+    },
+    {
+      "name": "Food Menu",
+      "items": [
+        { "name": "Ramly Hambaobao w Fries", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/394-61a5f09f6e98a.png" },
+        { "name": "Seaweed Chicken", "price": 13.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/376-6798b8bed7eac.jpg" },
+        { "name": "Shaker Fries", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/84-60150613e5e2e.png" },
+        { "name": "Mala Edamame", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/90-601506515bb31.png" },
+        { "name": "Onion Rings", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/88-60150640ab8a6.png" },
+        { "name": "Special Chicken Wings (5 pcs)", "price": 14.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/92-642e663651cdc.png" },
+        { "name": "Sotong Ball", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/94-60150676de817.png" },
+        { "name": "Nuggets on Crack", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/86-60150624a2b20.png" },
+        { "name": "Bar 13 Indo Mee", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/96-6015069287533.png" },
+        { "name": "Minute Steak (300g) with Fries", "price": 36.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/465-643e641de6e19.png" },
+        { "name": "Spam Fries", "price": 16.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/463-6823477c7cb5f.jpg" },
+        { "name": "Popcorn Chicken", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/524-682348092052f.jpg" },
+        { "name": "Spiced Squid Legs", "price": 16.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/525-682348248fb1b.jpg" },
+        { "name": "Tater Tots", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/484-682347e58339e.jpg" },
+        { "name": "Fried Spring Rolls", "price": 11.00, "image": null }
       ]
     },
     {
       "name": "Non-Alcoholic",
       "items": [
-        {
-          "id": "na1",
-          "name": "Synthwave Soda",
-          "description": "House-made blackberry and lime soda.",
-          "price": "$5.00"
-        },
-        {
-          "id": "na2",
-          "name": "Glitch Mocktail",
-          "description": "Pineapple, coconut cream, and orange juice.",
-          "price": "$6.00"
-        }
+        { "name": "Jug of Mixer", "price": 11.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/413-646b28f8bcef4.png" },
+        { "name": "Coca-Cola Classic", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/241-5fe98cf2ad4d8.png" },
+        { "name": "Schweppes Soda", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/242-5fe98d1e8b503.png" },
+        { "name": "Schweppes Tonic", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/243-5fe98d4ec90cc.png" },
+        { "name": "Schweppes Ginger Ale", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/244-5fe98d73b7d23.png" },
+        { "name": "Red Bull", "price": 7.00, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/246-5fe98e1b1c0b0.png" },
+        { "name": "Iced Lemon Tea", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/501-6823491915186.jpg" },
+        { "name": "Green Tea", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/530-6666d349e1635.jpg" },
+        { "name": "Sprite", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/547-6666d2f913b2d.jpg" },
+        { "name": "Coke Zero", "price": 5.50, "image": "https://to.barlorong13.novitee.org/jeri-image/ITEM-EMENU/549-66bdd5e4eab42.jpg" }
       ]
     }
   ]
