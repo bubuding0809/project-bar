@@ -96,24 +96,12 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
       setTurnResult({ result: data.result, show: true });
       setCurrentFill(data.result.busted ? 1.0 : data.result.fill);
       
-      // Haptic feedback for result
-      if (data.result.busted) {
-        haptic('error');
-      } else {
-        haptic('success');
-      }
-
       // Auto-hide after 2s
       setTimeout(() => setTurnResult(r => r ? { ...r, show: false } : null), 2000);
     });
 
     channel.bind('tower-turn-progress', (data: { userId: string, fill: number }) => {
       setCurrentFill(data.fill);
-      // Continuous haptic pulse based on fill level for WATCHERS
-      if (data.userId !== userId && data.fill > 0 && data.fill < 1.0) {
-        // Since we only receive this every ~150ms, just pulse once per update
-        haptic([{ duration: 30, intensity: Math.max(0.2, data.fill) }]);
-      }
     });
 
     channel.bind('tower-round-end', (data: {

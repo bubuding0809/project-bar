@@ -35,28 +35,22 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
     }
   }, []);
 
-  const submit = useCallback(async (fill: number) => {
+  const submit = useCallback(async (fill: number, isUserAction: boolean) => {
     if (submitted) return;
     setSubmitted(true);
     cancelRaf();
     cancelHaptic?.();
+    if (isUserAction) {
+      haptic('buzz'); // Play long buzz immediately if user released
+    }
     setPhase('releasing');
     await onSubmit(fill);
-  }, [submitted, cancelRaf, cancelHaptic, onSubmit]);
+  }, [submitted, cancelRaf, cancelHaptic, haptic, onSubmit]);
 
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
     holdStartRef.current = performance.now();
     setPhase('holding');
-
-    // Pre-compute and fire the entire hold pattern synchronously so iOS respects it
-    haptic([
-      { duration: 1000, intensity: 1 },
-      { delay: 10, duration: 1000, intensity: 1 },
-      { delay: 10, duration: 1000, intensity: 1 },
-      { delay: 10, duration: 1000, intensity: 1 },
-      { delay: 10, duration: 1000, intensity: 1 }
-    ]);
 
     const tick = () => {
       if (holdStartRef.current === null) return;
@@ -67,18 +61,26 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
       onProgress?.(fill);
 
       if (fill >= 1.0) {
-        submit(fill);
+        submit(fill, false); // Not a direct user interaction, might not vibrate on iOS
         return;
       }
       rafIdRef.current = requestAnimationFrame(tick);
     };
     rafIdRef.current = requestAnimationFrame(tick);
-  }, [phase, submitted, submit]);
+  }, [phase, submitted, submit, onProgress]);
 
   const stopHolding = useCallback(() => {
-    if (phase !== 'holding') return;
-    submit(fillRef.current);
-  }, [phase, submit]);
+    if (phase !== 'holding') {
+      // If they already busted while holding, this release event is a trusted user action
+      // so we can finally fire the buzz now that they let go!
+      if (submitted) {
+        cancelHaptic?.();
+        haptic('buzz');
+      }
+      return;
+    }
+    submit(fillRef.current, true);
+  }, [phase, submit, submitted, haptic, cancelHaptic]);
 
   if (phase === 'releasing') {
     return (
