@@ -8,27 +8,29 @@ import { getClientPusher } from '@/lib/pusher-client';
 interface TowerWatchScreenProps {
   currentPlayer: PlayerProfile;
   tableId: string;
+  userId: string;
 }
 
-export default function TowerWatchScreen({ currentPlayer, tableId }: TowerWatchScreenProps) {
+export default function TowerWatchScreen({ currentPlayer, tableId, userId }: TowerWatchScreenProps) {
   const [fill, setFill] = useState(0);
 
   useEffect(() => {
-    const pusher = getClientPusher();
+    const pusher = getClientPusher(userId);
     if (!pusher) return;
 
     const channel = pusher.subscribe(`private-table-${tableId}`);
-    channel.bind('client-tower-sync', (data: { userId: string, fill: number }) => {
+    const handleSync = (data: { userId: string, fill: number }) => {
       if (data.userId === currentPlayer.userId) {
         setFill(data.fill);
       }
-    });
+    };
+    
+    channel.bind('client-tower-sync', handleSync);
 
     return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
+      channel.unbind('client-tower-sync', handleSync);
     };
-  }, [tableId, currentPlayer.userId]);
+  }, [tableId, currentPlayer.userId, userId]);
 
   return (
     <div className="flex flex-col items-center gap-6">

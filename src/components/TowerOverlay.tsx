@@ -258,7 +258,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
       )}
 
       {towerState.status === 'PLAYER_TURN' && !isMyTurn && !turnResult?.show && currentPlayer && (
-        <TowerWatchScreen currentPlayer={currentPlayer} tableId={tableId} />
+        <TowerWatchScreen currentPlayer={currentPlayer} tableId={tableId} userId={userId as string} />
       )}
 
       {towerState.status === 'ROUND_END' && (
