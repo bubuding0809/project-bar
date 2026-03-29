@@ -9,9 +9,11 @@ import WinScreen from './WinScreen';
 
 interface GameOverlayProps {
   tableId: string;
+  onGameActiveChange?: (active: boolean) => void;
+  hostInitiatedGame?: GameState | null;
 }
 
-export default function GameOverlay({ tableId }: GameOverlayProps) {
+export default function GameOverlay({ tableId, onGameActiveChange, hostInitiatedGame }: GameOverlayProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [nickname, setNickname] = useState('');
   const [emoji, setEmoji] = useState('🎲');
@@ -21,6 +23,17 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
   const [loserId, setLoserId] = useState<string | null>(null);
   const [showResolution, setShowResolution] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
+
+  useEffect(() => {
+    onGameActiveChange?.(gameState !== null);
+  }, [gameState, onGameActiveChange]);
+
+  // Host fallback: show overlay immediately from API response without waiting for Pusher
+  useEffect(() => {
+    if (hostInitiatedGame) {
+      setGameState(hostInitiatedGame);
+    }
+  }, [hostInitiatedGame]);
 
   useEffect(() => {
     // Basic local user ID for this demo
@@ -81,7 +94,11 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
     channel.bind('payment_timeout', () => setGameState(null));
 
     return () => {
-      channel.unbind_all();
+      channel.unbind('game-updated');
+      channel.unbind('spin_start');
+      channel.unbind('game-paid');
+      channel.unbind('lobby_closed');
+      channel.unbind('payment_timeout');
       channel.unsubscribe();
     };
   }, [tableId]);
@@ -178,6 +195,11 @@ export default function GameOverlay({ tableId }: GameOverlayProps) {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      // Optimistically clear overlay — game-paid Pusher event will also clear other tabs
+      setGameState(null);
+      setShowResolution(false);
+      setIsPaying(false);
+      setLoserId(null);
     } catch (error) {
       console.error('Failed to pay:', error);
       setIsPaying(false);

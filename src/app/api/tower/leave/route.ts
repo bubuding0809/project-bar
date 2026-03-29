@@ -1,0 +1,36 @@
+import { NextResponse } from 'next/server';
+import { redis } from '@/lib/redis';
+import { serverPusher } from '@/lib/pusher-server';
+import { TowerState } from '@/types/tower';
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { tableId, userId } = body;
+
+    if (!tableId || !userId) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    const key = `table:${tableId}:tower`;
+    const state = await redis.get<TowerState>(key);
+
+    if (!state || state.status !== 'LOBBY') {
+      return NextResponse.json({ success: true }); // no-op
+    }
+
+    state.players = state.players.filter(p => p.userId !== userId);
+    await redis.set(key, state, { ex: 3600 });
+
+    try {
+      await serverPusher.trigger(`table-${tableId}`, 'tower-updated', state);
+    } catch (pusherError) {
+      console.error('Failed to trigger Pusher event:', pusherError);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Failed to leave tower game:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

@@ -22,11 +22,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Game already paid' }, { status: 400 });
     }
 
-    // Update state to PAID
+    // Update state to PAID and delete the key so a new game can be created
     gameState.status = 'PAID';
-
-    // Save to Redis
-    await redis.set(gameKey, gameState, { ex: 3600 });
+    await redis.del(gameKey);
 
     try {
       // Trigger game-paid event
