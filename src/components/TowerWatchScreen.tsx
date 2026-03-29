@@ -1,13 +1,35 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { PlayerProfile } from '@/types/game';
 import TowerMeter from './TowerMeter';
+import { getClientPusher } from '@/lib/pusher-client';
 
 interface TowerWatchScreenProps {
   currentPlayer: PlayerProfile;
+  tableId: string;
 }
 
-export default function TowerWatchScreen({ currentPlayer }: TowerWatchScreenProps) {
+export default function TowerWatchScreen({ currentPlayer, tableId }: TowerWatchScreenProps) {
+  const [fill, setFill] = useState(0);
+
+  useEffect(() => {
+    const pusher = getClientPusher();
+    if (!pusher) return;
+
+    const channel = pusher.subscribe(`private-table-${tableId}`);
+    channel.bind('client-tower-sync', (data: { userId: string, fill: number }) => {
+      if (data.userId === currentPlayer.userId) {
+        setFill(data.fill);
+      }
+    });
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [tableId, currentPlayer.userId]);
+
   return (
     <div className="flex flex-col items-center gap-6">
       <p className="text-slate-300 text-lg">
@@ -15,7 +37,7 @@ export default function TowerWatchScreen({ currentPlayer }: TowerWatchScreenProp
       </p>
 
       <div className="relative">
-        <TowerMeter fill={0} isActive={false} />
+        <TowerMeter fill={fill} isActive={false} />
         {/* Pulsing placeholder overlay */}
         <div className="absolute inset-0 rounded-xl animate-pulse bg-slate-700/20" />
       </div>
