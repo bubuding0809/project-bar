@@ -249,6 +249,8 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
 
       {towerState.status === 'PLAYER_TURN' && isMyTurn && !turnResult?.show && (
         <TowerHoldScreen
+          tableId={tableId}
+          userId={userId as string}
           playerName={towerState.players.find(p => p.userId === userId)?.nickname ?? ''}
           emoji={towerState.players.find(p => p.userId === userId)?.emoji ?? ''}
           onSubmit={handleSubmitTurn}
