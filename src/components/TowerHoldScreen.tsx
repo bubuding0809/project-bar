@@ -12,9 +12,10 @@ interface TowerHoldScreenProps {
   playerName: string;
   emoji: string;
   onSubmit: (fill: number) => Promise<void>;
+  onProgress?: (fill: number) => void;
 }
 
-export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHoldScreenProps) {
+export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgress }: TowerHoldScreenProps) {
   const [phase, setPhase] = useState<'countdown' | 'idle' | 'holding' | 'releasing'>('countdown');
   const [countdown, setCountdown] = useState(3);
   const [displayFill, setDisplayFill] = useState(0);
@@ -65,6 +66,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
       const fill = computeFill(elapsed);
       fillRef.current = fill;
       setDisplayFill(fill);
+      onProgress?.(fill);
 
       if (fill >= 1.0) {
         submit(fill);

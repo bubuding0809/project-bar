@@ -4,9 +4,10 @@ interface TowerMeterProps {
   fill: number;       // 0–1.0
   isActive: boolean;
   target?: number;    // default 0.82
+  smooth?: boolean;   // apply css transition to fill
 }
 
-export default function TowerMeter({ fill, isActive, target = 0.82 }: TowerMeterProps) {
+export default function TowerMeter({ fill, isActive, target = 0.82, smooth = false }: TowerMeterProps) {
   const pct = Math.min(fill * 100, 100);
   const isShaking = fill > 0.75;
   const isDanger = fill > 0.80;
@@ -20,7 +21,7 @@ export default function TowerMeter({ fill, isActive, target = 0.82 }: TowerMeter
     >
       {/* Fill bar */}
       <div
-        className="absolute bottom-0 left-0 right-0 transition-none"
+        className={`absolute bottom-0 left-0 right-0 ${smooth ? 'transition-all duration-150 ease-linear' : 'transition-none'}`}
         style={{
           height: `${pct}%`,
           background: 'linear-gradient(to top, #8B5CF6, #6366F1, #F59E0B, #F43F5E)',

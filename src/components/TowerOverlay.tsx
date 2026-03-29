@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { getClientPusher } from '@/lib/pusher-client';
 import { TowerState, TowerTurnResult } from '@/types/tower';
 import TowerLobbyScreen from './TowerLobbyScreen';
@@ -26,6 +26,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
   const [turnResult, setTurnResult] = useState<TurnResultOverlay | null>(null);
   // activePlayerId tracks who should show hold screen (set by tower-turn-start)
   const [activePlayerId, setActivePlayerId] = useState<string | null>(null);
+  const [currentFill, setCurrentFill] = useState(0);
   const towerStateRef = useRef<TowerState | null>(null);
 
   // Keep ref in sync for unload handler
@@ -79,14 +80,18 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
 
     channel.bind('tower-turn-start', (data: { playerId: string; playerIndex: number }) => {
       setActivePlayerId(data.playerId);
-      // Clear turn result overlay once new turn starts
-      setTurnResult(null);
+      setCurrentFill(0);
     });
 
     channel.bind('tower-turn-result', (data: { result: TowerTurnResult }) => {
       setTurnResult({ result: data.result, show: true });
+      setCurrentFill(data.result.busted ? 1.0 : data.result.fill);
       // Auto-hide after 2s
       setTimeout(() => setTurnResult(r => r ? { ...r, show: false } : null), 2000);
+    });
+
+    channel.bind('tower-turn-progress', (data: { userId: string, fill: number }) => {
+      setCurrentFill(data.fill);
     });
 
     channel.bind('tower-round-end', (data: {
@@ -117,6 +122,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
       channel.unbind('tower-updated');
       channel.unbind('tower-turn-start');
       channel.unbind('tower-turn-result');
+      channel.unbind('tower-turn-progress');
       channel.unbind('tower-round-end');
       channel.unbind('tower-forfeit');
       channel.unbind('tower-lobby-closed');
@@ -178,6 +184,20 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
       console.error('Failed to start tower game:', err);
     }
   };
+
+  const lastProgressRef = useRef<number>(0);
+  const handleProgress = useCallback((fill: number) => {
+    if (!userId) return;
+    const now = performance.now();
+    if (now - lastProgressRef.current > 150) {
+      lastProgressRef.current = now;
+      fetch('/api/tower/progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tableId, userId, fill }),
+      }).catch(err => console.error('Failed to send progress:', err));
+    }
+  }, [tableId, userId]);
 
   const handleSubmitTurn = async (fill: number) => {
     if (!userId) return;
@@ -252,11 +272,12 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
           playerName={towerState.players.find(p => p.userId === userId)?.nickname ?? ''}
           emoji={towerState.players.find(p => p.userId === userId)?.emoji ?? ''}
           onSubmit={handleSubmitTurn}
+          onProgress={handleProgress}
         />
       )}
 
       {towerState.status === 'PLAYER_TURN' && !isMyTurn && !turnResult?.show && currentPlayer && (
-        <TowerWatchScreen currentPlayer={currentPlayer} />
+        <TowerWatchScreen currentPlayer={currentPlayer} currentFill={currentFill} />
       )}
 
       {towerState.status === 'ROUND_END' && (
