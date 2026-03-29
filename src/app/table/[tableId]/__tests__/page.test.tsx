@@ -3,9 +3,12 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import React, { Suspense } from 'react';
 import Page from '../page';
 
-// Mock GameOverlay to prevent Pusher errors
+// Mock overlays to prevent Pusher/fetch errors
 vi.mock('@/components/GameOverlay', () => ({
   default: () => <div data-testid="game-overlay-mock" />
+}));
+vi.mock('@/components/TowerOverlay', () => ({
+  default: () => <div data-testid="tower-overlay-mock" />
 }));
 
 test('opens bottom sheet and shows stepper', async () => {
@@ -19,7 +22,7 @@ test('opens bottom sheet and shows stepper', async () => {
     );
   });
 
-  const button = await screen.findByText('Play Drink Roulette 🎰');
+  const button = await screen.findByText('Play Drink Roulette');
   fireEvent.click(button);
   
   expect(screen.getByText('Set the Stakes')).toBeTruthy();
