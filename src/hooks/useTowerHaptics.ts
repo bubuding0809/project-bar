@@ -46,7 +46,7 @@ export function useTowerHaptics() {
   useEffect(() => {
     return () => {
       if (haptics?.cancel) {
-        try { haptics.cancel(); } catch (e) { /* ignore cleanup errors */ }
+        try { haptics.cancel(); } catch { /* ignore cleanup errors */ }
       }
     };
   }, [haptics]);

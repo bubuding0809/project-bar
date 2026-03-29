@@ -13,9 +13,10 @@ describe('useTowerHaptics', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (webHaptics.useWebHaptics as any).mockReturnValue({
+    vi.mocked(webHaptics.useWebHaptics).mockReturnValue({
       trigger: triggerMock,
       cancel: cancelMock,
+      isSupported: true,
     });
   });
 
@@ -46,7 +47,8 @@ describe('useTowerHaptics', () => {
   });
 
   it('handles useWebHaptics returning undefined/null gracefully', () => {
-    (webHaptics.useWebHaptics as any).mockReturnValue(undefined);
+    // @ts-expect-error: simulating unavailable haptics API
+    vi.mocked(webHaptics.useWebHaptics).mockReturnValue(undefined);
     const { result } = renderHook(() => useTowerHaptics());
     
     expect(() => result.current.startEngine()).not.toThrow();
