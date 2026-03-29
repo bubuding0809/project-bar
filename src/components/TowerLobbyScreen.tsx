@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { TowerState } from '@/types/tower';
-import { useWebHaptics } from 'web-haptics/react';
 
 const EMOJIS = ['🎯', '😎', '👻', '🤠', '🦊', '👽'];
 
@@ -23,7 +22,6 @@ export default function TowerLobbyScreen({
 }: TowerLobbyScreenProps) {
   const [nickname, setNickname] = useState('');
   const [emoji, setEmoji] = useState(EMOJIS[0]);
-  const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
 
   const isHost = userId === towerState.host;
   const isInGame = towerState.players.some(p => p.userId === userId);
@@ -51,7 +49,7 @@ export default function TowerLobbyScreen({
       )}
 
       {/* Player list */}
-      <div className="mb-4">
+      <div className="mb-6">
         <h3 className="font-semibold text-slate-300 mb-2">
           Players Joined ({towerState.players.length})
         </h3>
@@ -78,15 +76,6 @@ export default function TowerLobbyScreen({
             </li>
           ))}
         </ul>
-      </div>
-
-      <div className="flex justify-center mb-6">
-        <button
-          onClick={() => haptic('success')}
-          className="text-xs text-slate-400 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-700 hover:text-white transition-colors cursor-pointer active:scale-95"
-        >
-          Test Haptics 📳
-        </button>
       </div>
 
       {!isInGame ? (
