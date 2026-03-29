@@ -17,6 +17,7 @@
     "@trpc/server": "^11.16.0",
     "@trpc/tanstack-react-query": "^11.16.0",
     "@upstash/redis": "^1.37.0",
+    "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "dotenv": "^17.3.1",
     "lucide-react": "^1.7.0",
@@ -25,13 +26,16 @@
     "pusher": "^5.3.3",
     "pusher-js": "^8.4.3",
     "react": "19.2.4",
+    "react-confetti": "^6.4.0",
     "react-dom": "19.2.4",
     "superjson": "^2.2.6",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "web-haptics": "^0.0.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@testing-library/react": "^16.3.2",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
