@@ -7,6 +7,7 @@ import { MenuItem } from '@/components/menu/MenuItem';
 import { FloatingCartButton } from '@/components/menu/FloatingCartButton';
 import { BottomNav } from '@/components/menu/BottomNav';
 import { menuData } from '@/data/menu';
+import { generateItemId } from '@/lib/utils';
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState(menuData[0]?.category || '');
@@ -50,15 +51,19 @@ export default function MenuPage() {
           <div key={cat.category} id={`category-${cat.category}`} className="scroll-mt-[120px]">
             <h2 className="text-xl font-bold mb-4">{cat.category}</h2>
             <div className="space-y-0">
-              {cat.items.map((item, index) => (
-                <MenuItem
-                  key={`${cat.category}-${index}`}
-                  title={item.name}
-                  price={item.price as number}
-                  description={item.description}
-                  imgUrl={item.imageUrl || ''}
-                />
-              ))}
+              {cat.items.map((item, index) => {
+                const itemId = generateItemId(item.name);
+                return (
+                  <MenuItem
+                    key={`${cat.category}-${index}`}
+                    id={itemId}
+                    title={item.name}
+                    price={item.price as number}
+                    description={item.description}
+                    imgUrl={item.imageUrl || ''}
+                  />
+                );
+              })}
             </div>
           </div>
         ))}
