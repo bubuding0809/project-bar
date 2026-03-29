@@ -9,7 +9,7 @@ const requireEnv = (name: string, value: string | undefined) => {
 
 let clientPusherInstance: PusherClient | null = null;
 
-export const getClientPusher = () => {
+export const getClientPusher = (userId?: string) => {
   if (typeof window === 'undefined') {
     return null;
   }
@@ -19,6 +19,10 @@ export const getClientPusher = () => {
       requireEnv('NEXT_PUBLIC_PUSHER_KEY', process.env.NEXT_PUBLIC_PUSHER_KEY),
       {
         cluster: requireEnv('NEXT_PUBLIC_PUSHER_CLUSTER', process.env.NEXT_PUBLIC_PUSHER_CLUSTER),
+        authEndpoint: '/api/pusher/auth',
+        auth: {
+          params: { userId: userId || 'anonymous' }
+        }
       }
     );
   }
