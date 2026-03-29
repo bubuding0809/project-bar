@@ -50,16 +50,13 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
     setPhase('holding');
 
     // Pre-compute and fire the entire hold pattern synchronously so iOS respects it
-    const pattern = [];
-    let ms = 0;
-    while (ms < 4500) { // Busts at ~4170ms
-      const f = computeFill(ms / 1000);
-      const intensity = Math.max(0.2, f);
-      const delay = Math.max(20, 100 - (f * 80)); // 100ms at start, 20ms at end
-      pattern.push({ delay: ms === 0 ? 0 : delay, duration: 30, intensity });
-      ms += delay + 30;
-    }
-    haptic(pattern);
+    haptic([
+      { duration: 1000, intensity: 1 },
+      { delay: 10, duration: 1000, intensity: 1 },
+      { delay: 10, duration: 1000, intensity: 1 },
+      { delay: 10, duration: 1000, intensity: 1 },
+      { delay: 10, duration: 1000, intensity: 1 }
+    ]);
 
     const tick = () => {
       if (holdStartRef.current === null) return;
@@ -110,9 +107,12 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
       </div>
 
       <button
-        onPointerDown={startHolding}
-        onPointerUp={stopHolding}
-        onPointerLeave={stopHolding}
+        onTouchStart={(e) => { e.preventDefault(); startHolding(); }}
+        onMouseDown={(e) => { startHolding(); }}
+        onTouchEnd={(e) => { e.preventDefault(); stopHolding(); }}
+        onMouseUp={(e) => { stopHolding(); }}
+        onMouseLeave={stopHolding}
+        onTouchCancel={stopHolding}
         disabled={submitted}
         className={`w-48 h-48 rounded-full text-white font-display font-black text-2xl transition-all duration-100 cursor-pointer select-none touch-none
           ${phase === 'holding'
