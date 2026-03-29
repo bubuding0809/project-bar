@@ -16,29 +16,13 @@ interface TowerHoldScreenProps {
 }
 
 export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgress }: TowerHoldScreenProps) {
-  const [phase, setPhase] = useState<'countdown' | 'idle' | 'holding' | 'releasing'>('countdown');
-  const [countdown, setCountdown] = useState(3);
+  const [phase, setPhase] = useState<'idle' | 'holding' | 'releasing'>('idle');
   const [displayFill, setDisplayFill] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
-
-  // 3-second countdown on mount
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCountdown(c => {
-        if (c <= 1) {
-          clearInterval(id);
-          setPhase('idle');
-          return 0;
-        }
-        return c - 1;
-      });
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -81,16 +65,6 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
     if (phase !== 'holding') return;
     submit(fillRef.current);
   }, [phase, submit]);
-
-  if (phase === 'countdown') {
-    return (
-      <div className="flex flex-col items-center justify-center gap-6">
-        <p className="text-slate-400 font-medium">Get ready, {emoji} {playerName}!</p>
-        <div className="text-8xl font-display font-black text-neon-violet animate-pulse">{countdown}</div>
-        <p className="text-slate-500 text-sm">Hold the button to fill the tower</p>
-      </div>
-    );
-  }
 
   if (phase === 'releasing') {
     return (
