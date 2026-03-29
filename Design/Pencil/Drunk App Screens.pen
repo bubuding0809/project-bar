@@ -39,7 +39,7 @@
               "id": "zEN09",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -48,7 +48,7 @@
               "id": "1aQS9",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -77,38 +77,34 @@
               "id": "deRNI",
               "fill": "$--foreground",
               "content": "Bar Lorong 13",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
-              "fontWeight": "700",
+              "fontWeight": "600",
               "letterSpacing": -0.5
             },
             {
               "type": "frame",
               "id": "nIl54",
-              "name": "view_order_btn_to_m4",
-              "context": "Opens [M4] Past Orders",
+              "name": "search_btn",
+              "width": 40,
               "height": 40,
-              "fill": "$--foreground",
+              "fill": "#00000000",
               "cornerRadius": "$--radius-pill",
               "stroke": {
-                "thickness": 0
+                "thickness": 1,
+                "fill": "$--border"
               },
-              "padding": [
-                0,
-                14
-              ],
               "justifyContent": "center",
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "qzy0U",
-                  "name": "label",
-                  "fill": "$--background",
-                  "content": "View Order",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "600"
+                  "type": "icon_font",
+                  "id": "qngwC",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "search",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--foreground"
                 }
               ]
             }
@@ -151,7 +147,7 @@
                   "id": "lqrjV",
                   "fill": "$--background",
                   "content": "Cocktails",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 14,
                   "fontWeight": "500"
                 }
@@ -173,7 +169,7 @@
                   "id": "ORvzZ",
                   "fill": "$--muted-foreground",
                   "content": "Food Menu",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 14,
                   "fontWeight": "500"
                 }
@@ -195,7 +191,7 @@
                   "id": "cSif9",
                   "fill": "$--muted-foreground",
                   "content": "Promotions",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 14,
                   "fontWeight": "500"
                 }
@@ -257,7 +253,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Aroi Cha Yen",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 16,
                           "fontWeight": "600"
                         },
@@ -269,7 +265,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "A delightful mix of thai milk tea and spiced rum, making for an enjoyable treat after a long day.",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -280,7 +276,7 @@
                       "id": "AVBsI",
                       "fill": "$--foreground",
                       "content": "$18.00",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-primary",
                       "fontSize": 16,
                       "fontWeight": "500"
                     }
@@ -384,7 +380,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Jerry Old Fashion",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 16,
                           "fontWeight": "600"
                         },
@@ -396,7 +392,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Our own rendition of the classic Old Fashioned. An elevated blend of bourbon, brown sugar and chocolate bitters. Definitely a must-try for whiskey lovers.",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -407,7 +403,7 @@
                       "id": "AOKbs",
                       "fill": "$--foreground",
                       "content": "$20.00",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-primary",
                       "fontSize": 16,
                       "fontWeight": "500"
                     }
@@ -511,7 +507,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Ju Hua",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 16,
                           "fontWeight": "600"
                         },
@@ -523,7 +519,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Experience the harmonious blend of vodka, elderflower syrup and chamomile tea. A classic floral hit amongst our patrons.",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -534,7 +530,7 @@
                       "id": "5GBQE",
                       "fill": "$--foreground",
                       "content": "$18.00",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-primary",
                       "fontSize": 16,
                       "fontWeight": "500"
                     }
@@ -638,7 +634,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Long Island Iced Tea",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 16,
                           "fontWeight": "600"
                         },
@@ -650,7 +646,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "A strong mix of 4 white spirits with an added dash of Triple Sec and splashed with Coke.",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -661,7 +657,7 @@
                       "id": "7xOln",
                       "fill": "$--foreground",
                       "content": "$20.00",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-primary",
                       "fontSize": 16,
                       "fontWeight": "500"
                     }
@@ -768,8 +764,8 @@
                   "type": "text",
                   "id": "uHcoh",
                   "fill": "$--background",
-                  "content": "Cart (3 Items)",
-                  "fontFamily": "Inter",
+                  "content": "Cart [3 Items] — $37.00",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 }
@@ -791,17 +787,45 @@
               },
               "padding": [
                 0,
-                24
+                16
               ],
               "justifyContent": "space_between",
               "alignItems": "center",
               "children": [
                 {
                   "type": "frame",
+                  "id": "AgDo8",
+                  "name": "n1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "IZKYB",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "home",
+                      "iconFontFamily": "feather",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "N3MgF",
+                      "fill": "$--muted-foreground",
+                      "content": "HOME",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
                   "id": "HZXTC",
                   "name": "n2",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 4,
                   "alignItems": "center",
                   "children": [
                     {
@@ -818,7 +842,7 @@
                       "id": "3tbbf",
                       "fill": "$--foreground",
                       "content": "MENU",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -829,7 +853,7 @@
                   "id": "WaXLc",
                   "name": "n3",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 4,
                   "alignItems": "center",
                   "children": [
                     {
@@ -846,7 +870,7 @@
                       "id": "9KXFY",
                       "fill": "$--muted-foreground",
                       "content": "GAMES",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -857,7 +881,7 @@
                   "id": "FBJIq",
                   "name": "n4",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 4,
                   "alignItems": "center",
                   "children": [
                     {
@@ -874,7 +898,7 @@
                       "id": "o6MYt",
                       "fill": "$--muted-foreground",
                       "content": "PROFILE",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -923,7 +947,7 @@
               "id": "I6mpv",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -932,7 +956,7 @@
               "id": "EcYAJ",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -945,8 +969,7 @@
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 20,
-          "padding": 24,
+          "gap": 24,
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
@@ -955,7 +978,7 @@
               "id": "KDzGB",
               "fill": "$--foreground",
               "content": "Let’s Get You In",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 28,
               "fontWeight": "700"
             },
@@ -965,8 +988,8 @@
               "fill": "$--muted-foreground",
               "textGrowth": "fixed-width",
               "width": "fill_container",
-              "content": "Pick your name and emoji before joining, or sign in to sync membership.",
-              "fontFamily": "Inter",
+              "content": "Pick your name and emoji before joining a table.",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 14,
               "fontWeight": "normal"
             },
@@ -976,7 +999,7 @@
               "name": "nameWrap",
               "width": "fill_container",
               "fill": "$--muted",
-              "cornerRadius": 12,
+              "cornerRadius": 14,
               "layout": "vertical",
               "gap": 8,
               "padding": [
@@ -990,7 +1013,7 @@
                   "name": "nameLbl",
                   "fill": "$--muted-foreground",
                   "content": "Display name",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -1000,7 +1023,7 @@
                   "name": "nameVal",
                   "fill": "$--foreground",
                   "content": "Clive",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 18,
                   "fontWeight": "600"
                 }
@@ -1012,7 +1035,7 @@
               "name": "emojiWrap",
               "width": "fill_container",
               "fill": "$--muted",
-              "cornerRadius": 12,
+              "cornerRadius": 14,
               "padding": [
                 14,
                 16
@@ -1026,7 +1049,7 @@
                   "name": "emojiLbl",
                   "fill": "$--muted-foreground",
                   "content": "Emoji",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 12,
                   "fontWeight": "600"
                 },
@@ -1036,19 +1059,9 @@
                   "name": "emojiVal",
                   "fill": "$--foreground",
                   "content": "🍻",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 22,
                   "fontWeight": "normal"
-                },
-                {
-                  "type": "frame",
-                  "id": "HqgW0",
-                  "name": "Frame 1",
-                  "clip": true,
-                  "width": 1,
-                  "height": 1,
-                  "fill": "#f6f6f6",
-                  "layout": "none"
                 }
               ]
             },
@@ -1071,37 +1084,9 @@
                   "id": "SpuaU",
                   "name": "ctaTxt",
                   "fill": "$--background",
-                  "content": "Continue to Menu",
-                  "fontFamily": "Inter",
+                  "content": "Continue to Lobby",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "oiRSq",
-              "name": "si",
-              "width": "fill_container",
-              "gap": 6,
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "U8cLH",
-                  "fill": "$--muted-foreground",
-                  "content": "Already have an account?",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "jHN0R",
-                  "fill": "$--foreground",
-                  "content": "Sign In",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
                   "fontWeight": "700"
                 }
               ]
@@ -1147,7 +1132,7 @@
               "id": "f8BGa",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -1156,7 +1141,7 @@
               "id": "kvQqJ",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -1169,13 +1154,8 @@
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 24,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
+          "gap": 32,
+          "padding": 24,
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
@@ -1184,7 +1164,7 @@
               "id": "uSHLi",
               "fill": "$--foreground",
               "content": "Scan Table QR",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "600"
             },
@@ -1194,7 +1174,7 @@
               "name": "vf",
               "width": 250,
               "height": 250,
-              "cornerRadius": 16,
+              "cornerRadius": 24,
               "stroke": {
                 "thickness": 4,
                 "fill": "$--foreground"
@@ -1203,12 +1183,10 @@
             {
               "type": "text",
               "id": "bCSRr",
-              "fill": "$--muted-foreground",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
+              "fill": "$--muted",
               "content": "Point camera at the QR code on your table to view the menu and order.",
               "textAlign": "center",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 14,
               "fontWeight": "normal"
             }
@@ -1253,7 +1231,7 @@
               "id": "sMJTO",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -1262,7 +1240,7 @@
               "id": "ibQJK",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -1275,13 +1253,8 @@
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
+          "gap": 24,
+          "padding": 24,
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
@@ -1290,7 +1263,7 @@
               "id": "sJu5X",
               "fill": "$--muted",
               "content": "Welcome to",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
             },
@@ -1299,7 +1272,7 @@
               "id": "smrcu",
               "fill": "$--foreground",
               "content": "Bar Lorong 13",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 32,
               "fontWeight": "700"
             },
@@ -1319,7 +1292,7 @@
                   "id": "cpxXN",
                   "fill": "$--foreground",
                   "content": "Table 3",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 20,
                   "fontWeight": "600"
                 }
@@ -1344,9 +1317,413 @@
                   "id": "JLmV9",
                   "fill": "$--background",
                   "content": "Open Tab",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
                   "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "zbP04",
+      "x": 1500,
+      "y": -1000,
+      "name": "[H1] Home",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "$--background",
+      "stroke": {
+        "thickness": 1,
+        "fill": "$--border"
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "K7M5F",
+          "name": "stat_bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$--background",
+          "padding": [
+            18,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "rCtIz",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "qVHMW",
+              "fill": "$--foreground",
+              "content": "5G  📶  🔋",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "erqGN",
+          "name": "h1Head",
+          "width": "fill_container",
+          "height": 64,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "S63DU",
+              "fill": "$--foreground",
+              "content": "Bar Lorong 13",
+              "fontFamily": "\\$--font-primary",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "frame",
+              "id": "CzvCl",
+              "name": "h1T",
+              "fill": "$--muted",
+              "cornerRadius": "$--radius-pill",
+              "padding": [
+                6,
+                12
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LpSu6",
+                  "fill": "$--foreground",
+                  "content": "Table 3",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LhMfb",
+          "name": "h1C",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "4D2uB",
+              "name": "hl",
+              "width": "fill_container",
+              "height": 180,
+              "fill": "$--muted",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "padding": 24,
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "knaHO",
+                  "fill": "$--foreground",
+                  "content": "Live: Market Crash at 10PM",
+                  "fontFamily": "\\$--font-primary",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "5YtjQ",
+                  "fill": "$--foreground",
+                  "content": "Drinks drop by 50% for 10 mins!",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "I041S",
+              "name": "acts",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VcH7R",
+                  "name": "ord",
+                  "width": "fill_container",
+                  "height": 120,
+                  "fill": "$--foreground",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "padding": 16,
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QLohg",
+                      "content": "🍺",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 24,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cTBm7",
+                      "fill": "$--background",
+                      "content": "Order Now",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TvsHb",
+                  "name": "gms",
+                  "width": "fill_container",
+                  "height": 120,
+                  "fill": "$--muted",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "padding": 16,
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "3FQ0d",
+                      "content": "🎲",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 24,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DqlGX",
+                      "fill": "$--foreground",
+                      "content": "Games",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OI2o5",
+          "layoutPosition": "absolute",
+          "x": 0,
+          "y": 796,
+          "name": "Bottom Nav Container",
+          "width": 393,
+          "fill": "#00000000",
+          "stroke": {
+            "align": "inside",
+            "thickness": 0
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "UvXJW",
+              "layoutPosition": "absolute",
+              "x": 24,
+              "y": -72,
+              "name": "cart_btn",
+              "width": 345,
+              "height": 56,
+              "fill": "$--foreground",
+              "cornerRadius": "$--radius-pill",
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000040",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VygyL",
+                  "fill": "$--background",
+                  "content": "Cart [3 Items] — $37.00",
+                  "fontFamily": "\\$--font-primary",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rOCzo",
+              "name": "nav_bar",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$--background",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "top": 1
+                },
+                "fill": "$--border"
+              },
+              "padding": [
+                0,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xMdb4",
+                  "name": "n1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "4fVZT",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "home",
+                      "iconFontFamily": "feather",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DnERf",
+                      "fill": "$--muted-foreground",
+                      "content": "HOME",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KAB3S",
+                  "name": "n2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "YiEaE",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "beer",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UsxgJ",
+                      "fill": "$--foreground",
+                      "content": "MENU",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "7kvRF",
+                  "name": "n3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "a5HQV",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "dice-5",
+                      "iconFontFamily": "lucide",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hFjbK",
+                      "fill": "$--muted-foreground",
+                      "content": "GAMES",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "c4Z7Q",
+                  "name": "n4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "nE72T",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "user",
+                      "iconFontFamily": "feather",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "3XNa0",
+                      "fill": "$--muted-foreground",
+                      "content": "PROFILE",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
@@ -1391,7 +1768,7 @@
               "id": "Q7sbt",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -1400,7 +1777,7 @@
               "id": "zAmiC",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -1423,7 +1800,7 @@
               "id": "9J1dZ",
               "fill": "$--foreground",
               "content": "← Back",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
             }
@@ -1436,13 +1813,8 @@
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
+          "gap": 24,
+          "padding": 24,
           "children": [
             {
               "type": "frame",
@@ -1464,7 +1836,7 @@
                   "id": "x6dYu",
                   "fill": "$--foreground",
                   "content": "Aroi Cha Yen",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 24,
                   "fontWeight": "700"
                 },
@@ -1473,7 +1845,7 @@
                   "id": "rzT6W",
                   "fill": "$--foreground",
                   "content": "$18.00",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 20,
                   "fontWeight": "600"
                 },
@@ -1482,7 +1854,7 @@
                   "id": "1g1mK",
                   "fill": "$--muted-foreground",
                   "content": "A delightful mix of thai milk tea and spiced rum, making for an enjoyable treat after a long day.",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 14,
                   "fontWeight": "normal"
                 }
@@ -1501,7 +1873,7 @@
                   "id": "epNP9",
                   "fill": "$--foreground",
                   "content": "Ice Level",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 },
@@ -1527,7 +1899,7 @@
                           "id": "PjF8F",
                           "fill": "$--background",
                           "content": "Normal",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-secondary",
                           "fontSize": 14,
                           "fontWeight": "normal"
                         }
@@ -1548,7 +1920,7 @@
                           "id": "ORWAU",
                           "fill": "$--foreground",
                           "content": "Less Ice",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-secondary",
                           "fontSize": 14,
                           "fontWeight": "normal"
                         }
@@ -1569,7 +1941,7 @@
                           "id": "rrIKE",
                           "fill": "$--foreground",
                           "content": "No Ice",
-                          "fontFamily": "Inter",
+                          "fontFamily": "\\$--font-secondary",
                           "fontSize": 14,
                           "fontWeight": "normal"
                         }
@@ -1586,7 +1958,7 @@
           "id": "7ltO9",
           "layoutPosition": "absolute",
           "x": 24,
-          "y": 749,
+          "y": 772,
           "name": "m2Add",
           "width": 345,
           "height": 56,
@@ -1600,170 +1972,9 @@
               "id": "GbnA4",
               "fill": "$--background",
               "content": "Add to Cart — $18.00",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "m4jCY",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 796,
-          "name": "navM2",
-          "width": 393,
-          "fill": "#00000000",
-          "stroke": {
-            "align": "inside",
-            "thickness": 0
-          },
-          "layout": "vertical",
-          "gap": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "jpBzd",
-              "layoutPosition": "absolute",
-              "x": 24,
-              "y": -72,
-              "name": "cart_btn",
-              "enabled": false,
-              "width": 345,
-              "height": 56,
-              "fill": "$--foreground",
-              "cornerRadius": "$--radius-pill",
-              "effect": {
-                "type": "shadow",
-                "shadowType": "outer",
-                "color": "#00000040",
-                "offset": {
-                  "x": 0,
-                  "y": 8
-                },
-                "blur": 24
-              },
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "mqKQ2",
-                  "fill": "$--background",
-                  "content": "Cart (3 Items)",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "5ofYG",
-              "name": "nav_bar",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "$--background",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "top": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                24
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "xdihG",
-                  "name": "n2",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "7eqCF",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "beer",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "bqDqQ",
-                      "fill": "$--foreground",
-                      "content": "MENU",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "X8QIB",
-                  "name": "n3",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "DKkis",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "dice-5",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "fEudp",
-                      "fill": "$--muted-foreground",
-                      "content": "GAMES",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ojlge",
-                  "name": "n4",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "35C4z",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "user",
-                      "iconFontFamily": "feather",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "p22eG",
-                      "fill": "$--muted-foreground",
-                      "content": "PROFILE",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         }
@@ -1806,7 +2017,7 @@
               "id": "PzXqE",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -1815,7 +2026,7 @@
               "id": "jOcSV",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -1838,8 +2049,8 @@
               "type": "text",
               "id": "9Xxd9",
               "fill": "$--foreground",
-              "content": "New Order",
-              "fontFamily": "Inter",
+              "content": "Your Tab",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -1848,7 +2059,7 @@
               "id": "o6AgY",
               "fill": "$--muted-foreground",
               "content": "Table 3",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 14,
               "fontWeight": "normal"
             }
@@ -1861,13 +2072,8 @@
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
+          "gap": 24,
+          "padding": 24,
           "children": [
             {
               "type": "frame",
@@ -1894,7 +2100,7 @@
                   "id": "kT7AD",
                   "fill": "$--foreground",
                   "content": "2x Aroi Cha Yen",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 },
@@ -1903,7 +2109,7 @@
                   "id": "Tq1Ci",
                   "fill": "$--foreground",
                   "content": "$36.00",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
                   "fontWeight": "normal"
                 }
@@ -1934,7 +2140,7 @@
                   "id": "jl1OB",
                   "fill": "$--foreground",
                   "content": "1x Jerry Old Fashion",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 },
@@ -1943,7 +2149,7 @@
                   "id": "ga0eq",
                   "fill": "$--foreground",
                   "content": "$20.00",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
                   "fontWeight": "normal"
                 }
@@ -1965,7 +2171,7 @@
                   "id": "3htQF",
                   "fill": "$--muted-foreground",
                   "content": "Total (inc. GST)",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 18,
                   "fontWeight": "normal"
                 },
@@ -1974,9 +2180,42 @@
                   "id": "lQlGG",
                   "fill": "$--foreground",
                   "content": "$56.00",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 24,
                   "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OFlLe",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3kIfv",
+                  "fill": "$--foreground",
+                  "content": "💳 Payment at End of Night",
+                  "fontFamily": "\\$--font-primary",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "1rmGF",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Orders are submitted now; your table settles once at closing.",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -1987,8 +2226,7 @@
           "id": "vFIYN",
           "layoutPosition": "absolute",
           "x": 24,
-          "y": 741,
-          "context": "Opens [M3.1] Cart Success Modal",
+          "y": 772,
           "width": 345,
           "height": 56,
           "fill": "$--foreground",
@@ -2000,135 +2238,10 @@
               "type": "text",
               "id": "AsIU3",
               "fill": "$--background",
-              "content": "Submit Order ",
-              "fontFamily": "Inter",
+              "content": "Submit Order to Tab — $56.00",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "bO6gX",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 796,
-          "name": "navM3",
-          "width": 393,
-          "fill": "#00000000",
-          "stroke": {
-            "align": "inside",
-            "thickness": 0
-          },
-          "layout": "vertical",
-          "gap": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "L6dIH",
-              "name": "nav_bar",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "$--background",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "top": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                24
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "VOzOo",
-                  "name": "n2",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "N3c8T",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "beer",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "pbiqK",
-                      "fill": "$--foreground",
-                      "content": "MENU",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "malqi",
-                  "name": "n3",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "XwlSm",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "dice-5",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "R4Ilh",
-                      "fill": "$--muted-foreground",
-                      "content": "GAMES",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "RZFut",
-                  "name": "n4",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "2CJUv",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "user",
-                      "iconFontFamily": "feather",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "t4Ui1",
-                      "fill": "$--muted-foreground",
-                      "content": "PROFILE",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         }
@@ -2139,7 +2252,7 @@
       "id": "tXnKx",
       "x": 1500,
       "y": 0,
-      "name": "[M4] Past Orders",
+      "name": "[M4] Payment",
       "clip": true,
       "width": 393,
       "height": 852,
@@ -2171,7 +2284,7 @@
               "id": "d2Otu",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -2180,7 +2293,7 @@
               "id": "Repob",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -2203,8 +2316,8 @@
               "type": "text",
               "id": "gDz1j",
               "fill": "$--foreground",
-              "content": "Past Orders",
-              "fontFamily": "Inter",
+              "content": "Settle Tab",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             }
@@ -2212,248 +2325,134 @@
         },
         {
           "type": "frame",
-          "id": "ZRxda",
+          "id": "ndojG",
           "name": "m4C",
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
+          "gap": 24,
+          "padding": 24,
           "children": [
             {
-              "type": "text",
-              "id": "nXXGq",
-              "name": "sub",
-              "fill": "$--muted-foreground",
-              "content": "Live order status",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "500"
-            },
-            {
               "type": "frame",
-              "id": "hJwvl",
-              "name": "card1",
+              "id": "oLri6",
               "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              },
               "layout": "vertical",
-              "gap": 10,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "mpUGg",
-                  "name": "row11",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "ur5DX",
-                      "fill": "$--foreground",
-                      "content": "Order #1038",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "Yp1bW",
-                      "fill": "$--foreground",
-                      "content": "Sent to Bar",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "qqWBb",
-                  "fill": "$--muted-foreground",
-                  "content": "Just now • Queue #14",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "ZbEwE",
-                  "name": "list1",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "6BNMI",
-                      "fill": "$--foreground",
-                      "content": "• 2x Aroi Cha Yen",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    },
-                    {
-                      "type": "text",
-                      "id": "GGLXq",
-                      "fill": "$--foreground",
-                      "content": "• 1x Jerry Old Fashion",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    },
-                    {
-                      "type": "text",
-                      "id": "qmcao",
-                      "fill": "$--foreground",
-                      "content": "• 1x Hu Hua",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "YTkx3",
-              "name": "card2",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 12,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "HmVwG",
-                  "name": "row21",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "6yqOB",
-                      "fill": "$--foreground",
-                      "content": "Order #1031",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "xib4g",
-                      "fill": "$--foreground",
-                      "content": "In Progress",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "type": "text",
-                  "id": "ZBwUh",
-                  "fill": "$--muted-foreground",
-                  "content": " Being prepared",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "500"
-                },
-                {
-                  "type": "frame",
-                  "id": "C4yD8",
-                  "name": "list2",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "0947w",
-                      "fill": "$--foreground",
-                      "content": "• 1x Lychee Martini",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    },
-                    {
-                      "type": "text",
-                      "id": "NN81j",
-                      "fill": "$--foreground",
-                      "content": "• 1x Mojito",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    },
-                    {
-                      "type": "text",
-                      "id": "axIgR",
-                      "fill": "$--foreground",
-                      "content": "• 1x Truffle Fries",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "rxBZp",
-              "name": "spacer",
-              "width": "fill_container",
-              "height": "fill_container"
-            },
-            {
-              "type": "frame",
-              "id": "DhiOa",
-              "layoutPosition": "absolute",
-              "x": 24,
-              "y": 572,
-              "name": "bottomTotal",
-              "width": 345,
-              "layout": "vertical",
-              "gap": 6,
+              "gap": 16,
               "padding": [
-                12,
                 0,
-                6,
+                0,
+                16,
                 0
               ],
               "children": [
                 {
                   "type": "frame",
-                  "id": "ZRhTC",
-                  "name": "row",
+                  "id": "tvHYD",
                   "width": "fill_container",
                   "justifyContent": "space_between",
                   "children": [
                     {
                       "type": "text",
-                      "id": "JJbt7",
+                      "id": "reMOT",
                       "fill": "$--muted-foreground",
-                      "content": "Total Amount",
-                      "fontFamily": "Inter",
+                      "content": "Subtotal",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
-                      "fontWeight": "600"
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "vZthh",
+                      "id": "i2YNf",
                       "fill": "$--foreground",
-                      "content": "$61.50",
-                      "fontFamily": "Inter",
-                      "fontSize": 20,
+                      "content": "$56.00",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l2LfP",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "B2Dtw",
+                      "fill": "$--muted-foreground",
+                      "content": "Service Charge (10%)",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CQ6lJ",
+                      "fill": "$--foreground",
+                      "content": "$5.60",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oiypJ",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Owx13",
+                      "fill": "$--muted-foreground",
+                      "content": "GST (9%)",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "QFPDA",
+                      "fill": "$--foreground",
+                      "content": "$5.54",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uupw6",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bN9C5",
+                      "fill": "$--foreground",
+                      "content": "Total",
+                      "fontFamily": "\\$--font-primary",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NAkDB",
+                      "fill": "$--foreground",
+                      "content": "$67.14",
+                      "fontFamily": "\\$--font-primary",
+                      "fontSize": 18,
                       "fontWeight": "700"
                     }
                   ]
@@ -2461,155 +2460,348 @@
               ]
             },
             {
-              "type": "frame",
-              "id": "GhvVv",
-              "layoutPosition": "absolute",
-              "x": 24,
-              "y": 608,
-              "name": "order_actions",
-              "width": 345,
+              "type": "text",
+              "id": "BEv1a",
               "fill": "$--foreground",
-              "cornerRadius": "$--radius-pill",
-              "padding": [
-                14,
-                16
-              ],
+              "content": "Choose payment method for end-of-night charge",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "0f1c9",
+              "width": "fill_container",
+              "fill": "$--foreground",
+              "cornerRadius": 16,
+              "padding": 16,
               "justifyContent": "center",
               "alignItems": "center",
               "children": [
                 {
                   "type": "text",
-                  "id": "JlT6Y",
+                  "id": "MiI8o",
                   "fill": "$--background",
-                  "content": "Continue Ordering",
-                  "fontFamily": "Inter",
+                  "content": " Apple Pay",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1eLgQ",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 16,
+              "padding": 16,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Jj7mA",
+                  "fill": "$--foreground",
+                  "content": "•••• 4242",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "NBO8O",
+                  "fill": "$--muted-foreground",
+                  "content": "VISA",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "700"
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "Fmtn7",
+              "name": "payInfo",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gu5AE",
+                  "name": "payInfoTitle",
+                  "fill": "$--foreground",
+                  "content": "Your orders are already sent to the bar.",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "SN1X9",
+                  "name": "payInfoBody",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "No payment now. Confirm card/wallet once, then we auto-charge at end of night.",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Lngus",
+      "x": 2000,
+      "y": 0,
+      "name": "[M5] Confirmed",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "$--background",
+      "stroke": {
+        "thickness": 1,
+        "fill": "$--border"
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Eauj7",
+          "name": "stat_bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$--background",
+          "padding": [
+            18,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "gGo56",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "wAyfH",
+              "fill": "$--foreground",
+              "content": "5G  📶  🔋",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
         {
           "type": "frame",
-          "id": "VZILO",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 796,
-          "name": "navM4",
-          "width": 393,
-          "fill": "#00000000",
-          "stroke": {
-            "align": "inside",
-            "thickness": 0
-          },
+          "id": "h9XbI",
+          "name": "m5C",
+          "width": "fill_container",
+          "height": "fill_container",
           "layout": "vertical",
-          "gap": 16,
+          "gap": 24,
+          "padding": 24,
+          "justifyContent": "center",
+          "alignItems": "center",
           "children": [
             {
               "type": "frame",
-              "id": "SKP6W",
-              "name": "nav_bar",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "$--background",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "top": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                24
-              ],
-              "justifyContent": "space_between",
+              "id": "i1Kdk",
+              "width": 80,
+              "height": 80,
+              "fill": "$--foreground",
+              "cornerRadius": 40,
+              "justifyContent": "center",
               "alignItems": "center",
               "children": [
                 {
-                  "type": "frame",
-                  "id": "b3FE8",
-                  "name": "n2",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "W8TwH",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "beer",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "WMwzp",
-                      "fill": "$--foreground",
-                      "content": "MENU",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
+                  "type": "text",
+                  "id": "bvkfd",
+                  "fill": "$--background",
+                  "content": "✓",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 40,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "lEAM5",
+              "fill": "$--foreground",
+              "content": "Order Submitted",
+              "fontFamily": "\\$--font-primary",
+              "fontSize": 32,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "oWbxX",
+              "fill": "$--muted-foreground",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Added to your tab. Keep ordering, pay at end of night.",
+              "textAlign": "center",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uIigM",
+          "layoutPosition": "absolute",
+          "x": 24,
+          "y": 772,
+          "width": 345,
+          "height": 56,
+          "fill": "$--foreground",
+          "cornerRadius": "$--radius-pill",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Ol14V",
+              "fill": "$--background",
+              "content": "Back to Menu",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "bExWc",
+      "x": 0,
+      "y": 1000,
+      "name": "[G0] Join Lobby",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "$--background",
+      "stroke": {
+        "thickness": 1,
+        "fill": "$--border"
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "iGXhF",
+          "name": "stat_bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$--background",
+          "padding": [
+            18,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "RHXlf",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "S0TiV",
+              "fill": "$--foreground",
+              "content": "5G  📶  🔋",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "75VO5",
+          "name": "g0H",
+          "width": "fill_container",
+          "height": 64,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "azkHh",
+              "fill": "$--foreground",
+              "content": "Join Lobby",
+              "fontFamily": "\\$--font-primary",
+              "fontSize": 24,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YIrpY",
+          "name": "g0C",
+          "rotation": -0.013720680720099975,
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            28,
+            24
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "aOGIq",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$--foreground",
+              "cornerRadius": "$--radius-pill",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
                 {
-                  "type": "frame",
-                  "id": "i9wVQ",
-                  "name": "n3",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "ki1rR",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "dice-5",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "EkwoT",
-                      "fill": "$--muted-foreground",
-                      "content": "GAMES",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "9fWyI",
-                  "name": "n4",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "QPiMG",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "user",
-                      "iconFontFamily": "feather",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "j0nI1",
-                      "fill": "$--muted-foreground",
-                      "content": "PROFILE",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "VUlAQ",
+                  "fill": "$--background",
+                  "content": "Join Table #3",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 18,
+                  "fontWeight": "700"
                 }
               ]
             }
@@ -2654,7 +2846,7 @@
               "id": "dMsEM",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -2663,7 +2855,7 @@
               "id": "GYNf2",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -2686,8 +2878,8 @@
               "type": "text",
               "id": "G0LYI",
               "fill": "$--foreground",
-              "content": "Table 3",
-              "fontFamily": "Inter",
+              "content": "Lobby: Table 3",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -2696,7 +2888,7 @@
               "id": "nni8E",
               "fill": "$--muted-foreground",
               "content": "4 Players",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 14,
               "fontWeight": "normal"
             }
@@ -2733,7 +2925,7 @@
                   "name": "p1t",
                   "fill": "$--foreground",
                   "content": "😀 Alex",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "600"
                 }
@@ -2756,7 +2948,7 @@
                   "name": "p2t",
                   "fill": "$--foreground",
                   "content": "😎 Sam",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "600"
                 }
@@ -2779,7 +2971,7 @@
                   "name": "p3t",
                   "fill": "$--foreground",
                   "content": "🤪 Mia",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "600"
                 }
@@ -2802,7 +2994,7 @@
                   "name": "p4t",
                   "fill": "$--foreground",
                   "content": "🤖 Jay",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "600"
                 }
@@ -2849,7 +3041,7 @@
                       "name": "allTxt",
                       "fill": "$--background",
                       "content": "All",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -2870,7 +3062,7 @@
                       "id": "CTe1Y",
                       "fill": "$--foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -2891,7 +3083,7 @@
                       "id": "WpVWk",
                       "fill": "$--foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -2912,7 +3104,7 @@
                       "id": "zdKA2",
                       "fill": "$--foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -2940,7 +3132,7 @@
                   "name": "crashText",
                   "fill": "#FFD3C7",
                   "content": "🚨 Market Crash happening now",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "700"
                 },
@@ -2948,9 +3140,9 @@
                   "type": "text",
                   "id": "QPUZe",
                   "name": "crashCta",
-                  "fill": "#f6f6f6",
+                  "fill": "#FFFFFF",
                   "content": "Play",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "700"
                 }
@@ -2969,7 +3161,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -2979,7 +3171,7 @@
                       "id": "8OSoA",
                       "fill": "$--foreground",
                       "content": "🐊 Croc Teeth",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -2988,7 +3180,7 @@
                       "id": "sKUdl",
                       "fill": "$--muted-foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3000,7 +3192,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -3010,7 +3202,7 @@
                       "id": "GkWCg",
                       "fill": "$--foreground",
                       "content": "🎡 Shot Roulette",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3019,7 +3211,7 @@
                       "id": "NjpUl",
                       "fill": "$--muted-foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3040,7 +3232,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -3050,7 +3242,7 @@
                       "id": "hDSmR",
                       "fill": "$--foreground",
                       "content": "📉 Market Crash",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3059,7 +3251,7 @@
                       "id": "2munu",
                       "fill": "$--muted-foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3071,7 +3263,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -3081,7 +3273,7 @@
                       "id": "UqKf2",
                       "fill": "$--foreground",
                       "content": "🎯 Dare Draft",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3090,7 +3282,7 @@
                       "id": "2lRHk",
                       "fill": "$--muted-foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3111,7 +3303,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -3121,7 +3313,7 @@
                       "id": "j9tc0",
                       "fill": "$--foreground",
                       "content": "🎲 Dice Duel",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3130,7 +3322,7 @@
                       "id": "7PzLY",
                       "fill": "$--muted-foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3142,7 +3334,7 @@
                   "width": "fill_container",
                   "height": 132,
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "padding": 14,
                   "justifyContent": "space_between",
@@ -3152,7 +3344,7 @@
                       "id": "3Mv5Y",
                       "fill": "$--foreground",
                       "content": "🍺 Beer Tower",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3161,7 +3353,7 @@
                       "id": "sVEyL",
                       "fill": "$--muted-foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "600"
                     }
@@ -3216,7 +3408,7 @@
                   "id": "ESicr",
                   "fill": "$--background",
                   "content": "Cart [3 Items] — $37.00",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 }
@@ -3245,6 +3437,34 @@
               "children": [
                 {
                   "type": "frame",
+                  "id": "QsGOT",
+                  "name": "n1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "mD792",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "home",
+                      "iconFontFamily": "feather",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "y8xZq",
+                      "fill": "$--muted-foreground",
+                      "content": "HOME",
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
                   "id": "oUjCq",
                   "name": "n2",
                   "layout": "vertical",
@@ -3265,7 +3485,7 @@
                       "id": "jkW3M",
                       "fill": "$--foreground",
                       "content": "MENU",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -3293,7 +3513,7 @@
                       "id": "T1NJc",
                       "fill": "$--muted-foreground",
                       "content": "GAMES",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -3321,7 +3541,7 @@
                       "id": "ExWPh",
                       "fill": "$--muted-foreground",
                       "content": "PROFILE",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 11,
                       "fontWeight": "normal"
                     }
@@ -3370,7 +3590,7 @@
               "id": "rABmX",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -3379,7 +3599,7 @@
               "id": "7liOL",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -3395,27 +3615,16 @@
             0,
             24
           ],
-          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "text",
               "id": "8Wq4i",
               "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
+              "content": "← Exit Game",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "einFA",
-              "name": "h3",
-              "fill": "$--foreground",
-              "content": "Croc Teeth",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
             }
           ]
         },
@@ -3438,7 +3647,7 @@
               "type": "text",
               "id": "2qHVX",
               "content": "🐊",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -3447,7 +3656,7 @@
               "id": "PmcP1",
               "fill": "$--foreground",
               "content": "Push a tooth...",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -3471,7 +3680,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 12
+                      "cornerRadius": 10
                     },
                     {
                       "type": "frame",
@@ -3479,7 +3688,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 12
+                      "cornerRadius": 10
                     },
                     {
                       "type": "frame",
@@ -3487,7 +3696,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 12
+                      "cornerRadius": 10
                     }
                   ]
                 },
@@ -3503,7 +3712,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--background",
-                      "cornerRadius": 12,
+                      "cornerRadius": 10,
                       "stroke": {
                         "thickness": 2,
                         "fill": "$--border"
@@ -3515,7 +3724,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 12
+                      "cornerRadius": 10
                     }
                   ]
                 }
@@ -3562,7 +3771,7 @@
               "id": "jiQQt",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -3571,7 +3780,7 @@
               "id": "XrslN",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -3587,27 +3796,16 @@
             0,
             24
           ],
-          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "text",
               "id": "Yauyf",
               "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
+              "content": "← Exit Game",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "bOKht",
-              "name": "h6",
-              "fill": "$--foreground",
-              "content": "Shot Roulette",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
             }
           ]
         },
@@ -3630,7 +3828,7 @@
               "type": "text",
               "id": "CgzKS",
               "content": "🎡",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -3639,7 +3837,7 @@
               "id": "uMMXV",
               "fill": "$--foreground",
               "content": "Spinning...",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -3658,7 +3856,7 @@
                   "id": "OdwWp",
                   "fill": "$--background",
                   "content": "Stop",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 18,
                   "fontWeight": "600"
                 }
@@ -3705,7 +3903,7 @@
               "id": "EBonP",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -3714,7 +3912,7 @@
               "id": "KEpNg",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -3730,27 +3928,16 @@
             0,
             24
           ],
-          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "text",
               "id": "SRhfE",
               "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
+              "content": "← Cancel",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "hLlVQ",
-              "name": "h9",
-              "fill": "$--foreground",
-              "content": "Send a Drink",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
             }
           ]
         },
@@ -3772,7 +3959,7 @@
               "id": "TaBjx",
               "fill": "$--foreground",
               "content": "Send to Table",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -3800,7 +3987,7 @@
                       "id": "z3KIh",
                       "fill": "$--foreground",
                       "content": "Table 4",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "normal"
                     }
@@ -3823,7 +4010,7 @@
                       "id": "04do1",
                       "fill": "$--background",
                       "content": "Table 9",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "600"
                     }
@@ -3846,7 +4033,7 @@
                       "id": "pa4iY",
                       "fill": "$--foreground",
                       "content": "Table 12",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "normal"
                     }
@@ -3867,7 +4054,7 @@
                   "id": "El6w9",
                   "fill": "$--muted-foreground",
                   "content": "Message (Optional)",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 14,
                   "fontWeight": "normal"
                 },
@@ -3889,7 +4076,7 @@
                       "id": "KYXES",
                       "fill": "$--muted-foreground",
                       "content": "Write a cheeky message here...",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "normal"
                     }
@@ -3914,7 +4101,7 @@
                   "id": "ALXqy",
                   "fill": "$--foreground",
                   "content": "Send Anonymously",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
                   "fontWeight": "600"
                 },
@@ -3937,7 +4124,7 @@
                       "width": 28,
                       "height": 28,
                       "fill": "$--background",
-                      "cornerRadius": 12
+                      "cornerRadius": 14
                     }
                   ]
                 }
@@ -3963,7 +4150,7 @@
               "id": "txfHp",
               "fill": "$--background",
               "content": "Send Guinness — $14.00",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
             }
@@ -3990,7 +4177,7 @@
         {
           "type": "frame",
           "id": "zIi9A",
-          "name": "g4Stat",
+          "name": "stat_bar",
           "width": "fill_container",
           "height": 62,
           "fill": "$--background",
@@ -4008,7 +4195,7 @@
               "id": "S2cdr",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -4017,44 +4204,9 @@
               "id": "jIeNw",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "btJDc",
-          "name": "g4H",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "Kl5MD",
-              "name": "h18",
-              "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "0pyOu",
-              "name": "h19",
-              "fill": "$--foreground",
-              "content": "Gift Sent",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
             }
           ]
         },
@@ -4077,7 +4229,7 @@
               "type": "text",
               "id": "dKGM6",
               "content": "🍻",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -4086,7 +4238,7 @@
               "id": "mVmJ3",
               "fill": "$--foreground",
               "content": "Gift Sent!",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 32,
               "fontWeight": "700"
             },
@@ -4095,7 +4247,7 @@
               "id": "ckZpZ",
               "fill": "$--muted-foreground",
               "content": "1x Guinness sent to Table 9 ✅",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
             }
@@ -4119,7 +4271,7 @@
               "id": "Aopsw",
               "fill": "$--background",
               "content": "Back to Home",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
             }
@@ -4164,7 +4316,7 @@
               "id": "nbLhA",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -4173,7 +4325,7 @@
               "id": "aJXbS",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -4196,8 +4348,8 @@
               "type": "text",
               "id": "re4c9",
               "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
+              "content": "← Back",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
             },
@@ -4206,18 +4358,8 @@
               "id": "GkpFu",
               "fill": "$--destructive",
               "content": "Ends in 09:42",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 14,
-              "fontWeight": "700"
-            },
-            {
-              "type": "text",
-              "id": "Mo4og",
-              "name": "h15",
-              "fill": "$--foreground",
-              "content": "Market Crash",
-              "fontFamily": "Inter",
-              "fontSize": 18,
               "fontWeight": "700"
             }
           ]
@@ -4241,8 +4383,8 @@
               "type": "text",
               "id": "KI9JI",
               "fill": "$--foreground",
-              "content": " Market Crash",
-              "fontFamily": "Inter",
+              "content": "📉 Market Crash",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 32,
               "fontWeight": "700"
             },
@@ -4250,8 +4392,8 @@
               "type": "text",
               "id": "xHeEO",
               "fill": "$--muted-foreground",
-              "content": "Hit the milestone to unlock rewards",
-              "fontFamily": "Inter",
+              "content": "Buy now before prices bounce back up!",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
             },
@@ -4269,7 +4411,7 @@
                   "name": "milestone",
                   "width": "fill_container",
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
@@ -4280,7 +4422,7 @@
                       "name": "mt1",
                       "fill": "$--foreground",
                       "content": "Milestone: Guinness (7/20)",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 18,
                       "fontWeight": "700"
                     },
@@ -4292,7 +4434,7 @@
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Buy Guinness in the next hour to unlock 50% off Guinness for 10 minutes.",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
@@ -4322,7 +4464,7 @@
                       "name": "mt3",
                       "fill": "$--destructive",
                       "content": "7 / 20 pints • 35% complete",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -4334,7 +4476,7 @@
                   "name": "contrib",
                   "width": "fill_container",
                   "fill": "$--muted",
-                  "cornerRadius": 12,
+                  "cornerRadius": 14,
                   "layout": "vertical",
                   "gap": 10,
                   "padding": 14,
@@ -4345,7 +4487,7 @@
                       "name": "ct",
                       "fill": "$--foreground",
                       "content": "Table contributions",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "700"
                     },
@@ -4355,7 +4497,7 @@
                       "name": "r1",
                       "fill": "$--foreground",
                       "content": "Table 3   —   3 pints",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4365,7 +4507,7 @@
                       "name": "r2",
                       "fill": "$--foreground",
                       "content": "Table 5   —   2 pints",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4375,7 +4517,7 @@
                       "name": "r3",
                       "fill": "$--foreground",
                       "content": "Table 1   —   1 pint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4385,7 +4527,7 @@
                       "name": "r4",
                       "fill": "$--foreground",
                       "content": "Table 8   —   1 pint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     }
@@ -4411,7 +4553,7 @@
                       "name": "rt1",
                       "fill": "#FFD9CF",
                       "content": "Reward at 20: 50% off Guinness",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "700"
                     },
@@ -4421,7 +4563,7 @@
                       "name": "rt2",
                       "fill": "#E6BEB4",
                       "content": "Unlocked deal lasts 10 minutes for all tables.",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     }
@@ -4449,7 +4591,7 @@
                       "name": "nt1",
                       "fill": "$--muted-foreground",
                       "content": "Next checkpoint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
@@ -4459,7 +4601,7 @@
                       "name": "nt2",
                       "fill": "$--foreground",
                       "content": "10/20",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
                     }
@@ -4474,7 +4616,7 @@
     {
       "type": "frame",
       "id": "RXxwT",
-      "x": 3500,
+      "x": 3513,
       "y": 1000,
       "name": "[G6] Beer Tower",
       "clip": true,
@@ -4508,7 +4650,7 @@
               "id": "WF4ms",
               "fill": "$--foreground",
               "content": "9:41",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 15,
               "fontWeight": "600"
             },
@@ -4517,7 +4659,7 @@
               "id": "szIAb",
               "fill": "$--foreground",
               "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 13,
               "fontWeight": "normal"
             }
@@ -4533,27 +4675,16 @@
             0,
             24
           ],
-          "justifyContent": "space_between",
           "alignItems": "center",
           "children": [
             {
               "type": "text",
               "id": "dTipb",
               "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
+              "content": "← Exit Tower",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "GPkbn",
-              "name": "h12",
-              "fill": "$--foreground",
-              "content": "Beer Tower",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
             }
           ]
         },
@@ -4576,7 +4707,7 @@
               "type": "text",
               "id": "4Ws4w",
               "content": "🍺",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -4585,7 +4716,7 @@
               "id": "dgJs3",
               "fill": "$--foreground",
               "content": "Fill the Beer Tower",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
             },
@@ -4604,7 +4735,7 @@
                   "id": "576w6",
                   "fill": "$--background",
                   "content": "Pour",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 18,
                   "fontWeight": "600"
                 }
@@ -4625,7 +4756,7 @@
                   "name": "towerTitle",
                   "fill": "$--foreground",
                   "content": "Tower Fill: 58%",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 16,
                   "fontWeight": "700"
                 },
@@ -4635,7 +4766,7 @@
                   "name": "cup",
                   "width": 140,
                   "height": 220,
-                  "fill": "#2e2d2a",
+                  "fill": "#0F172A",
                   "cornerRadius": [
                     16,
                     16,
@@ -4644,7 +4775,7 @@
                   ],
                   "stroke": {
                     "thickness": 2,
-                    "fill": "#3a3936"
+                    "fill": "#475569"
                   },
                   "padding": 8,
                   "justifyContent": "end",
@@ -4655,7 +4786,7 @@
                       "name": "beer",
                       "width": "fill_container",
                       "height": 124,
-                      "fill": "#f7c82a",
+                      "fill": "#D4A017",
                       "cornerRadius": [
                         0,
                         0,
@@ -4672,1728 +4803,8 @@
                       "name": "foam",
                       "width": 124,
                       "height": 16,
-                      "fill": "#fbbe65",
+                      "fill": "#F8E9C5",
                       "cornerRadius": 8
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "zOZMP",
-      "x": 1500,
-      "y": -1000,
-      "name": "[P1] Profile + Loyalty",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "1KmuV",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "tDkQY",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "3iElU",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "8dwzP",
-          "name": "h1",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "rr6RN",
-              "fill": "$--foreground",
-              "content": "Profile",
-              "fontFamily": "Inter",
-              "fontSize": 24,
-              "fontWeight": "700"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "Flcwf",
-          "name": "body1",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "Z4J6F",
-              "name": "card",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "XCeB6",
-                  "fill": "$--foreground",
-                  "content": "Clive 🍻",
-                  "fontFamily": "Inter",
-                  "fontSize": 22,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "bJwQX",
-                  "fill": "$--muted-foreground",
-                  "content": "Member since 2026",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "vHmxk",
-                  "fill": "$--foreground",
-                  "content": "Points: 1,240",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "4KzR3",
-              "name": "a4",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 8,
-              "padding": 16,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "3Eg4J",
-                  "fill": "$--foreground",
-                  "content": "Current Tier: Gold",
-                  "fontFamily": "Inter",
-                  "fontSize": 20,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "QKOG5",
-                  "fill": "$--foreground",
-                  "content": "1,240 points",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "xBabs",
-                  "fill": "$--muted-foreground",
-                  "content": "260 points to Platinum",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "cnoU3",
-              "name": "btn1",
-              "width": "fill_container",
-              "fill": "$--foreground",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "dL430",
-                  "fill": "$--background",
-                  "content": "Redeem Rewards",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "rh5CE",
-              "name": "a5",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 10,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "X99K0",
-                  "name": "r1",
-                  "width": "fill_container",
-                  "fill": "$--muted",
-                  "cornerRadius": 12,
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "justifyContent": "space_between",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "mNOxc",
-                      "fill": "$--muted-foreground",
-                      "content": "Orders this month",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "eghWX",
-                      "fill": "$--foreground",
-                      "content": "12",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "kOSkk",
-                  "name": "r2",
-                  "width": "fill_container",
-                  "fill": "$--muted",
-                  "cornerRadius": 12,
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "justifyContent": "space_between",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "NEBxh",
-                      "fill": "$--muted-foreground",
-                      "content": "Rewards redeemed",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "NMWr1",
-                      "fill": "$--foreground",
-                      "content": "3",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "700"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "HMPss",
-              "name": "btn2",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "J54oJ",
-                  "fill": "$--foreground",
-                  "content": "View Activity",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "p8iv3",
-      "x": 2000,
-      "y": -1000,
-      "name": "[P2] Profile Empty State",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "JwyCy",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "x37Y0",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "YUBbf",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "MAIna",
-          "name": "h2",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "644xw",
-              "fill": "$--foreground",
-              "content": "Log In",
-              "fontFamily": "Inter",
-              "fontSize": 24,
-              "fontWeight": "700"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "xgqRJ",
-          "name": "b2",
-          "rotation": 0.008608451628222175,
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "justifyContent": "center",
-          "children": [
-            {
-              "type": "frame",
-              "id": "YeWki",
-              "name": "a17",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 18,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 20,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "ZmzFT",
-                  "name": "a18",
-                  "fill": "$--foreground",
-                  "content": "No loyalty account yet",
-                  "fontFamily": "Inter",
-                  "fontSize": 18,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "tRNCc",
-                  "name": "a19",
-                  "fill": "$--muted-foreground",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Create an account to collect points, redeem rewards, and sync your profile across devices.",
-                  "lineHeight": 1.4,
-                  "textAlign": "center",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "NUn0I",
-              "name": "cta2",
-              "width": "fill_container",
-              "fill": "$--foreground",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "lHQ2B",
-                  "fill": "$--background",
-                  "content": "Sign Up to Start",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "lWgq1",
-              "name": "a20",
-              "width": "fill_container",
-              "gap": 6,
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "yqu2U",
-                  "name": "a21",
-                  "fill": "$--muted-foreground",
-                  "content": "Already have an account?",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "2jF5o",
-                  "name": "a22",
-                  "fill": "$--foreground",
-                  "content": "Sign In",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "r2n3v",
-      "x": 4000,
-      "y": 1000,
-      "name": "[G1.1] Croc Result",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "cB94F",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "Env9W",
-              "name": "c2",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "s6rTg",
-              "name": "c3",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "z2gZl",
-          "name": "g11H",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "feKjK",
-              "name": "c5",
-              "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "0icrJ",
-              "name": "c6",
-              "fill": "$--foreground",
-              "content": "Croc Result",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "WsF2u",
-          "name": "g11C",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "1K1C1",
-              "name": "c8",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 18,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "hDmaL",
-                  "name": "c9",
-                  "fill": "$--foreground",
-                  "content": "😅",
-                  "fontFamily": "Inter",
-                  "fontSize": 42,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "LALSy",
-                  "name": "c10",
-                  "fill": "$--foreground",
-                  "content": "Mia got snapped!",
-                  "fontFamily": "Inter",
-                  "fontSize": 24,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "STVYK",
-                  "name": "c11",
-                  "fill": "$--muted-foreground",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Penalty: take 1 shot. Next round starts when everyone is ready.",
-                  "lineHeight": 1.4,
-                  "textAlign": "center",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "E5eWa",
-              "name": "c12",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 12,
-              "padding": [
-                12,
-                14
-              ],
-              "justifyContent": "space_between",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "KwQTe",
-                  "name": "c13",
-                  "fill": "$--muted-foreground",
-                  "content": "Round 4 • Remaining teeth",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "GeTiF",
-                  "name": "c14",
-                  "fill": "$--foreground",
-                  "content": "3",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "YB6x0",
-              "name": "c15",
-              "width": "fill_container",
-              "fill": "$--foreground",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "wqYCS",
-                  "name": "c16",
-                  "fill": "$--background",
-                  "content": "Play Next Round",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "9ZnW5",
-      "x": 4500,
-      "y": 1000,
-      "name": "[G2.1] Roulette Result",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "5qb00",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "4bgTZ",
-              "name": "r2",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "Tu8Yn",
-              "name": "r3",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "aEwns",
-          "name": "g21H",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "DTmLb",
-              "name": "r5",
-              "fill": "$--foreground",
-              "content": "← Games Hub",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "pJlFu",
-              "name": "r6",
-              "fill": "$--foreground",
-              "content": "Roulette Result",
-              "fontFamily": "Inter",
-              "fontSize": 18,
-              "fontWeight": "700"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "99AjD",
-          "name": "g21C",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "2z8nn",
-              "name": "r8",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "layout": "vertical",
-              "gap": 10,
-              "padding": 18,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "PMnQx",
-                  "name": "r9",
-                  "fill": "$--foreground",
-                  "content": "🎯",
-                  "fontFamily": "Inter",
-                  "fontSize": 42,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "ECbbg",
-                  "name": "r10",
-                  "fill": "$--foreground",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Spin landed on: 'Take 2 Sips'",
-                  "textAlign": "center",
-                  "fontFamily": "Inter",
-                  "fontSize": 22,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "K7nQu",
-                  "name": "r11",
-                  "fill": "$--muted-foreground",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Impact: +20 points for Sam, -10 points for Jay.",
-                  "lineHeight": 1.4,
-                  "textAlign": "center",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "QJ4Rg",
-              "name": "r12",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 12,
-              "padding": [
-                12,
-                14
-              ],
-              "justifyContent": "space_between",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "5AR65",
-                  "name": "r13",
-                  "fill": "$--muted-foreground",
-                  "content": "Team Score",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "CyMUH",
-                  "name": "r14",
-                  "fill": "$--foreground",
-                  "content": "128 pts",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "NEtpq",
-              "name": "r15",
-              "width": "fill_container",
-              "fill": "$--foreground",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "BZcl0",
-                  "name": "r16",
-                  "fill": "$--background",
-                  "content": "Spin Again",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "JYfZ0",
-              "name": "r17",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "2BE9o",
-                  "name": "r18",
-                  "fill": "$--foreground",
-                  "content": "Back to Games Hub",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "LL6eH",
-      "x": 3000,
-      "y": -1000,
-      "name": "[P2.1] Sign In",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "tebHr",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "D79qc",
-              "name": "p2",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "8MrhJ",
-              "name": "p3",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "XluFW",
-          "name": "p21H",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "8y4Mw",
-              "name": "p5",
-              "fill": "$--foreground",
-              "content": "Sign In",
-              "fontFamily": "Inter",
-              "fontSize": 24,
-              "fontWeight": "700"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "nC6kk",
-          "name": "p21C",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 14,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "justifyContent": "center",
-          "children": [
-            {
-              "type": "frame",
-              "id": "Ojllw",
-              "name": "p7",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 14,
-              "layout": "vertical",
-              "gap": 6,
-              "padding": [
-                12,
-                14
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "3xJG9",
-                  "name": "p8",
-                  "fill": "$--muted-foreground",
-                  "content": "Email",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "08SbU",
-                  "name": "p9",
-                  "fill": "$--foreground",
-                  "content": "name@email.com",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "Ct8ns",
-              "name": "p10",
-              "width": "fill_container",
-              "fill": "$--muted",
-              "cornerRadius": 14,
-              "layout": "vertical",
-              "gap": 6,
-              "padding": [
-                12,
-                14
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "fei02",
-                  "name": "p11",
-                  "fill": "$--muted-foreground",
-                  "content": "Password",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "lxtfT",
-                  "name": "p12",
-                  "fill": "$--foreground",
-                  "content": "••••••••",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "NqH3K",
-              "name": "p13",
-              "width": "fill_container",
-              "justifyContent": "end",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "vum93",
-                  "name": "p14",
-                  "fill": "$--muted-foreground",
-                  "content": "Forgot password?",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "600"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "v4p9x",
-              "name": "p15",
-              "width": "fill_container",
-              "fill": "$--foreground",
-              "cornerRadius": 16,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "bRYoH",
-                  "name": "p16",
-                  "fill": "$--background",
-                  "content": "Sign In",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "oYaxE",
-              "name": "p17",
-              "width": "fill_container",
-              "gap": 6,
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "ReD0c",
-                  "name": "p18",
-                  "fill": "$--muted-foreground",
-                  "content": "New here?",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "kEPQN",
-                  "name": "p19",
-                  "fill": "$--foreground",
-                  "content": "Create account",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "hDgaM",
-      "x": 2513,
-      "y": 0,
-      "name": "[M3.1] Cart Success Modal",
-      "clip": true,
-      "width": 393,
-      "height": 852,
-      "fill": "$--background",
-      "stroke": {
-        "thickness": 1,
-        "fill": "$--border"
-      },
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "GHT8T",
-          "name": "stat_bar",
-          "width": "fill_container",
-          "height": 62,
-          "fill": "$--background",
-          "padding": [
-            18,
-            24,
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "LzoMr",
-              "fill": "$--foreground",
-              "content": "9:41",
-              "fontFamily": "Inter",
-              "fontSize": 15,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "P2siE",
-              "fill": "$--foreground",
-              "content": "5G  📶  🔋",
-              "fontFamily": "Inter",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "D14Us",
-          "name": "m3H",
-          "width": "fill_container",
-          "height": 64,
-          "padding": [
-            0,
-            24
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "qVYPU",
-              "fill": "$--foreground",
-              "content": "New Order",
-              "fontFamily": "Inter",
-              "fontSize": 24,
-              "fontWeight": "700"
-            },
-            {
-              "type": "text",
-              "id": "9DNup",
-              "fill": "$--muted-foreground",
-              "content": "Table 3",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "2YtuX",
-          "name": "m3C",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            24,
-            24,
-            28,
-            24
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "EbrUv",
-              "width": "fill_container",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "bottom": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                0,
-                16,
-                0
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "Gd0xM",
-                  "fill": "$--foreground",
-                  "content": "2x Aroi Cha Yen",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "WEM6n",
-                  "fill": "$--foreground",
-                  "content": "$36.00",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "73EoR",
-              "width": "fill_container",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "bottom": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                0,
-                16,
-                0
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "IpmoU",
-                  "fill": "$--foreground",
-                  "content": "1x Jerry Old Fashion",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "arvsE",
-                  "fill": "$--foreground",
-                  "content": "$20.00",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "YIejS",
-              "width": "fill_container",
-              "padding": [
-                16,
-                0
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "qHUdH",
-                  "fill": "$--muted-foreground",
-                  "content": "Total (inc. GST)",
-                  "fontFamily": "Inter",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "De6EQ",
-                  "fill": "$--foreground",
-                  "content": "$56.00",
-                  "fontFamily": "Inter",
-                  "fontSize": 24,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "0f2Tj",
-          "layoutPosition": "absolute",
-          "x": 24,
-          "y": 741,
-          "context": "Opens [M3.1] Cart Success Modal",
-          "width": 345,
-          "height": 56,
-          "fill": "$--foreground",
-          "cornerRadius": "$--radius-pill",
-          "justifyContent": "center",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "LmZ9K",
-              "fill": "$--background",
-              "content": "Submit Order ",
-              "fontFamily": "Inter",
-              "fontSize": 16,
-              "fontWeight": "600"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "yOCI4",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 0,
-          "name": "modal_scrim",
-          "width": 393,
-          "height": 852,
-          "fill": "#00000099"
-        },
-        {
-          "type": "frame",
-          "id": "vCiVt",
-          "layoutPosition": "absolute",
-          "x": 24,
-          "y": 280,
-          "name": "success_modal",
-          "width": 345,
-          "fill": "$--background",
-          "cornerRadius": 20,
-          "layout": "vertical",
-          "gap": 16,
-          "padding": [
-            20,
-            18
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "frame",
-              "id": "Dk5uM",
-              "name": "iconWrap",
-              "width": 72,
-              "height": 72,
-              "fill": "$--foreground",
-              "cornerRadius": 36,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "ZRpJG",
-                  "fill": "$--background",
-                  "content": "✓",
-                  "fontFamily": "Inter",
-                  "fontSize": 34,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "id": "qjw8O",
-              "fill": "$--foreground",
-              "content": "Order Sent",
-              "fontFamily": "Inter",
-              "fontSize": 24,
-              "fontWeight": "700"
-            },
-            {
-              "type": "text",
-              "id": "k0BBY",
-              "fill": "$--muted-foreground",
-              "textGrowth": "fixed-width",
-              "width": "fill_container",
-              "content": "Your order has been sent to the bar. You can keep browsing or view past orders anytime.",
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "500"
-            },
-            {
-              "type": "frame",
-              "id": "NwLVy",
-              "name": "primary",
-              "width": "fill_container",
-              "height": 52,
-              "fill": "$--foreground",
-              "cornerRadius": "$--radius-pill",
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "kColD",
-                  "fill": "$--background",
-                  "content": "Continue Ordering",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "n0hlx",
-              "name": "secondary",
-              "width": "fill_container",
-              "height": 48,
-              "fill": "$--muted",
-              "cornerRadius": "$--radius-pill",
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "7iidP",
-                  "fill": "$--foreground",
-                  "content": "View Past Orders",
-                  "fontFamily": "Inter",
-                  "fontSize": 15,
-                  "fontWeight": "600"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "LsNZp",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 796,
-          "name": "navM31",
-          "width": 393,
-          "fill": "#00000000",
-          "stroke": {
-            "align": "inside",
-            "thickness": 0
-          },
-          "layout": "vertical",
-          "gap": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "pwb0t",
-              "layoutPosition": "absolute",
-              "x": 24,
-              "y": -72,
-              "name": "cart_btn",
-              "enabled": false,
-              "width": 345,
-              "height": 56,
-              "fill": "$--foreground",
-              "cornerRadius": "$--radius-pill",
-              "effect": {
-                "type": "shadow",
-                "shadowType": "outer",
-                "color": "#00000040",
-                "offset": {
-                  "x": 0,
-                  "y": 8
-                },
-                "blur": 24
-              },
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "23Isa",
-                  "fill": "$--background",
-                  "content": "Cart (3 Items)",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "q6Vxs",
-              "name": "nav_bar",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "$--background",
-              "stroke": {
-                "align": "inside",
-                "thickness": {
-                  "top": 1
-                },
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                24
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "amDTj",
-                  "name": "n2",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "QXUkb",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "beer",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "5CiDu",
-                      "fill": "$--foreground",
-                      "content": "MENU",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "AotA2",
-                  "name": "n3",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "IKXaS",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "dice-5",
-                      "iconFontFamily": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "GT12F",
-                      "fill": "$--muted-foreground",
-                      "content": "GAMES",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "hy61L",
-                  "name": "n4",
-                  "layout": "vertical",
-                  "gap": 6,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "fXhma",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "user",
-                      "iconFontFamily": "feather",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "MAjnT",
-                      "fill": "$--muted-foreground",
-                      "content": "PROFILE",
-                      "fontFamily": "Inter",
-                      "fontSize": 11,
-                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -6496,7 +4907,7 @@
     },
     "--accent": {
       "type": "color",
-      "value": "#FBBE65"
+      "value": "#111111"
     },
     "--accent-dark": {
       "type": "color",
@@ -6512,7 +4923,7 @@
     },
     "--border": {
       "type": "color",
-      "value": "#3A3936"
+      "value": "#2A3140"
     },
     "--fg": {
       "type": "color",
@@ -6528,7 +4939,7 @@
     },
     "--surface": {
       "type": "color",
-      "value": "#2E2D2A"
+      "value": "#141414FF"
     },
     "--white": {
       "type": "color",
@@ -6536,19 +4947,19 @@
     },
     "--accent-foreground": {
       "type": "color",
-      "value": "#262522"
+      "value": "#F2F3F0"
     },
     "--background": {
       "type": "color",
-      "value": "#262522"
+      "value": "#0F1115"
     },
     "--card": {
       "type": "color",
-      "value": "#2E2D2A"
+      "value": "#171A21"
     },
     "--card-foreground": {
       "type": "color",
-      "value": "#F6F6F6"
+      "value": "#FFFFFF"
     },
     "--color-error": {
       "type": "color",
@@ -6596,7 +5007,7 @@
     },
     "--foreground": {
       "type": "color",
-      "value": "#F6F6F6"
+      "value": "#F5F7FA"
     },
     "--input": {
       "type": "color",
@@ -6604,11 +5015,11 @@
     },
     "--muted": {
       "type": "color",
-      "value": "#2E2D2A"
+      "value": "#1C212B"
     },
     "--muted-foreground": {
       "type": "color",
-      "value": "#D6B583"
+      "value": "#9BA3B2"
     },
     "--popover": {
       "type": "color",
@@ -6620,15 +5031,15 @@
     },
     "--primary": {
       "type": "color",
-      "value": "#F7C82A"
+      "value": "#57A6FF"
     },
     "--primary-foreground": {
       "type": "color",
-      "value": "#262522"
+      "value": "#111111"
     },
     "--radius-m": {
       "type": "number",
-      "value": 12
+      "value": 14
     },
     "--radius-none": {
       "type": "number",

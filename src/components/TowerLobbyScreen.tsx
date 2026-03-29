@@ -23,7 +23,7 @@ export default function TowerLobbyScreen({
 }: TowerLobbyScreenProps) {
   const [nickname, setNickname] = useState('');
   const [emoji, setEmoji] = useState(EMOJIS[0]);
-  const { trigger: haptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
+  const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
 
   const isHost = userId === towerState.host;
   const isInGame = towerState.players.some(p => p.userId === userId);
@@ -85,7 +85,7 @@ export default function TowerLobbyScreen({
           onClick={() => haptic('success')}
           className="text-xs text-slate-400 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-700 hover:text-white transition-colors cursor-pointer active:scale-95"
         >
-          {isSupported ? "Test Haptics 📳" : "Haptics Not Supported ❌"}
+          Test Haptics 📳
         </button>
       </div>
 
