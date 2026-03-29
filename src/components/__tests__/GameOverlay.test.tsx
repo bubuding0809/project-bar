@@ -19,7 +19,7 @@ test('disables spin when < 2 players', async () => {
   global.fetch = vi.fn(() => Promise.resolve({
     ok: true,
     json: () => Promise.resolve({ game: { status: 'GATHERING', host: 'user_1', players: [{userId: 'user_1'}], drinkType: 'Tequila Shots', drinkQuantity: 4 } })
-  })) as any;
+  })) as unknown as typeof fetch;
 
   render(<GameOverlay tableId="1" />);
   // Wait for fetch

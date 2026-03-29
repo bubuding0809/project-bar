@@ -1,7 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import type { Channel } from 'pusher-js';
+import { getClientPusher } from '@/lib/pusher-client';
 import TowerMeter from './TowerMeter';
+import { useTowerHaptics } from '@/hooks/useTowerHaptics';
 
 const TARGET = 0.82;
 // v=0.08, k=3; busts at t ≈ 4.17s
@@ -9,12 +12,14 @@ const computeFill = (elapsedSeconds: number): number =>
   (-1 / 3) * Math.log(Math.max(1e-9, 1 - 3 * 0.08 * elapsedSeconds));
 
 interface TowerHoldScreenProps {
+  tableId: string;
+  userId: string;
   playerName: string;
   emoji: string;
   onSubmit: (fill: number) => Promise<void>;
 }
 
-export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHoldScreenProps) {
+export default function TowerHoldScreen({ tableId, userId, playerName, emoji, onSubmit }: TowerHoldScreenProps) {
   const [phase, setPhase] = useState<'countdown' | 'idle' | 'holding' | 'releasing'>('countdown');
   const [countdown, setCountdown] = useState(3);
   const [displayFill, setDisplayFill] = useState(0);
@@ -23,6 +28,23 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
+  const { startEngine, startDanger, bust, success } = useTowerHaptics();
+  const dangerTriggeredRef = useRef(false);
+
+  const lastSyncRef = useRef<number>(0);
+  const channelRef = useRef<Channel | null>(null);
+
+  useEffect(() => {
+    const pusher = getClientPusher(userId);
+    if (!pusher) return;
+    
+    channelRef.current = pusher.subscribe(`private-table-${tableId}`);
+
+    return () => {
+      pusher.unsubscribe(`private-table-${tableId}`);
+      channelRef.current = null;
+    };
+  }, [tableId, userId]);
 
   // 3-second countdown on mount
   useEffect(() => {
@@ -57,7 +79,9 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
     holdStartRef.current = performance.now();
+    dangerTriggeredRef.current = false;
     setPhase('holding');
+    startEngine();
 
     const tick = () => {
       if (holdStartRef.current === null) return;
@@ -66,19 +90,41 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
       fillRef.current = fill;
       setDisplayFill(fill);
 
+      const now = performance.now();
+      if (now - lastSyncRef.current > 150) {
+        channelRef.current?.trigger('client-tower-sync', {
+          userId,
+          fill
+        });
+        lastSyncRef.current = now;
+      }
+
+      if (fill > 0.80 && !dangerTriggeredRef.current) {
+        dangerTriggeredRef.current = true;
+        startDanger();
+      }
+
       if (fill >= 1.0) {
+        bust();
         submit(fill);
         return;
       }
       rafIdRef.current = requestAnimationFrame(tick);
     };
     rafIdRef.current = requestAnimationFrame(tick);
-  }, [phase, submitted, submit]);
+  }, [phase, submitted, submit, startEngine, startDanger, bust, userId]);
 
   const stopHolding = useCallback(() => {
-    if (phase !== 'holding') return;
-    submit(fillRef.current);
-  }, [phase, submit]);
+    if (phase !== 'holding' || submitted) return;
+    const finalFill = fillRef.current;
+    
+    if (finalFill >= 1.0) {
+      return;
+    }
+    
+    success();
+    submit(finalFill);
+  }, [phase, submitted, submit, success]);
 
   if (phase === 'countdown') {
     return (

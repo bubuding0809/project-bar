@@ -8,6 +8,6 @@ try {
     useTLS: true,
   });
   console.log("Success");
-} catch (e: any) {
-  console.log(e.message);
+} catch (e) {
+  console.log(e instanceof Error ? e.message : String(e));
 }

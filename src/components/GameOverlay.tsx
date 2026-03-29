@@ -61,7 +61,7 @@ export default function GameOverlay({ tableId, onGameActiveChange, hostInitiated
     fetchInitialState();
 
     // Listen only to pusher updates per task requirements
-    const pusher = getClientPusher();
+    const pusher = getClientPusher(storedUserId);
     if (!pusher) return;
 
     const channel = pusher.subscribe(`table-${tableId}`);

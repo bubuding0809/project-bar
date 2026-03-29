@@ -68,7 +68,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
     fetchState();
 
     // Pusher
-    const pusher = getClientPusher();
+    const pusher = getClientPusher(storedId);
     if (!pusher) return;
 
     const channel = pusher.subscribe(`table-${tableId}`);
@@ -249,6 +249,8 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
 
       {towerState.status === 'PLAYER_TURN' && isMyTurn && !turnResult?.show && (
         <TowerHoldScreen
+          tableId={tableId}
+          userId={userId as string}
           playerName={towerState.players.find(p => p.userId === userId)?.nickname ?? ''}
           emoji={towerState.players.find(p => p.userId === userId)?.emoji ?? ''}
           onSubmit={handleSubmitTurn}
@@ -256,7 +258,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
       )}
 
       {towerState.status === 'PLAYER_TURN' && !isMyTurn && !turnResult?.show && currentPlayer && (
-        <TowerWatchScreen currentPlayer={currentPlayer} />
+        <TowerWatchScreen currentPlayer={currentPlayer} tableId={tableId} userId={userId as string} />
       )}
 
       {towerState.status === 'ROUND_END' && (

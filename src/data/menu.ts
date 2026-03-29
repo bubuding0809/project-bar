@@ -12,11 +12,28 @@ export interface MenuCategory {
   items: MenuItem[];
 }
 
-export const menuData: MenuCategory[] = menuDataRaw.categories.map((cat: any) => {
-  let items: any[] = cat.items || [];
+interface RawMenuItem {
+  name: string;
+  price: number | string;
+  description?: string;
+  image?: string | null;
+}
+
+interface RawMenuSubcategory {
+  items?: RawMenuItem[];
+}
+
+interface RawMenuCategory {
+  name: string;
+  items?: RawMenuItem[];
+  subcategories?: RawMenuSubcategory[];
+}
+
+export const menuData: MenuCategory[] = menuDataRaw.categories.map((cat: RawMenuCategory) => {
+  let items: RawMenuItem[] = cat.items || [];
   
   if (cat.subcategories) {
-    cat.subcategories.forEach((sub: any) => {
+    cat.subcategories.forEach((sub: RawMenuSubcategory) => {
       items = [...items, ...(sub.items || [])];
     });
   }
