@@ -68,7 +68,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
     fetchState();
 
     // Pusher
-    const pusher = getClientPusher();
+    const pusher = getClientPusher(storedId);
     if (!pusher) return;
 
     const channel = pusher.subscribe(`table-${tableId}`);
