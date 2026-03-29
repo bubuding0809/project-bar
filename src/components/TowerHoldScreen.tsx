@@ -24,7 +24,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
-  const { startEngine, startDanger, bust, success, stop } = useTowerHaptics();
+  const { startEngine, startDanger, bust, success } = useTowerHaptics();
   const dangerTriggeredRef = useRef(false);
 
   // 3-second countdown on mount
@@ -87,14 +87,16 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   }, [phase, submitted, submit, startEngine, startDanger, bust]);
 
   const stopHolding = useCallback(() => {
-    if (phase !== 'holding') return;
+    if (phase !== 'holding' || submitted) return;
     const finalFill = fillRef.current;
-    if (finalFill < 1.0) {
-      success();
+    
+    if (finalFill >= 1.0) {
+      return;
     }
-    stop();
+    
+    success();
     submit(finalFill);
-  }, [phase, submit, success, stop]);
+  }, [phase, submitted, submit, success]);
 
   if (phase === 'countdown') {
     return (
