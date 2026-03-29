@@ -26,7 +26,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
   const rafIdRef = useRef<number | null>(null);
   const lastHapticRef = useRef<number>(0);
   
-  const { trigger: haptic } = useWebHaptics();
+  const { trigger: haptic, isSupported } = useWebHaptics({ debug: true });
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -119,7 +119,9 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
         {phase === 'holding' ? 'HOLD!' : 'HOLD'}
       </button>
 
-      <p className="text-slate-500 text-xs">Release to stop. Don&apos;t bust at 100%!</p>
+      <p className="text-slate-500 text-xs">
+        {isSupported ? "Release to stop. Don't bust at 100%!" : "Haptics not supported on this device. Release to stop."}
+      </p>
     </div>
   );
 }
