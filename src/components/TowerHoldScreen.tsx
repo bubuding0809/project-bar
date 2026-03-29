@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import TowerMeter from './TowerMeter';
+import { useWebHaptics } from 'web-haptics/react';
 
 const TARGET = 0.82;
 // v=0.08, k=3; busts at t ≈ 4.17s
@@ -23,6 +24,9 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
+  const lastHapticRef = useRef<number>(0);
+  
+  const { trigger: haptic } = useWebHaptics();
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -51,6 +55,14 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
       fillRef.current = fill;
       setDisplayFill(fill);
       onProgress?.(fill);
+
+      // Local haptics (pulse faster as it fills)
+      const now = performance.now();
+      const hapticInterval = 100 - (fill * 60); // 100ms at 0%, 40ms at 1.0
+      if (now - lastHapticRef.current > hapticInterval) {
+        lastHapticRef.current = now;
+        haptic([{ duration: 30, intensity: Math.max(0.1, fill) }]);
+      }
 
       if (fill >= 1.0) {
         submit(fill);

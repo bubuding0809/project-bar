@@ -8,6 +8,8 @@ import TowerHoldScreen from './TowerHoldScreen';
 import TowerWatchScreen from './TowerWatchScreen';
 import TowerForfeitScreen from './TowerForfeitScreen';
 import { ForfeitCategory } from '@/data/forfeits';
+import Confetti from 'react-confetti';
+import { useWebHaptics } from 'web-haptics/react';
 
 interface TowerOverlayProps {
   tableId: string;
@@ -28,6 +30,13 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
   const [activePlayerId, setActivePlayerId] = useState<string | null>(null);
   const [currentFill, setCurrentFill] = useState(0);
   const towerStateRef = useRef<TowerState | null>(null);
+
+  const { trigger: haptic } = useWebHaptics();
+
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
 
   // Keep ref in sync for unload handler
   useEffect(() => {
@@ -86,12 +95,25 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
     channel.bind('tower-turn-result', (data: { result: TowerTurnResult }) => {
       setTurnResult({ result: data.result, show: true });
       setCurrentFill(data.result.busted ? 1.0 : data.result.fill);
+      
+      // Haptic feedback for result
+      if (data.result.busted) {
+        haptic('error');
+      } else {
+        haptic('success');
+      }
+
       // Auto-hide after 2s
       setTimeout(() => setTurnResult(r => r ? { ...r, show: false } : null), 2000);
     });
 
     channel.bind('tower-turn-progress', (data: { userId: string, fill: number }) => {
       setCurrentFill(data.fill);
+      // Continuous haptic pulse based on fill level for WATCHERS
+      if (data.userId !== userId && data.fill > 0 && data.fill < 1.0) {
+        // Since we only receive this every ~150ms, just pulse once per update
+        haptic([{ duration: 30, intensity: Math.max(0.2, data.fill) }]);
+      }
     });
 
     channel.bind('tower-round-end', (data: {
@@ -235,8 +257,20 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
   const currentPlayer = towerState.players[towerState.currentPlayerIndex];
   const isMyTurn = activePlayerId === userId && towerState.status === 'PLAYER_TURN';
 
+  // Show confetti when ROUND_END and there's a winner
+  const showConfetti = towerState.status === 'ROUND_END' && !!towerState.winnerId;
+
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex flex-col items-center justify-start overflow-y-auto p-4 pt-8">
+      {showConfetti && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={500}
+        />
+      )}
+      
       {/* Turn result overlay (2s flash) */}
       {turnResult?.show && (
         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -267,7 +301,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
         />
       )}
 
-      {towerState.status === 'PLAYER_TURN' && isMyTurn && !turnResult?.show && (
+      {towerState.status === 'PLAYER_TURN' && isMyTurn && (
         <TowerHoldScreen
           playerName={towerState.players.find(p => p.userId === userId)?.nickname ?? ''}
           emoji={towerState.players.find(p => p.userId === userId)?.emoji ?? ''}
@@ -276,8 +310,37 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
         />
       )}
 
-      {towerState.status === 'PLAYER_TURN' && !isMyTurn && !turnResult?.show && currentPlayer && (
+      {towerState.status === 'PLAYER_TURN' && !isMyTurn && currentPlayer && (
         <TowerWatchScreen currentPlayer={currentPlayer} currentFill={currentFill} />
+      )}
+
+      {towerState.status === 'PLAYER_TURN' && towerState.results.length > 0 && !turnResult?.show && (
+        <div className="w-full max-w-sm mt-8 border-t border-slate-800 pt-6 animate-in fade-in slide-in-from-bottom-4">
+          <p className="text-slate-500 font-bold uppercase tracking-wider text-xs mb-3 text-center">Live Results</p>
+          <ul className="space-y-2">
+            {[...towerState.results]
+              .sort((a, b) => {
+                if (a.busted !== b.busted) return a.busted ? 1 : -1;
+                return b.fill - a.fill;
+              })
+              .map((r, i) => {
+                const player = towerState.players.find(p => p.userId === r.userId);
+                return (
+                  <li
+                    key={r.userId}
+                    className="flex items-center gap-3 p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-white"
+                  >
+                    <span className="text-slate-500 font-mono text-xs w-4">{i + 1}</span>
+                    <span>{player?.emoji}</span>
+                    <span className="flex-1 font-medium text-sm">{player?.nickname}</span>
+                    <span className={`font-mono text-xs ${r.busted ? 'text-rose-400' : 'text-emerald-400'}`}>
+                      {r.busted ? 'BUST' : `${(r.fill * 100).toFixed(1)}%`}
+                    </span>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
       )}
 
       {towerState.status === 'ROUND_END' && (

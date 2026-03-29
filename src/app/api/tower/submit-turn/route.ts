@@ -46,6 +46,10 @@ export async function POST(request: Request) {
 
       try {
         await serverPusher.trigger(`table-${tableId}`, 'tower-turn-result', { result });
+        
+        // Pause to let everyone see the final result before next turn
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
         await serverPusher.trigger(`table-${tableId}`, 'tower-turn-start', {
           playerId: nextPlayer.userId,
           playerIndex: state.currentPlayerIndex,
@@ -81,6 +85,10 @@ export async function POST(request: Request) {
 
     try {
       await serverPusher.trigger(`table-${tableId}`, 'tower-turn-result', { result });
+      
+      // Pause to let everyone see the final result before round end
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
       await serverPusher.trigger(`table-${tableId}`, 'tower-round-end', {
         winnerId,
         forfeitCategory: picked.category,
