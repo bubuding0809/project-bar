@@ -14,6 +14,7 @@ export type CartItemInput = Omit<CartItem, 'cartItemId'>;
 interface CartState {
   items: CartItem[];
   addItem: (item: CartItemInput) => void;
+  clearCart: () => void;
 }
 
 export const selectTotalPrice = (state: CartState) =>
@@ -27,6 +28,7 @@ const areCustomizationsEqual = (c1?: CartItem['customizations'], c2?: CartItem['
 
 export const useCartStore = create<CartState>((set) => ({
   items: [],
+  clearCart: () => set({ items: [] }),
   addItem: (newItemInput) => set((state) => {
     const existingItemIndex = state.items.findIndex(
       (item) => item.id === newItemInput.id && areCustomizationsEqual(item.customizations, newItemInput.customizations)

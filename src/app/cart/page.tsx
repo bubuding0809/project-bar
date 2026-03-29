@@ -63,7 +63,7 @@ export default function CartPage() {
               <div>
                 <h3 className="font-medium text-blue-900">Payment at End of Night</h3>
                 <p className="text-sm text-blue-700 mt-1">
-                  Your order will be added to your tab. You can settle your bill at the counter when you're ready to leave.
+                  Your order will be added to your tab. You can settle your bill at the counter when you&apos;re ready to leave.
                 </p>
               </div>
             </CardContent>
