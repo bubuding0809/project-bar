@@ -31,7 +31,7 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
   const [currentFill, setCurrentFill] = useState(0);
   const towerStateRef = useRef<TowerState | null>(null);
 
-  const { trigger: haptic, isSupported } = useWebHaptics({ debug: true });
+  const { trigger: haptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
 
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   useEffect(() => {
