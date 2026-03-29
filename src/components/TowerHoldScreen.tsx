@@ -26,7 +26,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
   const rafIdRef = useRef<number | null>(null);
   const lastHapticRef = useRef<number>(0);
   
-  const { trigger: haptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
+  const { trigger: haptic, cancel: cancelHaptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -39,14 +39,27 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
     if (submitted) return;
     setSubmitted(true);
     cancelRaf();
+    cancelHaptic?.();
     setPhase('releasing');
     await onSubmit(fill);
-  }, [submitted, cancelRaf, onSubmit]);
+  }, [submitted, cancelRaf, cancelHaptic, onSubmit]);
 
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
     holdStartRef.current = performance.now();
     setPhase('holding');
+
+    // Pre-compute and fire the entire hold pattern synchronously so iOS respects it
+    const pattern = [];
+    let ms = 0;
+    while (ms < 4500) { // Busts at ~4170ms
+      const f = computeFill(ms / 1000);
+      const intensity = Math.max(0.2, f);
+      const delay = Math.max(20, 100 - (f * 80)); // 100ms at start, 20ms at end
+      pattern.push({ delay: ms === 0 ? 0 : delay, duration: 30, intensity });
+      ms += delay + 30;
+    }
+    haptic(pattern);
 
     const tick = () => {
       if (holdStartRef.current === null) return;
@@ -55,14 +68,6 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
       fillRef.current = fill;
       setDisplayFill(fill);
       onProgress?.(fill);
-
-      // Local haptics (pulse faster as it fills)
-      const now = performance.now();
-      const hapticInterval = 100 - (fill * 60); // 100ms at 0%, 40ms at 1.0
-      if (now - lastHapticRef.current > hapticInterval) {
-        lastHapticRef.current = now;
-        haptic([{ duration: 30, intensity: Math.max(0.1, fill) }]);
-      }
 
       if (fill >= 1.0) {
         submit(fill);
