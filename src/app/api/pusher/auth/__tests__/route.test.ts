@@ -24,14 +24,13 @@ describe('POST /api/pusher/auth', () => {
 
   it('authorizes private channel', async () => {
     const mockAuthResponse = { auth: 'mock_auth_token' };
-    (serverPusher.authorizeChannel as any).mockReturnValue(mockAuthResponse);
+    vi.mocked(serverPusher.authorizeChannel).mockReturnValue(mockAuthResponse);
 
     const req = new Request('http://localhost/api/pusher/auth', {
       method: 'POST',
       body: new URLSearchParams({
         socket_id: '123.456',
         channel_name: 'private-table-abc',
-        userId: 'user-789',
       }),
     });
 
