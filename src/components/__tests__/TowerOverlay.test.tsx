@@ -91,8 +91,8 @@ test('shows hold screen for current player', async () => {
   mockFetch({ game: state });
   const { container: c } = render(<TowerOverlay tableId="t1" />, { container });
   // activePlayerId is set from tower-turn-start event; on hydrate we set it from currentPlayerIndex
-  await screen.findByText(/Get ready/);
-  expect(within(c).getByText(/Get ready/)).toBeTruthy();
+  await screen.findByText(/your turn!/);
+  expect(within(c).getByText(/your turn!/)).toBeTruthy();
 });
 
 test('shows watch screen when not current player', async () => {

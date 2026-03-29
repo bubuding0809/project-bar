@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Fredoka } from "next/font/google";
+import { Inter, Fredoka, Geist } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fredoka.variable} h-full antialiased dark`}
+      className={cn("h-full", "antialiased", "dark", inter.variable, fredoka.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <TRPCReactProvider>{children}</TRPCReactProvider>
