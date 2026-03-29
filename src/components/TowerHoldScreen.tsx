@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import TowerMeter from './TowerMeter';
+import { useTowerHaptics } from '@/hooks/useTowerHaptics';
 
 const TARGET = 0.82;
 // v=0.08, k=3; busts at t ≈ 4.17s
@@ -23,6 +24,8 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
+  const { startEngine, startDanger, bust, success, stop } = useTowerHaptics();
+  const dangerTriggeredRef = useRef(false);
 
   // 3-second countdown on mount
   useEffect(() => {
@@ -57,7 +60,9 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
     holdStartRef.current = performance.now();
+    dangerTriggeredRef.current = false;
     setPhase('holding');
+    startEngine();
 
     const tick = () => {
       if (holdStartRef.current === null) return;
@@ -66,19 +71,30 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
       fillRef.current = fill;
       setDisplayFill(fill);
 
+      if (fill > 0.80 && !dangerTriggeredRef.current) {
+        dangerTriggeredRef.current = true;
+        startDanger();
+      }
+
       if (fill >= 1.0) {
+        bust();
         submit(fill);
         return;
       }
       rafIdRef.current = requestAnimationFrame(tick);
     };
     rafIdRef.current = requestAnimationFrame(tick);
-  }, [phase, submitted, submit]);
+  }, [phase, submitted, submit, startEngine, startDanger, bust]);
 
   const stopHolding = useCallback(() => {
     if (phase !== 'holding') return;
-    submit(fillRef.current);
-  }, [phase, submit]);
+    const finalFill = fillRef.current;
+    if (finalFill < 1.0) {
+      success();
+    }
+    stop();
+    submit(finalFill);
+  }, [phase, submit, success, stop]);
 
   if (phase === 'countdown') {
     return (
