@@ -26,7 +26,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
   const rafIdRef = useRef<number | null>(null);
   const lastHapticRef = useRef<number>(0);
   
-  const { trigger: haptic, isSupported } = useWebHaptics({ debug: true });
+  const { trigger: haptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
