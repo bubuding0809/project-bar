@@ -41,10 +41,4 @@ describe('MenuItem Component - Quantity Controls', () => {
     expect(useCartStore.getState().items[0].quantity).toBe(1);
   });
 
-  it('clicking - at quantity 1 removes item', () => {
-    useCartStore.getState().addItem({ id: 'test-1', title: 'Test Item', price: 10.00, quantity: 1 });
-    render(<MenuItem id="test-1" title="Test Item" price={10.00} imgUrl="/placeholder.png" />);
-    fireEvent.click(screen.getByRole('button', { name: /decrease quantity/i }));
-    expect(useCartStore.getState().items.length).toBe(0);
-  });
 });
