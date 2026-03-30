@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
 import { MenuItem } from '@/components/menu/MenuItem';
 import { FloatingCartButton } from '@/components/menu/FloatingCartButton';
+import { BottomNav } from '@/components/menu/BottomNav';
 import { menuData } from '@/data/menu';
 import { generateItemId } from '@/lib/utils';
 
@@ -22,9 +24,9 @@ export default function Menu({ tableId }: MenuProps) {
         {/* Top bar */}
         <div className="flex items-center justify-between px-4 h-14">
           <h1 className="text-xl font-bold">Bar Lorong 13</h1>
-          <button className="p-2 -mr-2 text-muted-foreground hover:text-foreground">
+          <Button variant="ghost" className="p-2 -mr-2 text-muted-foreground hover:text-foreground">
             <Search size={24} />
-          </button>
+          </Button>
         </div>
         
         {/* Category Tabs */}
@@ -74,6 +76,9 @@ export default function Menu({ tableId }: MenuProps) {
 
       {/* Floating Cart Button */}
       <FloatingCartButton />
+
+      {/* Bottom Navigation */}
+      <BottomNav />
     </div>
   );
 }
