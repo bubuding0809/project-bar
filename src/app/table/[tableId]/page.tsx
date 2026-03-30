@@ -2,8 +2,10 @@
 
 import React, { use, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { menuData } from "@/data/menu";
 import Menu from "@/components/Menu";
+import GamesHub from "@/components/GamesHub";
 import GameOverlay from "@/components/GameOverlay";
 import { GameState } from "@/types/game";
 
@@ -30,6 +32,9 @@ export default function TableMenuPage({ params }: Props) {
   const [isRouletteActive, setIsRouletteActive] = useState(false);
   const [isTowerActive, setIsTowerActive] = useState(false);
   const [hostCreatedGame, setHostCreatedGame] = useState<GameState | null>(null);
+
+  const searchParams = useSearchParams();
+  const activeView = searchParams.get("view") || "menu";
 
   const price = 10;
 
@@ -124,25 +129,13 @@ export default function TableMenuPage({ params }: Props) {
       <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
 
       {/* Menu Component */}
-      <Menu tableId={tableId} />
-
-      {/* Floating CTA Buttons */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex flex-col items-center gap-3 pb-8 z-20">
-        <button
-          onClick={() => setIsBottomSheetOpen(true)}
-          disabled={isAnyGameActive}
-          className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-violet to-primary shadow-neon-violet text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
-        >
-          Play Drink Roulette
-        </button>
-        <button
-          onClick={() => setIsTowerSheetOpen(true)}
-          disabled={isAnyGameActive}
-          className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-rose to-orange-500 shadow-neon-rose text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
-        >
-          Play Tower Game
-        </button>
-      </div>
+      {activeView === "menu" && <Menu tableId={tableId} />}
+      {activeView === "games" && (
+        <GamesHub
+          onPlayTower={() => setIsTowerSheetOpen(true)}
+          onPlayRoulette={() => setIsBottomSheetOpen(true)}
+        />
+      )}
 
       {/* Roulette Bottom Sheet */}
       {isBottomSheetOpen && (
