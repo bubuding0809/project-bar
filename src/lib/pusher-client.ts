@@ -1,12 +1,5 @@
 import PusherClient from 'pusher-js';
 
-const requireEnv = (name: string, value: string | undefined) => {
-  if (!value) {
-    throw new Error(`Missing environment variable: ${name}`);
-  }
-  return value;
-};
-
 let clientPusherInstance: PusherClient | null = null;
 
 export const getClientPusher = () => {
@@ -14,13 +7,16 @@ export const getClientPusher = () => {
     return null;
   }
 
+  const key = process.env.NEXT_PUBLIC_PUSHER_KEY;
+  const cluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER;
+
+  if (!key || !cluster) {
+    console.warn('Pusher env vars missing - real-time updates disabled');
+    return null;
+  }
+
   if (!clientPusherInstance) {
-    clientPusherInstance = new PusherClient(
-      requireEnv('NEXT_PUBLIC_PUSHER_KEY', process.env.NEXT_PUBLIC_PUSHER_KEY),
-      {
-        cluster: requireEnv('NEXT_PUBLIC_PUSHER_CLUSTER', process.env.NEXT_PUBLIC_PUSHER_CLUSTER),
-      }
-    );
+    clientPusherInstance = new PusherClient(key, { cluster });
   }
 
   return clientPusherInstance;
