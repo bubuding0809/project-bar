@@ -21,12 +21,9 @@ type Props = {
 export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
 
-  // Flatten menu items for easy lookup
-  const allItems = menuData.flatMap(category => category.items);
-
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isTowerSheetOpen, setIsTowerSheetOpen] = useState(false);
-  const [selectedDrink, setSelectedDrink] = useState(allItems[0]?.name || "Tequila Shots");
+  const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
   const [quantity, setQuantity] = useState(1);
   const [hostDare, setHostDare] = useState("");
 
@@ -34,12 +31,7 @@ export default function TableMenuPage({ params }: Props) {
   const [isTowerActive, setIsTowerActive] = useState(false);
   const [hostCreatedGame, setHostCreatedGame] = useState<GameState | null>(null);
 
-  const selectedItem = allItems.find(item => item.name === selectedDrink);
-  const price = selectedItem
-    ? typeof selectedItem.price === "string"
-      ? parseFloat(selectedItem.price.replace("$", ""))
-      : selectedItem.price
-    : 10;
+  const price = 10;
 
   // Hydrate initial active state from server
   useEffect(() => {
@@ -144,7 +136,7 @@ export default function TableMenuPage({ params }: Props) {
       </header>
 
       {/* Menu Component */}
-      <Menu />
+      <Menu tableId={tableId} />
 
       {/* Floating CTA Buttons */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex flex-col items-center gap-3 pb-8 z-20">
