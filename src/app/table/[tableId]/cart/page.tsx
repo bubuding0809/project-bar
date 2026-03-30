@@ -21,7 +21,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
 
   return (
     <div className="flex flex-col h-screen bg-background">
-      <header className="flex items-center p-4 border-b sticky top-0 z-10">
+      <header className="flex items-center p-4 border-b sticky top-0 z-10 bg-background">
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
           <ChevronLeft className="h-6 w-6" />
         </Button>
@@ -105,7 +105,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
         </div>
       </ScrollArea>
 
-      <div className="p-4 border-t z-10">
+      <div className="p-4 pb-20 border-t z-10 bg-background">
         <Button onClick={() => router.push(`/table/${tableId}/payment`)} className="w-full text-lg h-14" size="lg">
           Submit Order to Tab
         </Button>
