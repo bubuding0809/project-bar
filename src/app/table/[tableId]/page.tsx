@@ -7,6 +7,7 @@ import { menuData } from "@/data/menu";
 import Menu from "@/components/Menu";
 import GamesHub from "@/components/GamesHub";
 import GameOverlay from "@/components/GameOverlay";
+import { BottomNav } from "@/components/menu/BottomNav";
 import { GameState } from "@/types/game";
 
 const TowerOverlay = dynamic(() => import("@/components/TowerOverlay"), {
@@ -298,6 +299,8 @@ export default function TableMenuPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      <BottomNav />
     </div>
   );
 }

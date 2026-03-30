@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams, usePathname } from 'next/navigation';
 import { Search, ShoppingCart, User, Dice5 } from 'lucide-react';
 
 const navItems = [
@@ -15,6 +15,7 @@ const navItems = [
 export const BottomNav = () => {
   const params = useParams();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const tableId = params?.tableId as string;
   const activeView = searchParams.get('view') || 'menu';
 
@@ -29,7 +30,9 @@ export const BottomNav = () => {
   };
 
   const isActive = (item: typeof navItems[0]) => {
-    if ('route' in item) return false;
+    if ('route' in item && item.route) {
+      return pathname === `/table/${tableId}${item.route}`;
+    }
     if ('view' in item) return item.view === activeView;
     return false;
   };
