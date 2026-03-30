@@ -64,7 +64,7 @@ export default function Menu({ tableId }: MenuProps) {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-4xl mx-auto">
+    <div className="flex flex-col w-full max-w-4xl mx-auto pb-20">
       {/* Sticky Header - matching /menu page styling */}
       <div className="sticky top-0 z-40 w-full bg-background border-b shadow-sm">
         {/* Top bar */}
