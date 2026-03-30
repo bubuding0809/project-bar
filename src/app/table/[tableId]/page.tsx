@@ -7,6 +7,7 @@ import { menuData } from "@/data/menu";
 import Menu from "@/components/Menu";
 import GamesHub from "@/components/GamesHub";
 import GameOverlay from "@/components/GameOverlay";
+import { BottomNav } from "@/components/menu/BottomNav";
 import { GameState } from "@/types/game";
 
 const TowerOverlay = dynamic(() => import("@/components/TowerOverlay"), {
@@ -174,11 +175,14 @@ export default function TableMenuPage({ params }: Props) {
       {/* Menu and Games Hub based on view */}
       {activeView === "menu" && <Menu tableId={tableId} />}
       {activeView === "games" && (
-        <GamesHub
-          onPlayTower={() => setIsTowerSheetOpen(true)}
-          onPlayRoulette={() => setIsBottomSheetOpen(true)}
-          onPlayBarrel={() => setIsBarrelSheetOpen(true)}
-        />
+        <>
+          <GamesHub
+            onPlayTower={() => setIsTowerSheetOpen(true)}
+            onPlayRoulette={() => setIsBottomSheetOpen(true)}
+            onPlayBarrel={() => setIsBarrelSheetOpen(true)}
+          />
+          <BottomNav />
+        </>
       )}
 
       {/* Roulette Bottom Sheet */}
