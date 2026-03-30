@@ -36,12 +36,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({ id, title, price, descriptio
   };
 
   return (
-    <Link href={href} className="flex justify-between gap-4 py-4 border-b hover:bg-muted/50 transition-colors">
-      <div className="flex flex-col gap-1 justify-center">
+    <div className="flex justify-between gap-4 py-4 border-b hover:bg-muted/50 transition-colors">
+      <Link href={href} className="flex flex-col gap-1 justify-center flex-1">
         <h3 className="font-semibold text-base">{title}</h3>
         {description && <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>}
         <span className="font-medium mt-1">${price.toFixed(2)}</span>
-      </div>
+      </Link>
       <div className="relative w-[104px] h-[104px] rounded-md overflow-hidden bg-muted flex-shrink-0">
         <img src={imgUrl} alt={title} className="object-cover w-full h-full" />
         {quantity < 2 ? (
@@ -72,6 +72,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({ id, title, price, descriptio
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
