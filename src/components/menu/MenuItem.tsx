@@ -8,11 +8,13 @@ interface MenuItemProps {
   price: number;
   description?: string;
   imgUrl: string;
+  tableId?: string;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ id, title, price, description, imgUrl }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ id, title, price, description, imgUrl, tableId }) => {
+  const href = tableId ? `/table/${tableId}/menu/${id}` : `/menu/${id}`;
   return (
-    <Link href={`/menu/${id}`} className="flex justify-between gap-4 py-4 border-b hover:bg-muted/50 transition-colors">
+    <Link href={href} className="flex justify-between gap-4 py-4 border-b hover:bg-muted/50 transition-colors">
       <div className="flex flex-col gap-1 justify-center">
         <h3 className="font-semibold text-base">{title}</h3>
         {description && <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>}

@@ -66,6 +66,7 @@ export default function Menu({ tableId }: MenuProps) {
                     price={item.price as number}
                     description={item.description}
                     imgUrl={item.imageUrl || ''}
+                    tableId={tableId}
                   />
                 );
               })}
@@ -75,7 +76,7 @@ export default function Menu({ tableId }: MenuProps) {
       </main>
 
       {/* Floating Cart Button */}
-      <FloatingCartButton />
+      <FloatingCartButton tableId={tableId} />
 
       {/* Bottom Navigation */}
       <BottomNav />

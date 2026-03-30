@@ -6,16 +6,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChevronLeft, Info } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
+import { use } from 'react';
 
-export default function CartPage() {
+export default function CartPage({ params }: { params: Promise<{ tableId: string }> }) {
   const router = useRouter();
+  const { tableId } = use(params);
   const items = useCartStore((state) => state.items);
   const totalPrice = useCartStore(selectTotalPrice);
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      {/* Header */}
       <header className="flex items-center p-4 bg-white border-b sticky top-0 z-10">
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
           <ChevronLeft className="h-6 w-6" />
@@ -23,10 +24,8 @@ export default function CartPage() {
         <h1 className="text-xl font-bold">Cart</h1>
       </header>
 
-      {/* Main Content */}
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-6 pb-32">
-          {/* Cart Items */}
           <div className="bg-white rounded-lg shadow-sm border p-4 space-y-4">
             {items.map((item) => (
               <div key={item.cartItemId} className="flex justify-between items-start">
@@ -49,14 +48,12 @@ export default function CartPage() {
 
             <Separator />
 
-            {/* Total */}
             <div className="flex justify-between items-center pt-2">
               <span className="font-semibold">Total (inc. GST)</span>
               <span className="text-lg font-bold">${totalPrice.toFixed(2)}</span>
             </div>
           </div>
 
-          {/* Information Card */}
           <Card className="bg-blue-50 border-blue-100">
             <CardContent className="p-4 flex gap-3 items-start">
               <Info className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
@@ -71,9 +68,8 @@ export default function CartPage() {
         </div>
       </ScrollArea>
 
-      {/* Sticky Footer */}
       <div className="p-4 bg-white border-t shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-10">
-        <Button onClick={() => router.push('/payment')} className="w-full text-lg h-14" size="lg">
+        <Button onClick={() => router.push(`/table/${tableId}/payment`)} className="w-full text-lg h-14" size="lg">
           Submit Order to Tab
         </Button>
       </div>

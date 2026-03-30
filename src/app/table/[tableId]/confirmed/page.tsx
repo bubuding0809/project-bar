@@ -2,15 +2,17 @@
 
 import { useCartStore } from "@/store/useCartStore";
 import { CheckCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
+import { use } from "react";
 
-export default function ConfirmedPage() {
+export default function ConfirmedPage({ params }: { params: Promise<{ tableId: string }> }) {
   const router = useRouter();
+  const { tableId } = use(params);
   const clearCart = useCartStore((state) => state.clearCart);
 
   const handleBackToMenu = () => {
     clearCart();
-    router.push("/menu");
+    router.push(`/table/${tableId}`);
   };
 
   return (
