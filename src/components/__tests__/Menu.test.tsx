@@ -2,6 +2,14 @@ import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Menu from '../Menu';
 
+class IntersectionObserver {
+  observe = vi.fn();
+  disconnect = vi.fn();
+  unobserve = vi.fn();
+}
+vi.stubGlobal('IntersectionObserver', IntersectionObserver);
+Element.prototype.scrollIntoView = vi.fn();
+
 vi.mock('@/data/menu', () => ({
   menuData: [
     {
