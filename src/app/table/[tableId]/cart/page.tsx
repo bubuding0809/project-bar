@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ChevronLeft, Info } from 'lucide-react';
+import { ChevronLeft, Info, Minus, Plus, Trash2 } from 'lucide-react';
 import { useRouter, useParams } from 'next/navigation';
 import { use } from 'react';
 import { BottomNav } from '@/components/menu/BottomNav';
@@ -15,6 +15,9 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
   const { tableId } = use(params);
   const items = useCartStore((state) => state.items);
   const totalPrice = useCartStore(selectTotalPrice);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const updateItemQuantity = useCartStore((state) => state.updateItemQuantity);
+  const decrementItem = useCartStore((state) => state.decrementItem);
 
   return (
     <div className="flex flex-col h-screen bg-background">
@@ -42,8 +45,40 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
                     </div>
                   )}
                 </div>
-                <div className="font-semibold text-right pl-4">
-                  ${(item.price * item.quantity).toFixed(2)}
+                <div className="flex items-center gap-3">
+                  <span className="font-semibold text-right min-w-[60px]">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </span>
+                  <div className="flex items-center border rounded-full">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 rounded-full"
+                      onClick={() => decrementItem(item.cartItemId)}
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="h-3 w-3" />
+                    </Button>
+                    <span className="w-6 text-center text-sm font-medium">{item.quantity}</span>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 rounded-full"
+                      onClick={() => updateItemQuantity(item.cartItemId, item.quantity + 1)}
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="h-3 w-3" />
+                    </Button>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                    onClick={() => removeItem(item.cartItemId)}
+                    aria-label="Remove item"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
             ))}
