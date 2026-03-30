@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,45 @@ interface MenuProps {
 
 export default function Menu({ tableId }: MenuProps) {
   const [activeCategory, setActiveCategory] = useState(menuData[0]?.category || '');
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const category = entry.target.getAttribute('data-category');
+            if (category) {
+              setActiveCategory(category);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '-120px 0px -50% 0px',
+        threshold: 0,
+      }
+    );
+
+    menuData.forEach((cat) => {
+      const element = document.getElementById(`category-${cat.category}`);
+      if (element) {
+        observerRef.current?.observe(element);
+      }
+    });
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
+  const scrollToCategory = (category: string) => {
+    setActiveCategory(category);
+    const element = document.getElementById(`category-${category}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto">
@@ -35,7 +74,7 @@ export default function Menu({ tableId }: MenuProps) {
             {menuData.map((cat) => (
               <button
                 key={cat.category}
-                onClick={() => setActiveCategory(cat.category)}
+                onClick={() => scrollToCategory(cat.category)}
                 className={`text-sm font-semibold transition-colors px-4 py-3 border-b-2 ${
                   activeCategory === cat.category 
                     ? 'text-primary border-primary' 
@@ -53,7 +92,7 @@ export default function Menu({ tableId }: MenuProps) {
       {/* Menu List */}
       <main className="px-4 py-6 space-y-8">
         {menuData.map((cat) => (
-          <div key={cat.category} id={`category-${cat.category}`} className="scroll-mt-[120px]">
+          <div key={cat.category} id={`category-${cat.category}`} data-category={cat.category} className="scroll-mt-[120px]">
             <h2 className="text-xl font-bold mb-4">{cat.category}</h2>
             <div className="space-y-0">
               {cat.items.map((item, index) => {
