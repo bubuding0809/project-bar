@@ -29,11 +29,16 @@ export const BottomNav = () => {
     return '/';
   };
 
+  const isOnRoutePage = pathname.startsWith(`/table/${tableId}/`) && pathname !== `/table/${tableId}`;
+
   const isActive = (item: typeof navItems[0]) => {
     if ('route' in item && item.route) {
       return pathname === `/table/${tableId}${item.route}`;
     }
-    if ('view' in item) return item.view === activeView;
+    if ('view' in item) {
+      if (isOnRoutePage) return false;
+      return item.view === activeView;
+    }
     return false;
   };
 
