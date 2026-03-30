@@ -8,6 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChevronLeft, Info } from 'lucide-react';
 import { useRouter, useParams } from 'next/navigation';
 import { use } from 'react';
+import { BottomNav } from '@/components/menu/BottomNav';
 
 export default function CartPage({ params }: { params: Promise<{ tableId: string }> }) {
   const router = useRouter();
@@ -74,6 +75,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
           Submit Order to Tab
         </Button>
       </div>
+      <BottomNav />
     </div>
   );
 }

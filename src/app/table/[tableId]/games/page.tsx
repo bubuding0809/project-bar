@@ -1,87 +1,38 @@
-"use client";
+'use client';
 
-import React, { use, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
-import { menuData } from "@/data/menu";
-import Menu from "@/components/Menu";
-import GamesHub from "@/components/GamesHub";
-import GameOverlay from "@/components/GameOverlay";
-import { GameState } from "@/types/game";
+import React, { useState } from 'react';
+import GamesHub from '@/components/GamesHub';
+import { BottomNav } from '@/components/menu/BottomNav';
+import { menuData } from '@/data/menu';
 
-const TowerOverlay = dynamic(() => import("@/components/TowerOverlay"), {
-  ssr: false,
-  loading: () => null,
-});
-
-const BarrelGame = dynamic(() => import("@/components/barrel/BarrelGame"), {
-  ssr: false,
-  loading: () => null,
-});
-
-type Props = {
-  params: Promise<{
-    tableId: string;
-  }>;
-};
-
-export default function TableMenuPage({ params }: Props) {
-  const { tableId } = use(params);
-
+export default function GamesPage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isTowerSheetOpen, setIsTowerSheetOpen] = useState(false);
   const [isBarrelSheetOpen, setIsBarrelSheetOpen] = useState(false);
-  const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
+  const [selectedDrink, setSelectedDrink] = useState('Tequila Shots');
   const [quantity, setQuantity] = useState(1);
-  const [hostDare, setHostDare] = useState("");
-
-  const [isRouletteActive, setIsRouletteActive] = useState(false);
-  const [isTowerActive, setIsTowerActive] = useState(false);
-  const [isBarrelActive, setIsBarrelActive] = useState(false);
-  const [hostCreatedGame, setHostCreatedGame] = useState<GameState | null>(null);
-
-  const searchParams = useSearchParams();
-  const activeView = searchParams.get("view") || "menu";
+  const [hostDare, setHostDare] = useState('');
 
   const price = 10;
 
-  // Hydrate initial active state from server
-  useEffect(() => {
-    Promise.all([
-      fetch(`/api/game/${tableId}`)
-        .then(r => (r.ok ? r.json() : null))
-        .catch(() => null),
-      fetch(`/api/tower/${tableId}`)
-        .then(r => (r.ok ? r.json() : null))
-        .catch(() => null),
-      fetch(`/api/barrel/${tableId}`)
-        .then(r => (r.ok ? r.json() : null))
-        .catch(() => null),
-    ]).then(([g, t, b]) => {
-      setIsRouletteActive(!!g?.game);
-      setIsTowerActive(!!t?.game);
-      setIsBarrelActive(!!b?.game);
-    });
-  }, [tableId]);
-
   const handleCreateGame = async () => {
-    let userId = localStorage.getItem("demo_user_id");
+    let userId = localStorage.getItem('demo_user_id');
     if (!userId) {
       userId = `host_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem("demo_user_id", userId);
+      localStorage.setItem('demo_user_id', userId);
     }
 
     try {
-      const response = await fetch("/api/game/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/game/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tableId,
+          tableId: 'demo',
           roundId: `round_${Date.now()}`,
           hostProfile: {
             userId,
-            nickname: "Host Master",
-            emoji: "👑",
+            nickname: 'Host Master',
+            emoji: '👑',
           },
           drinkType: selectedDrink,
           drinkQuantity: quantity,
@@ -90,33 +41,31 @@ export default function TableMenuPage({ params }: Props) {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
       setIsBottomSheetOpen(false);
-      if (data.game) setHostCreatedGame(data.game);
     } catch (error) {
-      console.error("Failed to create game:", error);
+      console.error('Failed to create game:', error);
       setIsBottomSheetOpen(false);
     }
   };
 
   const handleCreateTowerGame = async () => {
-    let userId = localStorage.getItem("demo_user_id");
+    let userId = localStorage.getItem('demo_user_id');
     if (!userId) {
       userId = `host_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem("demo_user_id", userId);
+      localStorage.setItem('demo_user_id', userId);
     }
 
     try {
-      const response = await fetch("/api/tower/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/tower/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tableId,
+          tableId: 'demo',
           roundId: `tower_${Date.now()}`,
           hostProfile: {
             userId,
-            nickname: "Host Master",
-            emoji: "👑",
+            nickname: 'Host Master',
+            emoji: '👑',
           },
           hostDare: hostDare.trim() || undefined,
         }),
@@ -125,31 +74,31 @@ export default function TableMenuPage({ params }: Props) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       setIsTowerSheetOpen(false);
-      setHostDare("");
+      setHostDare('');
     } catch (error) {
-      console.error("Failed to create tower game:", error);
+      console.error('Failed to create tower game:', error);
       setIsTowerSheetOpen(false);
     }
   };
 
   const handleCreateBarrelGame = async () => {
-    let userId = localStorage.getItem("demo_user_id");
+    let userId = localStorage.getItem('demo_user_id');
     if (!userId) {
       userId = `host_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem("demo_user_id", userId);
+      localStorage.setItem('demo_user_id', userId);
     }
 
     try {
-      const response = await fetch("/api/barrel/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/barrel/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tableId,
+          tableId: 'demo',
           roundId: `barrel_${Date.now()}`,
           hostProfile: {
             userId,
-            nickname: "Host Master",
-            emoji: "🏴‍☠️",
+            nickname: 'Host Master',
+            emoji: '🏴‍☠️',
           },
         }),
       });
@@ -158,28 +107,18 @@ export default function TableMenuPage({ params }: Props) {
       }
       setIsBarrelSheetOpen(false);
     } catch (error) {
-      console.error("Failed to create barrel game:", error);
+      console.error('Failed to create barrel game:', error);
       setIsBarrelSheetOpen(false);
     }
   };
 
-  const isAnyGameActive = isRouletteActive || isTowerActive || isBarrelActive;
-
   return (
-    <div className="min-h-screen bg-background text-foreground pb-36 relative">
-      <GameOverlay tableId={tableId} onGameActiveChange={setIsRouletteActive} hostInitiatedGame={hostCreatedGame} />
-      <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
-      <BarrelGame key={tableId} tableId={tableId} onGameActiveChange={setIsBarrelActive} />
-
-      {/* Menu and Games Hub based on view */}
-      {activeView === "menu" && <Menu tableId={tableId} />}
-      {activeView === "games" && (
-        <GamesHub
-          onPlayTower={() => setIsTowerSheetOpen(true)}
-          onPlayRoulette={() => setIsBottomSheetOpen(true)}
-          onPlayBarrel={() => setIsBarrelSheetOpen(true)}
-        />
-      )}
+    <div className="min-h-screen bg-background pb-20">
+      <GamesHub
+        onPlayTower={() => setIsTowerSheetOpen(true)}
+        onPlayRoulette={() => setIsBottomSheetOpen(true)}
+        onPlayBarrel={() => setIsBarrelSheetOpen(true)}
+      />
 
       {/* Roulette Bottom Sheet */}
       {isBottomSheetOpen && (
@@ -257,7 +196,7 @@ export default function TableMenuPage({ params }: Props) {
             </p>
             <div className="flex gap-3">
               <button
-                onClick={() => { setIsTowerSheetOpen(false); setHostDare(""); }}
+                onClick={() => { setIsTowerSheetOpen(false); setHostDare(''); }}
                 className="flex-1 py-3 bg-slate-800 text-slate-300 rounded font-bold cursor-pointer hover:bg-slate-700 transition-colors"
               >
                 Cancel
@@ -298,6 +237,8 @@ export default function TableMenuPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      <BottomNav />
     </div>
   );
 }

@@ -17,6 +17,7 @@ interface MenuProps {
 export default function Menu({ tableId }: MenuProps) {
   const [activeCategory, setActiveCategory] = useState(menuData[0]?.category || '');
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const activeTabRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -48,6 +49,12 @@ export default function Menu({ tableId }: MenuProps) {
     };
   }, []);
 
+  useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeCategory]);
+
   const scrollToCategory = (category: string) => {
     setActiveCategory(category);
     const element = document.getElementById(`category-${category}`);
@@ -74,6 +81,7 @@ export default function Menu({ tableId }: MenuProps) {
             {menuData.map((cat) => (
               <button
                 key={cat.category}
+                ref={activeCategory === cat.category ? activeTabRef : undefined}
                 onClick={() => scrollToCategory(cat.category)}
                 className={`text-sm font-semibold transition-colors px-4 py-3 border-b-2 ${
                   activeCategory === cat.category 
