@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { Suspense } from "react";
 import { getQueryClient, HydrateClient, trpc } from "@/trpc/server";
@@ -5,7 +7,7 @@ import { ClientGreeting } from "./client-greeting";
 
 export default async function Home() {
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
+  await queryClient.prefetchQuery(
     trpc.hello.queryOptions({ text: 'from tRPC + React Query + SuperJSON' })
   );
 

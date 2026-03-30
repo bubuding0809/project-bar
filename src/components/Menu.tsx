@@ -60,7 +60,7 @@ export default function Menu() {
       {/* Sticky Navigation */}
       <div 
         ref={navRef}
-        className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-slate-800 py-4 shadow-sm"
+        className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-slate-800 py-4 shadow-sm"
       >
         <div className="flex overflow-x-auto gap-2 px-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {menuData.map((category) => (

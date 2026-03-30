@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import TowerMeter from './TowerMeter';
+import { useWebHaptics } from 'web-haptics/react';
 
 const TARGET = 0.82;
 // v=0.08, k=3; busts at t ≈ 4.17s
@@ -12,32 +13,20 @@ interface TowerHoldScreenProps {
   playerName: string;
   emoji: string;
   onSubmit: (fill: number) => Promise<void>;
+  onProgress?: (fill: number) => void;
 }
 
-export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHoldScreenProps) {
-  const [phase, setPhase] = useState<'countdown' | 'idle' | 'holding' | 'releasing'>('countdown');
-  const [countdown, setCountdown] = useState(3);
+export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgress }: TowerHoldScreenProps) {
+  const [phase, setPhase] = useState<'idle' | 'holding' | 'releasing'>('idle');
   const [displayFill, setDisplayFill] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
   const holdStartRef = useRef<number | null>(null);
   const fillRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
-
-  // 3-second countdown on mount
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCountdown(c => {
-        if (c <= 1) {
-          clearInterval(id);
-          setPhase('idle');
-          return 0;
-        }
-        return c - 1;
-      });
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
+  const lastHapticRef = useRef<number>(0);
+  
+  const { trigger: haptic, cancel: cancelHaptic } = useWebHaptics({ debug: false, showSwitch: true });
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -46,13 +35,17 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
     }
   }, []);
 
-  const submit = useCallback(async (fill: number) => {
+  const submit = useCallback(async (fill: number, isUserAction: boolean) => {
     if (submitted) return;
     setSubmitted(true);
     cancelRaf();
+    cancelHaptic?.();
+    if (isUserAction) {
+      haptic('buzz'); // Play long buzz immediately if user released
+    }
     setPhase('releasing');
     await onSubmit(fill);
-  }, [submitted, cancelRaf, onSubmit]);
+  }, [submitted, cancelRaf, cancelHaptic, haptic, onSubmit]);
 
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
@@ -65,30 +58,29 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
       const fill = computeFill(elapsed);
       fillRef.current = fill;
       setDisplayFill(fill);
+      onProgress?.(fill);
 
       if (fill >= 1.0) {
-        submit(fill);
+        submit(fill, false); // Not a direct user interaction, might not vibrate on iOS
         return;
       }
       rafIdRef.current = requestAnimationFrame(tick);
     };
     rafIdRef.current = requestAnimationFrame(tick);
-  }, [phase, submitted, submit]);
+  }, [phase, submitted, submit, onProgress]);
 
   const stopHolding = useCallback(() => {
-    if (phase !== 'holding') return;
-    submit(fillRef.current);
-  }, [phase, submit]);
-
-  if (phase === 'countdown') {
-    return (
-      <div className="flex flex-col items-center justify-center gap-6">
-        <p className="text-slate-400 font-medium">Get ready, {emoji} {playerName}!</p>
-        <div className="text-8xl font-display font-black text-neon-violet animate-pulse">{countdown}</div>
-        <p className="text-slate-500 text-sm">Hold the button to fill the tower</p>
-      </div>
-    );
-  }
+    if (phase !== 'holding') {
+      // If they already busted while holding, this release event is a trusted user action
+      // so we can finally fire the buzz now that they let go!
+      if (submitted) {
+        cancelHaptic?.();
+        haptic('buzz');
+      }
+      return;
+    }
+    submit(fillRef.current, true);
+  }, [phase, submit, submitted, haptic, cancelHaptic]);
 
   if (phase === 'releasing') {
     return (
@@ -117,9 +109,12 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit }: TowerHo
       </div>
 
       <button
-        onPointerDown={startHolding}
-        onPointerUp={stopHolding}
-        onPointerLeave={stopHolding}
+        onTouchStart={(e) => { e.preventDefault(); startHolding(); }}
+        onMouseDown={(e) => { startHolding(); }}
+        onTouchEnd={(e) => { e.preventDefault(); stopHolding(); }}
+        onMouseUp={(e) => { stopHolding(); }}
+        onMouseLeave={stopHolding}
+        onTouchCancel={stopHolding}
         disabled={submitted}
         className={`w-48 h-48 rounded-full text-white font-display font-black text-2xl transition-all duration-100 cursor-pointer select-none touch-none
           ${phase === 'holding'

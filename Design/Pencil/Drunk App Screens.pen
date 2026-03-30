@@ -243,7 +243,7 @@
                       "name": "title_row",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 4,
                       "justifyContent": "space_between",
                       "children": [
                         {
@@ -265,7 +265,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "A delightful mix of thai milk tea and spiced rum, making for an enjoyable treat after a long day.",
-                          "fontFamily": "Geist",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -370,7 +370,7 @@
                       "name": "title_row2",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 4,
                       "justifyContent": "space_between",
                       "children": [
                         {
@@ -392,7 +392,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Our own rendition of the classic Old Fashioned. An elevated blend of bourbon, brown sugar and chocolate bitters. Definitely a must-try for whiskey lovers.",
-                          "fontFamily": "Geist",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -497,7 +497,7 @@
                       "name": "title_row3",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 4,
                       "justifyContent": "space_between",
                       "children": [
                         {
@@ -519,7 +519,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "Experience the harmonious blend of vodka, elderflower syrup and chamomile tea. A classic floral hit amongst our patrons.",
-                          "fontFamily": "Geist",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -624,7 +624,7 @@
                       "name": "title_row4",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 4,
                       "justifyContent": "space_between",
                       "children": [
                         {
@@ -646,7 +646,7 @@
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
                           "content": "A strong mix of 4 white spirits with an added dash of Triple Sec and splashed with Coke.",
-                          "fontFamily": "Geist",
+                          "fontFamily": "\\$--font-primary",
                           "fontSize": 13,
                           "fontWeight": "normal"
                         }
@@ -815,7 +815,7 @@
                       "fill": "$--muted-foreground",
                       "content": "HOME",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -843,7 +843,7 @@
                       "fill": "$--foreground",
                       "content": "MENU",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -871,7 +871,7 @@
                       "fill": "$--muted-foreground",
                       "content": "GAMES",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -899,7 +899,7 @@
                       "fill": "$--muted-foreground",
                       "content": "PROFILE",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -977,19 +977,119 @@
               "type": "text",
               "id": "KDzGB",
               "fill": "$--foreground",
-              "content": "BAR LORONG 13",
+              "content": "Let’s Get You In",
               "fontFamily": "\\$--font-primary",
-              "fontSize": 32,
+              "fontSize": 28,
               "fontWeight": "700"
             },
             {
               "type": "text",
               "id": "8ViEN",
-              "fill": "$--muted",
-              "content": "Loading your vibe...",
+              "fill": "$--muted-foreground",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Pick your name and emoji before joining a table.",
               "fontFamily": "\\$--font-secondary",
-              "fontSize": 16,
+              "fontSize": 14,
               "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "ek3iX",
+              "name": "nameWrap",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 14,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                14,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1fCe2",
+                  "name": "nameLbl",
+                  "fill": "$--muted-foreground",
+                  "content": "Display name",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "I48lN",
+                  "name": "nameVal",
+                  "fill": "$--foreground",
+                  "content": "Clive",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ofvty",
+              "name": "emojiWrap",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 14,
+              "padding": [
+                14,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w0eeK",
+                  "name": "emojiLbl",
+                  "fill": "$--muted-foreground",
+                  "content": "Emoji",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "qbdXd",
+                  "name": "emojiVal",
+                  "fill": "$--foreground",
+                  "content": "🍻",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zgHQX",
+              "name": "cta",
+              "width": "fill_container",
+              "fill": "$--foreground",
+              "cornerRadius": 16,
+              "padding": [
+                14,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SpuaU",
+                  "name": "ctaTxt",
+                  "fill": "$--background",
+                  "content": "Continue to Lobby",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
             }
           ]
         }
@@ -1319,7 +1419,7 @@
                   "fill": "$--foreground",
                   "content": "Table 3",
                   "fontFamily": "\\$--font-secondary",
-                  "fontSize": 12,
+                  "fontSize": 13,
                   "fontWeight": "600"
                 }
               ]
@@ -1391,7 +1491,7 @@
                       "type": "text",
                       "id": "QLohg",
                       "content": "🍺",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 24,
                       "fontWeight": "normal"
                     },
@@ -1422,7 +1522,7 @@
                       "type": "text",
                       "id": "3FQ0d",
                       "content": "🎲",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 24,
                       "fontWeight": "normal"
                     },
@@ -1536,7 +1636,7 @@
                       "fill": "$--muted-foreground",
                       "content": "HOME",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -1564,7 +1664,7 @@
                       "fill": "$--foreground",
                       "content": "MENU",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -1592,7 +1692,7 @@
                       "fill": "$--muted-foreground",
                       "content": "GAMES",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -1620,7 +1720,7 @@
                       "fill": "$--muted-foreground",
                       "content": "PROFILE",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -1729,7 +1829,7 @@
               "id": "JBLro",
               "name": "m2T",
               "layout": "vertical",
-              "gap": 8,
+              "gap": 10,
               "children": [
                 {
                   "type": "text",
@@ -1782,7 +1882,7 @@
                   "id": "WO2h6",
                   "name": "iceRow",
                   "width": "fill_container",
-                  "gap": 8,
+                  "gap": 10,
                   "children": [
                     {
                       "type": "frame",
@@ -2093,7 +2193,7 @@
               "fill": "$--muted",
               "cornerRadius": 16,
               "layout": "vertical",
-              "gap": 8,
+              "gap": 10,
               "padding": 20,
               "alignItems": "center",
               "children": [
@@ -2101,7 +2201,7 @@
                   "type": "text",
                   "id": "3kIfv",
                   "fill": "$--foreground",
-                  "content": "🎰 Who's paying?",
+                  "content": "💳 Payment at End of Night",
                   "fontFamily": "\\$--font-primary",
                   "fontSize": 18,
                   "fontWeight": "600"
@@ -2110,9 +2210,11 @@
                   "type": "text",
                   "id": "1rmGF",
                   "fill": "$--muted-foreground",
-                  "content": "Play Shot Roulette to split the bill",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Orders are submitted now; your table settles once at closing.",
                   "fontFamily": "\\$--font-secondary",
-                  "fontSize": 14,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -2136,7 +2238,7 @@
               "type": "text",
               "id": "AsIU3",
               "fill": "$--background",
-              "content": "Pay Now — $56.00",
+              "content": "Submit Order to Tab — $56.00",
               "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
@@ -2214,7 +2316,7 @@
               "type": "text",
               "id": "gDz1j",
               "fill": "$--foreground",
-              "content": "Payment",
+              "content": "Settle Tab",
               "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
@@ -2361,7 +2463,7 @@
               "type": "text",
               "id": "BEv1a",
               "fill": "$--foreground",
-              "content": "Select Payment Method",
+              "content": "Choose payment method for end-of-night charge",
               "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
@@ -2414,6 +2516,41 @@
                   "fontFamily": "\\$--font-primary",
                   "fontSize": 16,
                   "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Fmtn7",
+              "name": "payInfo",
+              "width": "fill_container",
+              "fill": "$--muted",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gu5AE",
+                  "name": "payInfoTitle",
+                  "fill": "$--foreground",
+                  "content": "Your orders are already sent to the bar.",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "SN1X9",
+                  "name": "payInfoBody",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "No payment now. Confirm card/wallet once, then we auto-charge at end of night.",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -2510,7 +2647,7 @@
               "type": "text",
               "id": "lEAM5",
               "fill": "$--foreground",
-              "content": "Order Sent!",
+              "content": "Order Submitted",
               "fontFamily": "\\$--font-primary",
               "fontSize": 32,
               "fontWeight": "700"
@@ -2519,9 +2656,12 @@
               "type": "text",
               "id": "oWbxX",
               "fill": "$--muted-foreground",
-              "content": "Your drinks are being prepared.",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Added to your tab. Keep ordering, pay at end of night.",
+              "textAlign": "center",
               "fontFamily": "\\$--font-secondary",
-              "fontSize": 16,
+              "fontSize": 14,
               "fontWeight": "normal"
             }
           ]
@@ -2543,7 +2683,7 @@
               "type": "text",
               "id": "Ol14V",
               "fill": "$--background",
-              "content": "View Order Status",
+              "content": "Back to Menu",
               "fontFamily": "\\$--font-secondary",
               "fontSize": 16,
               "fontWeight": "600"
@@ -2621,7 +2761,7 @@
               "type": "text",
               "id": "azkHh",
               "fill": "$--foreground",
-              "content": "The Playground",
+              "content": "Join Lobby",
               "fontFamily": "\\$--font-primary",
               "fontSize": 24,
               "fontWeight": "700"
@@ -2632,10 +2772,11 @@
           "type": "frame",
           "id": "YIrpY",
           "name": "g0C",
+          "rotation": -0.013720680720099975,
           "width": "fill_container",
           "height": "fill_container",
           "layout": "vertical",
-          "gap": 28,
+          "gap": 24,
           "padding": [
             28,
             24
@@ -2643,74 +2784,6 @@
           "justifyContent": "center",
           "alignItems": "center",
           "children": [
-            {
-              "type": "text",
-              "id": "4yqK4",
-              "fill": "$--foreground",
-              "content": "Who's playing?",
-              "fontFamily": "\\$--font-primary",
-              "fontSize": 32,
-              "fontWeight": "700"
-            },
-            {
-              "type": "frame",
-              "id": "tlU4f",
-              "name": "av",
-              "width": 100,
-              "height": 100,
-              "fill": "$--muted",
-              "cornerRadius": 50,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "xe7gq",
-                  "content": "🤠",
-                  "fontFamily": "Inter",
-                  "fontSize": 48,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "id": "YltpU",
-              "fill": "$--muted-foreground",
-              "content": "Tap to change emoji",
-              "fontFamily": "\\$--font-secondary",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "frame",
-              "id": "sYgkl",
-              "name": "inp",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "$--background",
-              "cornerRadius": 16,
-              "stroke": {
-                "thickness": 1,
-                "fill": "$--border"
-              },
-              "padding": [
-                0,
-                16
-              ],
-              "justifyContent": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "6bVLz",
-                  "fill": "$--muted-foreground",
-                  "content": "Enter your nickname...",
-                  "fontFamily": "\\$--font-secondary",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
             {
               "type": "frame",
               "id": "aOGIq",
@@ -2725,10 +2798,10 @@
                   "type": "text",
                   "id": "VUlAQ",
                   "fill": "$--background",
-                  "content": "Join Lobby",
+                  "content": "Join Table #3",
                   "fontFamily": "\\$--font-secondary",
                   "fontSize": 18,
-                  "fontWeight": "600"
+                  "fontWeight": "700"
                 }
               ]
             }
@@ -2826,7 +2899,7 @@
           "id": "URK5Z",
           "name": "players_top",
           "width": "fill_container",
-          "gap": 8,
+          "gap": 10,
           "padding": [
             0,
             24,
@@ -2852,8 +2925,8 @@
                   "name": "p1t",
                   "fill": "$--foreground",
                   "content": "😀 Alex",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
                   "fontWeight": "600"
                 }
               ]
@@ -2875,8 +2948,8 @@
                   "name": "p2t",
                   "fill": "$--foreground",
                   "content": "😎 Sam",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
                   "fontWeight": "600"
                 }
               ]
@@ -2898,8 +2971,8 @@
                   "name": "p3t",
                   "fill": "$--foreground",
                   "content": "🤪 Mia",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
                   "fontWeight": "600"
                 }
               ]
@@ -2921,8 +2994,8 @@
                   "name": "p4t",
                   "fill": "$--foreground",
                   "content": "🤖 Jay",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
                   "fontWeight": "600"
                 }
               ]
@@ -2949,7 +3022,7 @@
               "id": "tX7Y6",
               "name": "cat_row",
               "width": "fill_container",
-              "gap": 8,
+              "gap": 10,
               "children": [
                 {
                   "type": "frame",
@@ -2968,8 +3041,8 @@
                       "name": "allTxt",
                       "fill": "$--background",
                       "content": "All",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "700"
                     }
                   ]
@@ -2989,8 +3062,8 @@
                       "id": "CTe1Y",
                       "fill": "$--foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "700"
                     }
                   ]
@@ -3010,8 +3083,8 @@
                       "id": "WpVWk",
                       "fill": "$--foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "700"
                     }
                   ]
@@ -3031,8 +3104,8 @@
                       "id": "zdKA2",
                       "fill": "$--foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "700"
                     }
                   ]
@@ -3059,7 +3132,7 @@
                   "name": "crashText",
                   "fill": "#FFD3C7",
                   "content": "🚨 Market Crash happening now",
-                  "fontFamily": "Inter",
+                  "fontFamily": "\\$--font-secondary",
                   "fontSize": 13,
                   "fontWeight": "700"
                 },
@@ -3069,8 +3142,8 @@
                   "name": "crashCta",
                   "fill": "#FFFFFF",
                   "content": "Play",
-                  "fontFamily": "Inter",
-                  "fontSize": 12,
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 13,
                   "fontWeight": "700"
                 }
               ]
@@ -3098,7 +3171,7 @@
                       "id": "8OSoA",
                       "fill": "$--foreground",
                       "content": "🐊 Croc Teeth",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3107,8 +3180,8 @@
                       "id": "sKUdl",
                       "fill": "$--muted-foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3129,7 +3202,7 @@
                       "id": "GkWCg",
                       "fill": "$--foreground",
                       "content": "🎡 Shot Roulette",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3138,8 +3211,8 @@
                       "id": "NjpUl",
                       "fill": "$--muted-foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3169,7 +3242,7 @@
                       "id": "hDSmR",
                       "fill": "$--foreground",
                       "content": "📉 Market Crash",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3178,8 +3251,8 @@
                       "id": "2munu",
                       "fill": "$--muted-foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3200,7 +3273,7 @@
                       "id": "UqKf2",
                       "fill": "$--foreground",
                       "content": "🎯 Dare Draft",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3209,8 +3282,8 @@
                       "id": "2lRHk",
                       "fill": "$--muted-foreground",
                       "content": "Barwide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3240,7 +3313,7 @@
                       "id": "j9tc0",
                       "fill": "$--foreground",
                       "content": "🎲 Dice Duel",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3249,8 +3322,8 @@
                       "id": "7PzLY",
                       "fill": "$--muted-foreground",
                       "content": "VS another table",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3270,8 +3343,8 @@
                       "type": "text",
                       "id": "3Mv5Y",
                       "fill": "$--foreground",
-                      "content": "🍻 Last Sip",
-                      "fontFamily": "Inter",
+                      "content": "🍺 Beer Tower",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 17,
                       "fontWeight": "700"
                     },
@@ -3280,8 +3353,8 @@
                       "id": "sVEyL",
                       "fill": "$--muted-foreground",
                       "content": "Tablewide",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "600"
                     }
                   ]
@@ -3385,7 +3458,7 @@
                       "fill": "$--muted-foreground",
                       "content": "HOME",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -3413,7 +3486,7 @@
                       "fill": "$--foreground",
                       "content": "MENU",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -3441,7 +3514,7 @@
                       "fill": "$--muted-foreground",
                       "content": "GAMES",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -3469,7 +3542,7 @@
                       "fill": "$--muted-foreground",
                       "content": "PROFILE",
                       "fontFamily": "\\$--font-secondary",
-                      "fontSize": 10,
+                      "fontSize": 11,
                       "fontWeight": "normal"
                     }
                   ]
@@ -3574,7 +3647,7 @@
               "type": "text",
               "id": "2qHVX",
               "content": "🐊",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -3607,7 +3680,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 8
+                      "cornerRadius": 10
                     },
                     {
                       "type": "frame",
@@ -3615,7 +3688,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 8
+                      "cornerRadius": 10
                     },
                     {
                       "type": "frame",
@@ -3623,7 +3696,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 8
+                      "cornerRadius": 10
                     }
                   ]
                 },
@@ -3639,7 +3712,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--background",
-                      "cornerRadius": 8,
+                      "cornerRadius": 10,
                       "stroke": {
                         "thickness": 2,
                         "fill": "$--border"
@@ -3651,7 +3724,7 @@
                       "width": 60,
                       "height": 80,
                       "fill": "$--muted",
-                      "cornerRadius": 8
+                      "cornerRadius": 10
                     }
                   ]
                 }
@@ -3755,7 +3828,7 @@
               "type": "text",
               "id": "CgzKS",
               "content": "🎡",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -3974,7 +4047,7 @@
               "name": "msgInp",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 8,
+              "gap": 10,
               "children": [
                 {
                   "type": "text",
@@ -4156,7 +4229,7 @@
               "type": "text",
               "id": "dKGM6",
               "content": "🍻",
-              "fontFamily": "Inter",
+              "fontFamily": "\\$--font-secondary",
               "fontSize": 100,
               "fontWeight": "normal"
             },
@@ -4340,7 +4413,7 @@
                   "fill": "$--muted",
                   "cornerRadius": 14,
                   "layout": "vertical",
-                  "gap": 8,
+                  "gap": 10,
                   "padding": 14,
                   "children": [
                     {
@@ -4349,7 +4422,7 @@
                       "name": "mt1",
                       "fill": "$--foreground",
                       "content": "Milestone: Guinness (7/20)",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 18,
                       "fontWeight": "700"
                     },
@@ -4361,7 +4434,7 @@
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
                       "content": "Buy Guinness in the next hour to unlock 50% off Guinness for 10 minutes.",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
@@ -4391,8 +4464,8 @@
                       "name": "mt3",
                       "fill": "$--destructive",
                       "content": "7 / 20 pints • 35% complete",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "700"
                     }
                   ]
@@ -4414,7 +4487,7 @@
                       "name": "ct",
                       "fill": "$--foreground",
                       "content": "Table contributions",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 16,
                       "fontWeight": "700"
                     },
@@ -4424,7 +4497,7 @@
                       "name": "r1",
                       "fill": "$--foreground",
                       "content": "Table 3   —   3 pints",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4434,7 +4507,7 @@
                       "name": "r2",
                       "fill": "$--foreground",
                       "content": "Table 5   —   2 pints",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4444,7 +4517,7 @@
                       "name": "r3",
                       "fill": "$--foreground",
                       "content": "Table 1   —   1 pint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     },
@@ -4454,7 +4527,7 @@
                       "name": "r4",
                       "fill": "$--foreground",
                       "content": "Table 8   —   1 pint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "600"
                     }
@@ -4468,7 +4541,7 @@
                   "fill": "#2B1C1C",
                   "cornerRadius": 12,
                   "layout": "vertical",
-                  "gap": 8,
+                  "gap": 10,
                   "padding": [
                     12,
                     14
@@ -4480,7 +4553,7 @@
                       "name": "rt1",
                       "fill": "#FFD9CF",
                       "content": "Reward at 20: 50% off Guinness",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 14,
                       "fontWeight": "700"
                     },
@@ -4490,8 +4563,8 @@
                       "name": "rt2",
                       "fill": "#E6BEB4",
                       "content": "Unlocked deal lasts 10 minutes for all tables.",
-                      "fontFamily": "Inter",
-                      "fontSize": 12,
+                      "fontFamily": "\\$--font-secondary",
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     }
                   ]
@@ -4518,7 +4591,7 @@
                       "name": "nt1",
                       "fill": "$--muted-foreground",
                       "content": "Next checkpoint",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
@@ -4528,9 +4601,210 @@
                       "name": "nt2",
                       "fill": "$--foreground",
                       "content": "10/20",
-                      "fontFamily": "Inter",
+                      "fontFamily": "\\$--font-secondary",
                       "fontSize": 13,
                       "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RXxwT",
+      "x": 3513,
+      "y": 1000,
+      "name": "[G6] Beer Tower",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "$--background",
+      "stroke": {
+        "thickness": 1,
+        "fill": "$--border"
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Uwgux",
+          "name": "stat_bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$--background",
+          "padding": [
+            18,
+            24,
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "WF4ms",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "szIAb",
+              "fill": "$--foreground",
+              "content": "5G  📶  🔋",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "y0Ghl",
+          "name": "g2H",
+          "width": "fill_container",
+          "height": 64,
+          "padding": [
+            0,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "dTipb",
+              "fill": "$--foreground",
+              "content": "← Exit Tower",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WT8Kx",
+          "name": "g2C",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            28,
+            24
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "4Ws4w",
+              "content": "🍺",
+              "fontFamily": "\\$--font-secondary",
+              "fontSize": 100,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "dgJs3",
+              "fill": "$--foreground",
+              "content": "Fill the Beer Tower",
+              "fontFamily": "\\$--font-primary",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "HDtf8",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$--foreground",
+              "cornerRadius": "$--radius-pill",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "576w6",
+                  "fill": "$--background",
+                  "content": "Pour",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Mlwcf",
+              "name": "towerWrap",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "7waks",
+                  "name": "towerTitle",
+                  "fill": "$--foreground",
+                  "content": "Tower Fill: 58%",
+                  "fontFamily": "\\$--font-secondary",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "lqqwL",
+                  "name": "cup",
+                  "width": 140,
+                  "height": 220,
+                  "fill": "#0F172A",
+                  "cornerRadius": [
+                    16,
+                    16,
+                    28,
+                    28
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": "#475569"
+                  },
+                  "padding": 8,
+                  "justifyContent": "end",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "D5u8p",
+                      "name": "beer",
+                      "width": "fill_container",
+                      "height": 124,
+                      "fill": "#D4A017",
+                      "cornerRadius": [
+                        0,
+                        0,
+                        20,
+                        20
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZFtbg",
+                      "layoutPosition": "absolute",
+                      "x": 8,
+                      "y": 88,
+                      "name": "foam",
+                      "width": 124,
+                      "height": 16,
+                      "fill": "#F8E9C5",
+                      "cornerRadius": 8
                     }
                   ]
                 }
