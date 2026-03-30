@@ -2,7 +2,6 @@
 
 import React, { use, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import { menuData } from "@/data/menu";
 import Menu from "@/components/Menu";
 import GameOverlay from "@/components/GameOverlay";
@@ -26,7 +25,6 @@ type Props = {
 
 export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
-  const router = useRouter();
 
   // Flatten menu items for easy lookup
   const allItems = menuData.flatMap(category => category.items);
@@ -158,12 +156,10 @@ export default function TableMenuPage({ params }: Props) {
           },
         }),
       });
-      console.log("Barrel create response:", response.status, await response.text());
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       setIsBarrelSheetOpen(false);
-      setIsBarrelActive(true);
     } catch (error) {
       console.error("Failed to create barrel game:", error);
       setIsBarrelSheetOpen(false);
