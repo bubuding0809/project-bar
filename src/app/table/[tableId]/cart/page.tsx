@@ -16,17 +16,18 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
   const totalPrice = useCartStore(selectTotalPrice);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
-      <header className="flex items-center p-4 bg-white border-b sticky top-0 z-10">
+    <div className="flex flex-col h-screen bg-background">
+      <header className="flex items-center p-4 border-b sticky top-0 z-10">
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
           <ChevronLeft className="h-6 w-6" />
         </Button>
-        <h1 className="text-xl font-bold">Cart</h1>
+        <h1 className="text-xl font-bold">Your Tab</h1>
+        <span className="ml-2 text-sm text-muted-foreground">Table #{tableId}</span>
       </header>
 
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-6 pb-32">
-          <div className="bg-white rounded-lg shadow-sm border p-4 space-y-4">
+          <div className="rounded-lg border p-4 space-y-4">
             {items.map((item) => (
               <div key={item.cartItemId} className="flex justify-between items-start">
                 <div className="flex-1">
@@ -34,7 +35,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
                     {item.quantity}x {item.title}
                   </p>
                   {item.customizations && (
-                    <div className="text-sm text-gray-500 mt-1">
+                    <div className="text-sm text-muted-foreground mt-1">
                       {item.customizations.iceLevel && <p>Ice: {item.customizations.iceLevel}</p>}
                       {item.customizations.sugarLevel && <p>Sugar: {item.customizations.sugarLevel}</p>}
                     </div>
@@ -54,13 +55,13 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
             </div>
           </div>
 
-          <Card className="bg-blue-50 border-blue-100">
+          <Card className="bg-muted border-muted">
             <CardContent className="p-4 flex gap-3 items-start">
-              <Info className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+              <Info className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-medium text-blue-900">Payment at End of Night</h3>
-                <p className="text-sm text-blue-700 mt-1">
-                  Your order will be added to your tab. You can settle your bill at the counter when you&apos;re ready to leave.
+                <h3 className="font-medium">Payment at End of Night</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Your order will be added to your tab. We can settle the bill at the counter when you&apos;re ready to leave.
                 </p>
               </div>
             </CardContent>
@@ -68,7 +69,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
         </div>
       </ScrollArea>
 
-      <div className="p-4 bg-white border-t shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-10">
+      <div className="p-4 border-t z-10">
         <Button onClick={() => router.push(`/table/${tableId}/payment`)} className="w-full text-lg h-14" size="lg">
           Submit Order to Tab
         </Button>

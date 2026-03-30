@@ -17,17 +17,17 @@ export default function ConfirmedPage({ params }: { params: Promise<{ tableId: s
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
-      <div className="mb-6 rounded-full bg-green-100 p-4">
-        <CheckCircle className="w-20 h-20 text-green-600" strokeWidth={2.5} />
+      <div className="mb-6 rounded-full bg-primary/20 p-4">
+        <CheckCircle className="w-20 h-20 text-primary" strokeWidth={2.5} />
       </div>
-      <h1 className="text-3xl font-bold mb-3 text-gray-900">Order Submitted!</h1>
-      <p className="text-lg text-gray-600 mb-8 max-w-sm">
+      <h1 className="text-3xl font-bold mb-3">Order Submitted!</h1>
+      <p className="text-lg text-muted-foreground mb-8 max-w-sm">
         Your order has been successfully added to your tab. We&apos;re preparing it now.
       </p>
       
       <button
         onClick={handleBackToMenu}
-        className="px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-colors w-full max-w-xs shadow-md"
+        className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:opacity-90 transition-colors w-full max-w-xs shadow-md"
       >
         Back to Menu
       </button>
