@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Game — UI Concept</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --bg-base: #020617;
+            --bg-card: #0F172A;
+            --bg-card-hover: #1E293B;
+            --primary: #8B5CF6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --danger: #F43F5E;
+            --danger-glow: rgba(244, 63, 94, 0.4);
+            --success: #10B981;
+            --success-glow: rgba(16, 185, 129, 0.4);
+            --warning: #F59E0B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --font-game: 'Fredoka', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            padding: 3rem 2rem 2rem;
+            background: #f1f5f9;
+            font-family: var(--font-ui);
+            min-height: 100vh;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .page-title h2 { color: #0f172a; font-family: sans-serif; font-size: 1.25rem; }
+        .page-title p { color: #475569; font-family: sans-serif; font-size: 0.875rem; margin-top: 4px; }
+
+        .phone-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .phone-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .phone-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .phone {
+            width: 320px;
+            height: 640px;
+            background-color: var(--bg-base);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 8px #1E293B;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-main);
+        }
+
+        .phone::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 120px; height: 25px;
+            background: #1E293B;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 100;
+        }
+
+        /* ---- Screen 1: Game Selection ---- */
+        .s1-header {
+            padding: 38px 20px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .s1-header h1 {
+            font-family: var(--font-game);
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--danger));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .s1-header p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        .menu-scroll {
+            flex: 1;
+            padding: 14px 18px;
+            overflow: hidden;
+        }
+
+        .cat-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 13px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 7px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .menu-item h3 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .menu-item p { font-size: 11px; color: var(--text-muted); }
+        .menu-price { font-size: 14px; font-weight: 700; color: var(--primary); }
+
+        .cta-stack {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 10px 16px 22px;
+            background: linear-gradient(to top, var(--bg-base) 65%, transparent);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn-roulette {
+            background: linear-gradient(135deg, #8B5CF6, #A855F7);
+            color: white;
+            padding: 13px;
+            border-radius: 100px;
+            text-align: center;
+            font-family: var(--font-game);
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-tower {
+            background: linear-gradient(135deg, #F43F5E, #F97316);
+            color: white;
+            padding: 13px;
+            border-radius: 100px;
+            text-align: center;
+            font-family: var(--font-game);
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px var(--danger-glow);
+        }
+
+        /* ---- Screen 2: Tower Lobby ---- */
+        .lobby-content {
+            flex: 1;
+            padding: 36px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-title {
+            font-family: var(--font-game);
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--danger));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2px;
+        }
+
+        .game-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 12px;
+            margin-bottom: 7px;
+        }
+
+        .avatar {
+            width: 34px; height: 34px;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1.5px solid var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+            box-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .player-name { font-size: 13px; font-weight: 600; flex: 1; }
+
+        .host-badge {
+            font-size: 10px;
+            background: rgba(252, 211, 77, 0.12);
+            color: #FCD34D;
+            border: 1px solid rgba(252, 211, 77, 0.3);
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .waiting-row {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed rgba(255,255,255,0.12);
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+        .dot { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: blink 1.2s infinite; }
+        .waiting-row span { font-size: 12px; color: var(--text-muted); }
+
+        .rules-pill {
+            padding: 9px 12px;
+            background: rgba(139, 92, 246, 0.06);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .rules-pill strong { color: var(--success); }
+
+        .btn-primary-lg {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), #A855F7);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: var(--font-game);
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 0 22px var(--primary-glow);
+            margin-top: auto;
+            cursor: pointer;
+        }
+
+        /* ---- Screen 3: Pre-Turn Countdown ---- */
+        .countdown-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px 20px;
+            gap: 6px;
+        }
+
+        .next-up-label {
+            font-family: var(--font-game);
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .turn-name {
+            font-family: var(--font-game);
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .big-emoji { font-size: 54px; margin: 4px 0; }
+
+        .countdown-num {
+            font-family: var(--font-game);
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--primary);
+            text-shadow: 0 0 40px var(--primary), 0 0 80px rgba(139,92,246,0.3);
+        }
+
+        .tower-preview {
+            width: 54px;
+            height: 140px;
+            background: var(--bg-card);
+            border: 2px solid rgba(255,255,255,0.08);
+            border-radius: 7px 7px 4px 4px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .tower-preview-danger {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 18%;
+            background: rgba(244,63,94,0.1);
+            border-bottom: 1px dashed rgba(244,63,94,0.3);
+        }
+
+        .tower-preview-target {
+            position: absolute;
+            left: -8px; right: -8px;
+            bottom: 82%;
+            height: 2px;
+            background: var(--success);
+            box-shadow: 0 0 6px var(--success);
+        }
+
+        .hint-text { font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center; }
+
+        /* ---- Screen 4: Active Hold ---- */
+        .active-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 16px;
+        }
+
+        .fill-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--danger);
+            margin-bottom: 2px;
+        }
+
+        .fill-player {
+            font-family: var(--font-game);
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .tower-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .tower {
+            width: 72px;
+            height: 230px;
+            background: var(--bg-card);
+            border: 2px solid #334155;
+            border-radius: 8px 8px 5px 5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(139,92,246,0.12), inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} }
+
+        .tower-fill {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top,
+                #8B5CF6 0%,
+                #6366F1 30%,
+                #F59E0B 70%,
+                #F43F5E 92%
+            );
+        }
+
+        .tower-danger-layer {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 18%;
+            background: rgba(244,63,94,0.2);
+            border-bottom: 1px dashed rgba(244,63,94,0.6);
+            z-index: 2;
+        }
+
+        .danger-glow-effect {
+            box-shadow: 0 0 0 2px rgba(244,63,94,0.3), 0 0 20px rgba(244,63,94,0.2);
+        }
+
+        .target-line {
+            position: absolute;
+            left: -12px; right: -12px;
+            bottom: 82%;
+            height: 3px;
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+            z-index: 3;
+        }
+
+        .target-badge {
+            position: absolute;
+            right: calc(100% + 16px);
+            bottom: calc(82% - 9px);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--success);
+            white-space: nowrap;
+            background: rgba(16,185,129,0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(16,185,129,0.3);
+        }
+
+        .current-pct-badge {
+            position: absolute;
+            right: calc(100% + 16px);
+            bottom: calc(65% - 9px);
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .fill-number {
+            font-family: var(--font-game);
+            font-size: 42px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin: 6px 0 2px;
+        }
+
+        .danger-warning {
+            font-size: 11px;
+            color: var(--danger);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .hold-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger), #F97316);
+            color: white;
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            font-family: var(--font-game);
+            font-size: 21px;
+            font-weight: 700;
+            box-shadow: 0 0 28px var(--danger-glow), 0 4px 0 rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.15);
+            transform: scale(0.97);
+        }
+
+        /* ---- Screen 5: Bust ---- */
+        .bust-screen {
+            flex: 1;
+            background: linear-gradient(155deg, #9F1239, #F43F5E);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .bust-icon { font-size: 54px; margin-bottom: 12px; }
+
+        .bust-title {
+            font-family: var(--font-game);
+            font-size: 44px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            margin-bottom: 4px;
+        }
+
+        .bust-detail { font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+
+        .bust-tower-wrap {
+            position: relative;
+            width: 60px;
+            height: 130px;
+            margin-bottom: 20px;
+        }
+
+        .bust-tower-body {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 100%;
+            border: 2px solid rgba(255,255,255,0.35);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .bust-fill {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 100%;
+            background: rgba(255,255,255,0.35);
+        }
+
+        .bust-overflow-bar {
+            position: absolute;
+            top: -18px; left: 50%;
+            transform: translateX(-50%);
+            width: 72px; height: 20px;
+            background: rgba(255,255,255,0.45);
+            border-radius: 4px 4px 0 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; font-weight: 700;
+            color: var(--danger);
+        }
+
+        .bust-score {
+            font-family: var(--font-game);
+            font-size: 30px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .next-up-text { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; }
+
+        /* ---- Screen 6: Safe Result ---- */
+        .result-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .safe-badge {
+            font-family: var(--font-game);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--success);
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+            padding: 4px 14px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+
+        .big-pct {
+            font-family: var(--font-game);
+            font-size: 60px;
+            font-weight: 700;
+            color: var(--success);
+            text-shadow: 0 0 40px var(--success-glow);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .from-target { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .result-tower-mini {
+            width: 50px; height: 110px;
+            background: var(--bg-card);
+            border: 1.5px solid rgba(16,185,129,0.35);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 14px rgba(16,185,129,0.15);
+            margin-bottom: 18px;
+        }
+
+        .result-fill {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 78%;
+            background: linear-gradient(to top, #8B5CF6, #6366F1 35%, #F59E0B 78%);
+        }
+
+        .result-target-line {
+            position: absolute;
+            left: -5px; right: -5px;
+            bottom: 82%;
+            height: 2px;
+            background: var(--success);
+            box-shadow: 0 0 6px var(--success);
+            z-index: 2;
+        }
+
+        .next-up-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+        .next-up-card .label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+        .next-up-card .name { font-size: 15px; font-weight: 600; color: white; margin-top: 3px; }
+
+        /* ---- Screen 7: Leaderboard ---- */
+        .lb-screen {
+            flex: 1;
+            padding: 36px 18px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lb-title {
+            font-family: var(--font-game);
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+        }
+
+        .lb-sub { font-size: 11px; color: var(--text-muted); text-align: center; margin: 2px 0 16px; }
+
+        .lb-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin-bottom: 7px;
+        }
+
+        .lb-row.first-place {
+            background: rgba(139,92,246,0.12);
+            border: 1px solid rgba(139,92,246,0.4);
+            box-shadow: 0 0 16px rgba(139,92,246,0.1);
+        }
+
+        .lb-row.other { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.04); }
+
+        .lb-row.bust-row {
+            background: rgba(244,63,94,0.07);
+            border: 1px solid rgba(244,63,94,0.2);
+            opacity: 0.7;
+        }
+
+        .lb-rank { width: 20px; text-align: center; font-size: 13px; font-weight: 700; }
+        .lb-rank.gold { color: #FCD34D; }
+        .lb-rank.muted { color: var(--text-muted); font-size: 11px; }
+
+        .lb-avatar {
+            width: 30px; height: 30px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px;
+        }
+
+        .lb-name { font-size: 13px; font-weight: 600; flex: 1; }
+        .lb-score { font-size: 13px; font-weight: 700; }
+        .lb-score.good { color: var(--success); }
+        .lb-score.bust { color: var(--danger); }
+        .lb-score.dim { color: var(--text-muted); }
+
+        .lb-winner-note {
+            text-align: center;
+            padding: 9px 12px;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 10px;
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            margin: 8px 0;
+        }
+
+        .btn-play-again {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), #A855F7);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-family: var(--font-game);
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 0 16px var(--primary-glow);
+            margin-top: auto;
+        }
+
+        /* ---- Screen 8: Forfeit Selection ---- */
+        .forfeit-screen {
+            flex: 1;
+            padding: 36px 18px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .forfeit-title {
+            font-family: var(--font-game);
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+        }
+
+        .forfeit-sub { font-size: 12px; color: var(--text-muted); text-align: center; margin: 2px 0 14px; }
+
+        .dare-card {
+            background: rgba(251,191,36,0.08);
+            border: 1px solid rgba(251,191,36,0.25);
+            border-radius: 12px;
+            padding: 11px 14px;
+            margin-bottom: 14px;
+        }
+
+        .dare-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #FCD34D;
+            margin-bottom: 4px;
+        }
+
+        .dare-text { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 500; }
+
+        .target-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 13px;
+            background: var(--bg-card);
+            border: 1.5px solid transparent;
+            border-radius: 12px;
+            margin-bottom: 7px;
+        }
+
+        .target-row.picked {
+            background: rgba(244,63,94,0.1);
+            border-color: var(--danger);
+            box-shadow: 0 0 14px var(--danger-glow);
+        }
+
+        .target-avatar {
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+        }
+
+        .target-name { font-size: 13px; font-weight: 600; flex: 1; }
+        .target-row.picked .target-name { color: var(--danger); }
+        .target-score { font-size: 12px; color: var(--text-muted); }
+
+        .btn-assign {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger), #F97316);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: var(--font-game);
+            font-size: 17px;
+            font-weight: 600;
+            box-shadow: 0 0 22px var(--danger-glow);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-title">
+    <h2>Tower Game — UI Concept</h2>
+    <p>Scroll right to see the full flow →</p>
+</div>
+
+<div class="phone-container">
+
+    <!-- Screen 1: Game Selection -->
+    <div class="phone-wrapper">
+        <div class="phone-label">1 · Game Selection</div>
+        <div class="phone">
+            <div class="s1-header">
+                <h1>Neon Nights</h1>
+                <p>Table #4 · Menu</p>
+            </div>
+            <div class="menu-scroll" style="padding-bottom: 140px;">
+                <div class="cat-label">Cocktails</div>
+                <div class="menu-item">
+                    <div><h3>Classic Margarita</h3><p>Tequila, Lime, Salt</p></div>
+                    <span class="menu-price">$12</span>
+                </div>
+                <div class="menu-item">
+                    <div><h3>Negroni</h3><p>Gin, Vermouth, Campari</p></div>
+                    <span class="menu-price">$14</span>
+                </div>
+                <div class="cat-label" style="margin-top: 12px;">Beers</div>
+                <div class="menu-item">
+                    <div><h3>House Lager</h3><p>Pint · 4.5% ABV</p></div>
+                    <span class="menu-price">$7</span>
+                </div>
+                <div class="menu-item">
+                    <div><h3>IPA Special</h3><p>Pint · 6.2% ABV</p></div>
+                    <span class="menu-price">$9</span>
+                </div>
+            </div>
+            <div class="cta-stack">
+                <div class="btn-roulette">🎰 Play Drink Roulette</div>
+                <div class="btn-tower">🗼 Play Tower Game</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Tower Lobby -->
+    <div class="phone-wrapper">
+        <div class="phone-label">2 · Tower Lobby</div>
+        <div class="phone">
+            <div class="lobby-content">
+                <p class="game-title">Tower Game</p>
+                <p class="game-subtitle">Fill the tower — stop before it overflows!</p>
+
+                <p class="section-label">Players Joined (3)</p>
+
+                <div class="player-row">
+                    <div class="avatar">👑</div>
+                    <span class="player-name">Jordan</span>
+                    <span class="host-badge">Host</span>
+                </div>
+                <div class="player-row">
+                    <div class="avatar">😎</div>
+                    <span class="player-name">Alex</span>
+                </div>
+                <div class="player-row">
+                    <div class="avatar">👻</div>
+                    <span class="player-name">Jamie</span>
+                </div>
+
+                <div class="waiting-row" style="margin-top: 4px;">
+                    <div class="dot"></div>
+                    <span>Waiting for more players...</span>
+                </div>
+
+                <div class="rules-pill">
+                    Target: <strong>82%</strong> · Overfill = bust (0 pts) · Closest wins
+                </div>
+
+                <button class="btn-primary-lg">Start Round</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Pre-Turn -->
+    <div class="phone-wrapper">
+        <div class="phone-label">3 · Pre-Turn</div>
+        <div class="phone">
+            <div class="countdown-screen">
+                <p class="next-up-label">Next Up</p>
+                <p class="turn-name">Alex</p>
+                <div class="big-emoji">😎</div>
+                <div class="countdown-num">3</div>
+                <div class="tower-preview">
+                    <div class="tower-preview-danger"></div>
+                    <div class="tower-preview-target"></div>
+                </div>
+                <p class="hint-text">Hold the button to fill the tower</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Active Hold (65%) -->
+    <div class="phone-wrapper">
+        <div class="phone-label">4 · Holding (65%)</div>
+        <div class="phone">
+            <div class="active-screen">
+                <p class="fill-label">⚡ Filling Fast</p>
+                <p class="fill-player">Alex 😎</p>
+
+                <div class="tower-area">
+                    <div class="tower danger-glow-effect" style="animation: shake 0.13s ease-in-out infinite;">
+                        <div class="tower-fill" style="height: 65%;"></div>
+                        <div class="tower-danger-layer"></div>
+                        <div class="target-line"></div>
+                        <span class="target-badge">82%</span>
+                        <span class="current-pct-badge">65%▲</span>
+                    </div>
+                </div>
+
+                <div class="fill-number">65.2%</div>
+                <p class="danger-warning">⚠ DANGER ZONE IN 17%</p>
+
+                <div class="hold-button">▼ HOLD ▼</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Bust -->
+    <div class="phone-wrapper">
+        <div class="phone-label">5 · Busted!</div>
+        <div class="phone">
+            <div class="bust-screen">
+                <div class="bust-icon">💥</div>
+                <p class="bust-title">BUSTED!</p>
+                <p class="bust-detail">Alex held too long — 103.8%</p>
+
+                <div class="bust-tower-wrap">
+                    <div class="bust-overflow-bar">overflow</div>
+                    <div class="bust-tower-body">
+                        <div class="bust-fill"></div>
+                    </div>
+                </div>
+
+                <p class="bust-score">0 pts</p>
+                <p class="next-up-text">Next Up: Jamie 👻</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 6: Safe Result -->
+    <div class="phone-wrapper">
+        <div class="phone-label">6 · Safe Result</div>
+        <div class="phone">
+            <div class="result-screen">
+                <div class="safe-badge">✓ Safe!</div>
+                <div class="big-pct">78.4%</div>
+                <p class="from-target">3.6% from target · 4 pts</p>
+
+                <div class="result-tower-mini">
+                    <div class="result-fill"></div>
+                    <div class="result-target-line"></div>
+                </div>
+
+                <div class="next-up-card">
+                    <p class="label">Next Up</p>
+                    <p class="name">Jamie 👻</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 7: Leaderboard -->
+    <div class="phone-wrapper">
+        <div class="phone-label">7 · Leaderboard</div>
+        <div class="phone">
+            <div class="lb-screen">
+                <p class="lb-title">Round 1 Results</p>
+                <p class="lb-sub">Closest to 82% wins</p>
+
+                <div class="lb-row first-place">
+                    <span class="lb-rank gold">🏆</span>
+                    <div class="lb-avatar">🤠</div>
+                    <span class="lb-name">Casey</span>
+                    <span class="lb-score good">81.2%</span>
+                </div>
+                <div class="lb-row other">
+                    <span class="lb-rank">2</span>
+                    <div class="lb-avatar">😎</div>
+                    <span class="lb-name">Alex</span>
+                    <span class="lb-score dim">78.4%</span>
+                </div>
+                <div class="lb-row other">
+                    <span class="lb-rank">3</span>
+                    <div class="lb-avatar">👑</div>
+                    <span class="lb-name">Jordan</span>
+                    <span class="lb-score dim">71.0%</span>
+                </div>
+
+                <p class="section-label" style="margin-top: 10px;">Busted</p>
+
+                <div class="lb-row bust-row">
+                    <span class="lb-rank muted">—</span>
+                    <div class="lb-avatar">👻</div>
+                    <span class="lb-name">Jamie</span>
+                    <span class="lb-score bust">103.8%</span>
+                </div>
+
+                <div class="lb-winner-note">🏆 Casey wins! Picks the forfeit target.</div>
+
+                <button class="btn-play-again">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 8: Forfeit -->
+    <div class="phone-wrapper">
+        <div class="phone-label">8 · Forfeit</div>
+        <div class="phone">
+            <div class="forfeit-screen">
+                <p class="forfeit-title">Casey Wins! 🏆</p>
+                <p class="forfeit-sub">Pick who gets the dare tonight</p>
+
+                <div class="dare-card">
+                    <p class="dare-label">Tonight's Dare</p>
+                    <p class="dare-text">Speak in a funny accent for the next 5 minutes</p>
+                </div>
+
+                <div class="target-row picked">
+                    <div class="target-avatar">👻</div>
+                    <span class="target-name">Jamie</span>
+                    <span class="target-score">Busted</span>
+                </div>
+                <div class="target-row">
+                    <div class="target-avatar">😎</div>
+                    <span class="target-name">Alex</span>
+                    <span class="target-score">78.4%</span>
+                </div>
+                <div class="target-row">
+                    <div class="target-avatar">👑</div>
+                    <span class="target-name">Jordan</span>
+                    <span class="target-score">71.0%</span>
+                </div>
+
+                <button class="btn-assign">Assign Dare to Jamie 👻</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

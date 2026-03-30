@@ -1,6 +1,6 @@
 'use client';
 
-import { Dice5, Target } from 'lucide-react';
+import { Dice5, Target, Skull } from 'lucide-react';
 
 const games = [
   {
@@ -19,17 +19,27 @@ const games = [
     color: 'from-neon-violet to-primary',
     cta: 'Play Roulette',
   },
+  {
+    id: 'barrel',
+    name: 'Pirate Barrel',
+    description: 'Insert swords into the barrel. Avoid the trigger slot!',
+    icon: Skull,
+    color: 'from-amber-500 to-orange-600',
+    cta: 'Play Barrel',
+  },
 ];
 
 interface GamesHubProps {
   onPlayTower: () => void;
   onPlayRoulette: () => void;
+  onPlayBarrel: () => void;
 }
 
-export default function GamesHub({ onPlayTower, onPlayRoulette }: GamesHubProps) {
+export default function GamesHub({ onPlayTower, onPlayRoulette, onPlayBarrel }: GamesHubProps) {
   const handlePlay = (gameId: string) => {
     if (gameId === 'tower') onPlayTower();
     if (gameId === 'roulette') onPlayRoulette();
+    if (gameId === 'barrel') onPlayBarrel();
   };
 
   return (

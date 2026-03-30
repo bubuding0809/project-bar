@@ -14,6 +14,11 @@ const TowerOverlay = dynamic(() => import("@/components/TowerOverlay"), {
   loading: () => null,
 });
 
+const BarrelGame = dynamic(() => import("@/components/barrel/BarrelGame"), {
+  ssr: false,
+  loading: () => null,
+});
+
 type Props = {
   params: Promise<{
     tableId: string;
@@ -25,12 +30,14 @@ export default function TableMenuPage({ params }: Props) {
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isTowerSheetOpen, setIsTowerSheetOpen] = useState(false);
+  const [isBarrelSheetOpen, setIsBarrelSheetOpen] = useState(false);
   const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
   const [quantity, setQuantity] = useState(1);
   const [hostDare, setHostDare] = useState("");
 
   const [isRouletteActive, setIsRouletteActive] = useState(false);
   const [isTowerActive, setIsTowerActive] = useState(false);
+  const [isBarrelActive, setIsBarrelActive] = useState(false);
   const [hostCreatedGame, setHostCreatedGame] = useState<GameState | null>(null);
 
   const searchParams = useSearchParams();
@@ -47,9 +54,13 @@ export default function TableMenuPage({ params }: Props) {
       fetch(`/api/tower/${tableId}`)
         .then(r => (r.ok ? r.json() : null))
         .catch(() => null),
-    ]).then(([g, t]) => {
+      fetch(`/api/barrel/${tableId}`)
+        .then(r => (r.ok ? r.json() : null))
+        .catch(() => null),
+    ]).then(([g, t, b]) => {
       setIsRouletteActive(!!g?.game);
       setIsTowerActive(!!t?.game);
+      setIsBarrelActive(!!b?.game);
     });
   }, [tableId]);
 
@@ -121,21 +132,79 @@ export default function TableMenuPage({ params }: Props) {
     }
   };
 
-  const isAnyGameActive = isRouletteActive || isTowerActive;
+  const handleCreateBarrelGame = async () => {
+    let userId = localStorage.getItem("demo_user_id");
+    if (!userId) {
+      userId = `host_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem("demo_user_id", userId);
+    }
+
+    try {
+      const response = await fetch("/api/barrel/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tableId,
+          roundId: `barrel_${Date.now()}`,
+          hostProfile: {
+            userId,
+            nickname: "Host Master",
+            emoji: "🏴‍☠️",
+          },
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      setIsBarrelSheetOpen(false);
+    } catch (error) {
+      console.error("Failed to create barrel game:", error);
+      setIsBarrelSheetOpen(false);
+    }
+  };
+
+  const isAnyGameActive = isRouletteActive || isTowerActive || isBarrelActive;
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-36 relative">
       <GameOverlay tableId={tableId} onGameActiveChange={setIsRouletteActive} hostInitiatedGame={hostCreatedGame} />
       <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
+      <BarrelGame key={tableId} tableId={tableId} onGameActiveChange={setIsBarrelActive} />
 
-      {/* Menu Component */}
+      {/* Menu and Games Hub based on view */}
       {activeView === "menu" && <Menu tableId={tableId} />}
       {activeView === "games" && (
         <GamesHub
           onPlayTower={() => setIsTowerSheetOpen(true)}
           onPlayRoulette={() => setIsBottomSheetOpen(true)}
+          onPlayBarrel={() => setIsBarrelSheetOpen(true)}
         />
       )}
+
+      {/* Floating CTA Buttons */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex flex-col items-center gap-3 pb-8 z-20">
+        <button
+          onClick={() => setIsBottomSheetOpen(true)}
+          disabled={isAnyGameActive}
+          className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-violet to-primary shadow-neon-violet text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
+        >
+          Play Drink Roulette
+        </button>
+        <button
+          onClick={() => setIsTowerSheetOpen(true)}
+          disabled={isAnyGameActive}
+          className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-neon-rose to-orange-500 shadow-neon-rose text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
+        >
+          Play Tower Game
+        </button>
+        <button
+          onClick={() => setIsBarrelSheetOpen(true)}
+          disabled={isAnyGameActive}
+          className="pointer-events-auto flex items-center justify-center gap-3 w-full max-w-sm py-4 px-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 shadow-amber-500/30 text-white font-bold text-lg font-display hover:scale-[1.02] active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
+        >
+          Play Pirate Barrel
+        </button>
+      </div>
 
       {/* Roulette Bottom Sheet */}
       {isBottomSheetOpen && (
@@ -221,6 +290,32 @@ export default function TableMenuPage({ params }: Props) {
               <button
                 onClick={handleCreateTowerGame}
                 className="flex-1 py-3 bg-gradient-to-r from-neon-rose to-orange-500 text-white rounded font-bold cursor-pointer hover:opacity-90 transition-all"
+              >
+                Create Game
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pirate Barrel Bottom Sheet */}
+      {isBarrelSheetOpen && (
+        <div className="fixed inset-0 z-40 flex items-end bg-black/50">
+          <div className="bg-slate-900 w-full p-6 rounded-t-2xl">
+            <h2 className="text-xl font-bold mb-1 text-white">Pirate Barrel</h2>
+            <p className="text-slate-400 text-sm mb-4">
+              Take turns inserting swords. Avoid the trigger slot or face the forfeit!
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsBarrelSheetOpen(false)}
+                className="flex-1 py-3 bg-slate-800 text-slate-300 rounded font-bold cursor-pointer hover:bg-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateBarrelGame}
+                className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded font-bold cursor-pointer hover:opacity-90 transition-all"
               >
                 Create Game
               </button>

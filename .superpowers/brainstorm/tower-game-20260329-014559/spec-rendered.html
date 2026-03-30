@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spec: Tower Game</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9fafb;
+        }
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        h1 { font-size: 2.25rem; color: #111827; margin-top: 0; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; margin-top: 2.5rem; }
+        h3 { font-size: 1.125rem; color: #374151; margin-top: 1.5rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.4rem; }
+        code {
+            background-color: #f3f4f6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.875em;
+            color: #7c3aed;
+        }
+        .tag {
+            display: inline-block;
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        hr { border: 0; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .info-box p { margin: 0; color: #1e40af; }
+        .success-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .success-box p { margin: 0; color: #065f46; font-weight: 500; }
+        .warning-box {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning-box p { margin: 0; color: #92400e; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        th { background: #f9fafb; padding: 8px 12px; text-align: left; border-bottom: 2px solid #e5e7eb; font-weight: 600; color: #374151; }
+        td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; color: #4b5563; }
+        .state-machine {
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 2;
+            overflow-x: auto;
+        }
+        .formula-box {
+            background: #faf5ff;
+            border: 1px solid #ddd6fe;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #5b21b6;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Tower Game <span class="tag">DESIGN SPEC</span></h1>
+    <p style="color: #6b7280; margin-bottom: 2rem;">Date: 2026-03-29 | Status: Ready for Implementation Planning</p>
+
+    <h2>Overview</h2>
+    <p>Tower Game is a second multiplayer mini-game in the bar app, living alongside Drink Roulette on the table menu page. Players take turns holding a button to fill a vertical tower meter. The fill accelerates exponentially — deceptively slow at the start, terrifyingly fast at the end. Get as close to the 82% target line as possible without overflowing. The closest safe fill wins the round and assigns a social forfeit to anyone at the table.</p>
+
+    <div class="info-box"><p><strong>Integration:</strong> Same table session model as Drink Roulette. Same lobby flow, same Pusher channel, new Redis key <code>table:{tableId}:tower</code>. Cannot run simultaneously with Drink Roulette.</p></div>
+
+    <h2>The Fill Curve</h2>
+    <p>The most important design decision. The fill rate must feel <em>exponential</em> — manageable for the first 3 seconds, then suddenly uncontrollable.</p>
+
+    <div class="formula-box">
+        fill(t) = -1/k · ln(1 - k · v · t)<br><br>
+        where: v = 0.08 (base speed), k = 3 (acceleration), bust at t = 1/(k·v) ≈ 4.17s
+    </div>
+
+    <p>The instantaneous fill rate is <code>v · e^(k · fill)</code> — meaning the tower accelerates based on how full it already is, not just time elapsed. A nearly-full tower fills itself.</p>
+
+    <table>
+        <tr><th>Hold Time</th><th>Fill %</th><th>Player Experience</th></tr>
+        <tr><td>1.0s</td><td>9%</td><td>Slow, safe — builds confidence</td></tr>
+        <tr><td>2.0s</td><td>22%</td><td>Still easy</td></tr>
+        <tr><td>3.0s</td><td>42%</td><td>Halfway point — still feelable</td></tr>
+        <tr><td>3.5s</td><td>61%</td><td>Acceleration becoming noticeable</td></tr>
+        <tr><td>3.8s</td><td>81%</td><td>Skill zone — right at target</td></tr>
+        <tr><td>4.0s</td><td>105%</td><td>Bust — happened in 0.2 seconds</td></tr>
+    </table>
+
+    <div class="warning-box"><p>The window between "hit the target" and "bust" is approximately <strong>0.2 seconds</strong>. This is the chaos that makes the game fun to watch.</p></div>
+
+    <h2>Rules</h2>
+    <ul>
+        <li>Target line is fixed at <strong>82%</strong> every round.</li>
+        <li>Players take turns in randomized order — one turn per player per round.</li>
+        <li>On your turn: hold the button to fill, release to lock in your fill amount.</li>
+        <li><strong>Safe:</strong> fill ≤ 100% → score = fill %. Closest to 82% wins.</li>
+        <li><strong>Bust:</strong> fill > 100% → score = 0 pts.</li>
+        <li>Round winner = highest score without busting.</li>
+        <li>Winner assigns the social forfeit to any other player.</li>
+    </ul>
+
+    <h2>State Machine</h2>
+    <div class="state-machine">
+LOBBY → ROUND_STARTING → PLAYER_TURN → TURN_RESULT → (repeat) → ROUND_END → FORFEIT → LOBBY
+    </div>
+
+    <h2>Player Flow</h2>
+    <ol>
+        <li><strong>Host taps "Play Tower Game 🗼"</strong> on the table menu page.</li>
+        <li>Tower Game lobby overlay appears. Other players at the same table see it and join by entering a nickname/emoji (same flow as Drink Roulette).</li>
+        <li>Host clicks "Start Round" (requires ≥2 players). Turn order randomized server-side.</li>
+        <li>Each player's turn: 3-second countdown → full-screen tower → hold button → release → result shown 2s → next player.</li>
+        <li>After all players: leaderboard screen. Winner announced.</li>
+        <li>Winner taps a player to assign forfeit. Forfeit badge shown on that player's screen.</li>
+        <li>Play Again resets to Lobby with same players.</li>
+    </ol>
+
+    <h2>Scoring</h2>
+    <ul>
+        <li>Per turn: <code>score = fill% (0–100)</code> if not busted; <code>score = 0</code> if busted.</li>
+        <li>Round winner = highest score.</li>
+        <li>Tiebreaker = player who took their turn <em>later</em> in the round wins (rewards risk-taking under pressure).</li>
+        <li>Optional session score across rounds: win = +2 pts; fill within ±2% of target = +1 bonus pt.</li>
+    </ul>
+
+    <h2>Edge Cases</h2>
+    <table>
+        <tr><th>Scenario</th><th>Handling</th></tr>
+        <tr><td>All players bust</td><td>Everyone shares the forfeit. Last-to-bust is "least penalized."</td></tr>
+        <tr><td>Player disconnects during turn</td><td>Turn auto-skips after 10s, player marked busted (0%)</td></tr>
+        <tr><td>Tie in fill %</td><td>Later turn order wins</td></tr>
+        <tr><td>Host disconnects</td><td>Next player in turn order becomes host</td></tr>
+        <tr><td>Only 1 player</td><td>Start Round disabled — minimum 2 required</td></tr>
+        <tr><td>Hold &lt; 0.5s</td><td>Valid — records very low fill %, not an error</td></tr>
+        <tr><td>Network lag during hold</td><td>Fill computed entirely client-side via rAF + performance.now(). Only result sent to server on release.</td></tr>
+    </table>
+
+    <h2>Architecture</h2>
+    <ul>
+        <li><strong>Fill physics:</strong> 100% client-side. Server never touches timing during a hold.</li>
+        <li><strong>Redis key:</strong> <code>table:{tableId}:tower</code> (1hr TTL, same pattern as <code>:game</code>)</li>
+        <li><strong>Pusher channel:</strong> <code>table-{tableId}</code> (shared with Drink Roulette)</li>
+        <li><strong>New Pusher events:</strong> <code>tower-updated</code>, <code>tower-turn-start</code>, <code>tower-turn-result</code>, <code>tower-round-end</code>, <code>tower-forfeit</code></li>
+        <li><strong>New API routes:</strong> <code>/api/tower/create</code>, <code>join</code>, <code>start-round</code>, <code>submit-turn</code>, <code>assign-forfeit</code>, <code>[tableId]</code></li>
+        <li><strong>Server validates:</strong> <code>busted = (fill >= 1.0)</code> on submit to prevent spoofing</li>
+    </ul>
+
+    <h2>UI/UX Design System</h2>
+    <ul>
+        <li><strong>Style:</strong> Matches existing Cyberpunk / OLED Dark Mode</li>
+        <li><strong>Tower fill gradient:</strong> Violet (bottom) → Indigo → Amber → Rose (top) — color reflects danger visually</li>
+        <li><strong>Danger zone (80–100%):</strong> Red overlay + pulsing glow; tower shakes at ≥75% fill</li>
+        <li><strong>Target line:</strong> Emerald (#10B981) with glow, fixed at 82% height</li>
+        <li><strong>Bust screen:</strong> Rose full-screen background (same as Drink Roulette loser screen)</li>
+        <li><strong>Win screen:</strong> Violet gradient (winner picks forfeit, not emerald — keeps consistent with primary accent)</li>
+    </ul>
+
+    <div class="success-box">
+        <p>✓ Architecture fits cleanly into existing Redis/Pusher/Next.js stack. No new dependencies required. Fill curve validated for ~4.2s bust window with meaningful 0.2s skill window around the 82% target.</p>
+    </div>
+</div>
+</body>
+</html>
