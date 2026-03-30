@@ -123,18 +123,6 @@ export default function TableMenuPage({ params }: Props) {
       <GameOverlay tableId={tableId} onGameActiveChange={setIsRouletteActive} hostInitiatedGame={hostCreatedGame} />
       <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
 
-      {/* Header */}
-      <header className="pt-10 pb-6 px-6 bg-background z-10 border-b border-surface">
-        <div className="flex justify-between items-center max-w-4xl mx-auto">
-          <div>
-            <h1 className="text-3xl font-display font-black bg-gradient-to-r from-neon-violet to-primary bg-clip-text text-transparent">
-              Neon Nights
-            </h1>
-            <p className="text-sm text-slate-400 mt-1">Table #{tableId} • Menu</p>
-          </div>
-        </div>
-      </header>
-
       {/* Menu Component */}
       <Menu tableId={tableId} />
 
