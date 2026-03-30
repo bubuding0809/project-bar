@@ -12,10 +12,12 @@ describe('MenuItem Component - Quantity Controls', () => {
     expect(screen.getByRole('button', { name: /add to cart/i })).toBeDefined();
   });
 
-  it('shows + button when item quantity is 1', () => {
+  it('shows - N + badge when item quantity is 1', () => {
     useCartStore.getState().addItem({ id: 'test-1', title: 'Test Item', price: 10.00, quantity: 1 });
     render(<MenuItem id="test-1" title="Test Item" price={10.00} imgUrl="/placeholder.png" />);
-    expect(screen.getByRole('button', { name: /add to cart/i })).toBeDefined();
+    expect(screen.getByText('1')).toBeDefined();
+    expect(screen.getByRole('button', { name: /decrease quantity/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /increase quantity/i })).toBeDefined();
   });
 
   it('shows - N + badge when item quantity is 2 or more', () => {
