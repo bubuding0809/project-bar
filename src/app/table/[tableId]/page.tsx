@@ -2,8 +2,10 @@
 
 import React, { use, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { menuData } from "@/data/menu";
 import Menu from "@/components/Menu";
+import GamesHub from "@/components/GamesHub";
 import GameOverlay from "@/components/GameOverlay";
 import { GameState } from "@/types/game";
 
@@ -26,13 +28,10 @@ type Props = {
 export default function TableMenuPage({ params }: Props) {
   const { tableId } = use(params);
 
-  // Flatten menu items for easy lookup
-  const allItems = menuData.flatMap(category => category.items);
-
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isTowerSheetOpen, setIsTowerSheetOpen] = useState(false);
   const [isBarrelSheetOpen, setIsBarrelSheetOpen] = useState(false);
-  const [selectedDrink, setSelectedDrink] = useState(allItems[0]?.name || "Tequila Shots");
+  const [selectedDrink, setSelectedDrink] = useState("Tequila Shots");
   const [quantity, setQuantity] = useState(1);
   const [hostDare, setHostDare] = useState("");
 
@@ -41,12 +40,10 @@ export default function TableMenuPage({ params }: Props) {
   const [isBarrelActive, setIsBarrelActive] = useState(false);
   const [hostCreatedGame, setHostCreatedGame] = useState<GameState | null>(null);
 
-  const selectedItem = allItems.find(item => item.name === selectedDrink);
-  const price = selectedItem
-    ? typeof selectedItem.price === "string"
-      ? parseFloat(selectedItem.price.replace("$", ""))
-      : selectedItem.price
-    : 10;
+  const searchParams = useSearchParams();
+  const activeView = searchParams.get("view") || "menu";
+
+  const price = 10;
 
   // Hydrate initial active state from server
   useEffect(() => {
@@ -174,20 +171,15 @@ export default function TableMenuPage({ params }: Props) {
       <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
       <BarrelGame key={tableId} tableId={tableId} onGameActiveChange={setIsBarrelActive} />
 
-      {/* Header */}
-      <header className="pt-10 pb-6 px-6 bg-background z-10 border-b border-surface">
-        <div className="flex justify-between items-center max-w-4xl mx-auto">
-          <div>
-            <h1 className="text-3xl font-display font-black bg-gradient-to-r from-neon-violet to-primary bg-clip-text text-transparent">
-              Neon Nights
-            </h1>
-            <p className="text-sm text-slate-400 mt-1">Table #{tableId} • Menu</p>
-          </div>
-        </div>
-      </header>
-
-      {/* Menu Component */}
-      <Menu />
+      {/* Menu and Games Hub based on view */}
+      {activeView === "menu" && <Menu tableId={tableId} />}
+      {activeView === "games" && (
+        <GamesHub
+          onPlayTower={() => setIsTowerSheetOpen(true)}
+          onPlayRoulette={() => setIsBottomSheetOpen(true)}
+          onPlayBarrel={() => setIsBarrelSheetOpen(true)}
+        />
+      )}
 
       {/* Floating CTA Buttons */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none flex flex-col items-center gap-3 pb-8 z-20">

@@ -6,6 +6,7 @@ vi.mock('@/lib/pusher-client', () => ({
   getClientPusher: vi.fn(() => ({
     subscribe: vi.fn(() => ({
       bind: vi.fn(),
+      unbind: vi.fn(),
       unbind_all: vi.fn(),
       unsubscribe: vi.fn()
     }))

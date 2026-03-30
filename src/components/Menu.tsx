@@ -1,110 +1,124 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { menuData } from '../data/menu';
-import MenuItem from './MenuItem';
+import React, { useState, useEffect, useRef } from 'react';
+import { Search } from 'lucide-react';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
+import { MenuItem } from '@/components/menu/MenuItem';
+import { FloatingCartButton } from '@/components/menu/FloatingCartButton';
+import { BottomNav } from '@/components/menu/BottomNav';
+import { menuData } from '@/data/menu';
+import { generateItemId } from '@/lib/utils';
 
-export default function Menu() {
-  const [activeCategory, setActiveCategory] = useState<string>(menuData[0].category);
-  const categoryRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  const navRef = useRef<HTMLDivElement>(null);
+interface MenuProps {
+  tableId?: string;
+}
 
-  // Smooth scroll to category
+export default function Menu({ tableId }: MenuProps) {
+  const [activeCategory, setActiveCategory] = useState(menuData[0]?.category || '');
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const category = entry.target.getAttribute('data-category');
+            if (category) {
+              setActiveCategory(category);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '-120px 0px -50% 0px',
+        threshold: 0,
+      }
+    );
+
+    menuData.forEach((cat) => {
+      const element = document.getElementById(`category-${cat.category}`);
+      if (element) {
+        observerRef.current?.observe(element);
+      }
+    });
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
   const scrollToCategory = (category: string) => {
     setActiveCategory(category);
-    const element = categoryRefs.current[category];
+    const element = document.getElementById(`category-${category}`);
     if (element) {
-      const navHeight = navRef.current?.offsetHeight || 0;
-      const top = element.getBoundingClientRect().top + window.scrollY - navHeight - 20; // 20px padding
-      window.scrollTo({ top, behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // Scroll spy to update active category
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!navRef.current) return;
-      const navHeight = navRef.current.offsetHeight;
-      
-      let currentCategory = activeCategory;
-
-      for (const [category, ref] of Object.entries(categoryRefs.current)) {
-        if (!ref) continue;
-        const rect = ref.getBoundingClientRect();
-        
-        // If element is in the active viewport region
-        if (rect.top <= navHeight + 100 && rect.bottom >= navHeight) {
-            currentCategory = category;
-        }
-      }
-      
-      if (currentCategory !== activeCategory) {
-        setActiveCategory(currentCategory);
-        
-        // Scroll navigation bar to keep active item visible
-        const activeNavBtn = document.getElementById(`nav-${currentCategory}`);
-        if (activeNavBtn && typeof activeNavBtn.scrollIntoView === 'function') {
-          activeNavBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeCategory]);
-
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto">
-      {/* Sticky Navigation */}
-      <div 
-        ref={navRef}
-        className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-slate-800 py-4 shadow-sm"
-      >
-        <div className="flex overflow-x-auto gap-2 px-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          {menuData.map((category) => (
-            <button
-              key={category.category}
-              id={`nav-${category.category}`}
-              onClick={() => scrollToCategory(category.category)}
-              className={`whitespace-nowrap px-4 py-2 rounded-full font-medium transition-colors snap-start ${
-                activeCategory === category.category
-                  ? 'bg-primary text-white'
-                  : 'bg-surface hover:bg-slate-800 text-slate-300'
-              }`}
-            >
-              {category.category}
-            </button>
-          ))}
+      {/* Sticky Header - matching /menu page styling */}
+      <div className="sticky top-0 z-40 w-full bg-background border-b shadow-sm">
+        {/* Top bar */}
+        <div className="flex items-center justify-between px-4 h-14">
+          <h1 className="text-xl font-bold">Bar Lorong 13</h1>
+          <Button variant="ghost" className="p-2 -mr-2 text-muted-foreground hover:text-foreground">
+            <Search size={24} />
+          </Button>
         </div>
+        
+        {/* Category Tabs */}
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex w-max px-4">
+            {menuData.map((cat) => (
+              <button
+                key={cat.category}
+                onClick={() => scrollToCategory(cat.category)}
+                className={`text-sm font-semibold transition-colors px-4 py-3 border-b-2 ${
+                  activeCategory === cat.category 
+                    ? 'text-primary border-primary' 
+                    : 'text-muted-foreground border-transparent hover:text-foreground'
+                }`}
+              >
+                {cat.category}
+              </button>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" className="invisible" />
+        </ScrollArea>
       </div>
 
-      {/* Menu Content */}
-      <div className="p-4 space-y-10 mt-4 pb-24">
-        {menuData.map((category) => (
-          <div 
-            key={category.category}
-            ref={(el) => { categoryRefs.current[category.category] = el; }}
-            className="scroll-mt-24" // Matches nav height approx
-          >
-            <h2 className="text-2xl font-bold font-display text-foreground mb-4">
-              {category.category}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {category.items.map((item, idx) => (
-                <MenuItem 
-                  key={`${category.category}-${idx}`}
-                  name={item.name}
-                  price={item.price}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                />
-              ))}
+      {/* Menu List */}
+      <main className="px-4 py-6 space-y-8">
+        {menuData.map((cat) => (
+          <div key={cat.category} id={`category-${cat.category}`} data-category={cat.category} className="scroll-mt-[120px]">
+            <h2 className="text-xl font-bold mb-4">{cat.category}</h2>
+            <div className="space-y-0">
+              {cat.items.map((item, index) => {
+                const itemId = generateItemId(item.name);
+                return (
+                  <MenuItem
+                    key={`${cat.category}-${index}`}
+                    id={itemId}
+                    title={item.name}
+                    price={item.price as number}
+                    description={item.description}
+                    imgUrl={item.imageUrl || ''}
+                    tableId={tableId}
+                  />
+                );
+              })}
             </div>
           </div>
         ))}
-      </div>
+      </main>
+
+      {/* Floating Cart Button */}
+      <FloatingCartButton tableId={tableId} />
+
+      {/* Bottom Navigation */}
+      <BottomNav />
     </div>
   );
 }

@@ -14,6 +14,9 @@ export type CartItemInput = Omit<CartItem, 'cartItemId'>;
 interface CartState {
   items: CartItem[];
   addItem: (item: CartItemInput) => void;
+  updateItemQuantity: (cartItemId: string, quantity: number) => void;
+  decrementItem: (cartItemId: string) => void;
+  getItemById: (menuItemId: string) => CartItem | undefined;
   clearCart: () => void;
 }
 
@@ -26,8 +29,31 @@ const areCustomizationsEqual = (c1?: CartItem['customizations'], c2?: CartItem['
   return c1.iceLevel === c2.iceLevel && c1.sugarLevel === c2.sugarLevel;
 };
 
-export const useCartStore = create<CartState>((set) => ({
+export const useCartStore = create<CartState>((set, get) => ({
   items: [],
+  getItemById: (menuItemId) => get().items.find(item => item.id === menuItemId && item.customizations === undefined),
+  updateItemQuantity: (cartItemId, quantity) => set((state) => {
+    if (quantity <= 0) {
+      return { items: state.items.filter(item => item.cartItemId !== cartItemId) };
+    }
+    return {
+      items: state.items.map(item =>
+        item.cartItemId === cartItemId ? { ...item, quantity } : item
+      )
+    };
+  }),
+  decrementItem: (cartItemId) => set((state) => {
+    const item = state.items.find(item => item.cartItemId === cartItemId);
+    if (!item) return state;
+    if (item.quantity <= 1) {
+      return { items: state.items.filter(i => i.cartItemId !== cartItemId) };
+    }
+    return {
+      items: state.items.map(item =>
+        item.cartItemId === cartItemId ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    };
+  }),
   clearCart: () => set({ items: [] }),
   addItem: (newItemInput) => set((state) => {
     const existingItemIndex = state.items.findIndex(

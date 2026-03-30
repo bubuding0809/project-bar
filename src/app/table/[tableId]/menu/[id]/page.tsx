@@ -11,13 +11,12 @@ import { generateItemId } from '@/lib/utils';
 const ICE_LEVELS = ['Normal Ice', 'Less Ice', 'No Ice'];
 const SUGAR_LEVELS = ['Normal Sugar', 'Less Sugar', 'No Sugar'];
 
-export default function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default function ItemDetailPage({ params }: { params: Promise<{ tableId: string; id: string }> }) {
   const router = useRouter();
   const unwrappedParams = use(params);
-  const id = unwrappedParams.id;
+  const { tableId, id } = unwrappedParams;
   const addItem = useCartStore((state) => state.addItem);
 
-  // Find the item from menu data or fallback
   let foundItem = null;
   for (const cat of menuData) {
     const item = cat.items.find((i) => generateItemId(i.name) === id);
@@ -50,12 +49,11 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
         sugarLevel,
       },
     });
-    router.push('/menu');
+    router.push(`/table/${tableId}`);
   };
 
   return (
     <div className="min-h-screen bg-background pb-[100px]">
-      {/* Header / Hero Image */}
       <div className="relative w-full h-[300px] bg-muted">
         <button
           onClick={() => router.back()}
@@ -71,9 +69,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
         />
       </div>
 
-      {/* Content */}
       <div className="px-4 pt-6 space-y-8">
-        {/* Title & Description */}
         <div>
           <div className="flex justify-between items-start gap-4">
             <h1 className="text-2xl font-bold">{item.title}</h1>
@@ -82,9 +78,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           <p className="mt-2 text-muted-foreground">{item.description}</p>
         </div>
 
-        {/* Customizers */}
         <div className="space-y-6">
-          {/* Ice Level */}
           <div className="space-y-3">
             <h3 className="font-semibold">Ice Level</h3>
             <div className="flex flex-wrap gap-2">
@@ -104,7 +98,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
             </div>
           </div>
 
-          {/* Sugar Level */}
           <div className="space-y-3">
             <h3 className="font-semibold">Sugar Level</h3>
             <div className="flex flex-wrap gap-2">
@@ -126,7 +119,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
         </div>
       </div>
 
-      {/* Sticky Bottom Bar */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-4 bg-muted rounded-full px-2 py-1">
