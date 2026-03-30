@@ -16,6 +16,7 @@ interface CartState {
   addItem: (item: CartItemInput) => void;
   updateItemQuantity: (cartItemId: string, quantity: number) => void;
   decrementItem: (cartItemId: string) => void;
+  removeItem: (cartItemId: string) => void;
   getItemById: (menuItemId: string) => CartItem | undefined;
   clearCart: () => void;
 }
@@ -54,6 +55,9 @@ export const useCartStore = create<CartState>((set, get) => ({
       )
     };
   }),
+  removeItem: (cartItemId) => set((state) => ({
+    items: state.items.filter(item => item.cartItemId !== cartItemId)
+  })),
   clearCart: () => set({ items: [] }),
   addItem: (newItemInput) => set((state) => {
     const existingItemIndex = state.items.findIndex(
