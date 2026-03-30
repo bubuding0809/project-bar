@@ -175,14 +175,11 @@ export default function TableMenuPage({ params }: Props) {
       {/* Menu and Games Hub based on view */}
       {activeView === "menu" && <Menu tableId={tableId} />}
       {activeView === "games" && (
-        <>
-          <GamesHub
-            onPlayTower={() => setIsTowerSheetOpen(true)}
-            onPlayRoulette={() => setIsBottomSheetOpen(true)}
-            onPlayBarrel={() => setIsBarrelSheetOpen(true)}
-          />
-          <BottomNav />
-        </>
+        <GamesHub
+          onPlayTower={() => setIsTowerSheetOpen(true)}
+          onPlayRoulette={() => setIsBottomSheetOpen(true)}
+          onPlayBarrel={() => setIsBarrelSheetOpen(true)}
+        />
       )}
 
       {/* Roulette Bottom Sheet */}
@@ -302,6 +299,8 @@ export default function TableMenuPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      <BottomNav />
     </div>
   );
 }
