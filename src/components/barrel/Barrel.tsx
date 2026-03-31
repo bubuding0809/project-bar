@@ -10,6 +10,7 @@ interface BarrelProps {
   onSlotTap: (slotIndex: number) => void;
   isMyTurn: boolean;
   insertingSlot: number | null;
+  rotationY?: number;
 }
 
 const COLORS = {
@@ -48,13 +49,15 @@ export default function Barrel({
   onSlotTap,
   isMyTurn,
   insertingSlot,
+  rotationY = 0,
 }: BarrelProps) {
   const groupRef = useRef<Group>(null);
+  const autoRotationRef = useRef(0);
 
   useFrame((state) => {
-    // Slow auto-rotation for visibility
     if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.08;
+      autoRotationRef.current = state.clock.elapsedTime * 0.08;
+      groupRef.current.rotation.y = autoRotationRef.current + rotationY;
     }
   });
 
