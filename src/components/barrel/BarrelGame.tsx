@@ -104,14 +104,9 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       });
 
       pusherChannel.bind('barrel-game-over', () => {
-        piratePopTimeRef.current = Date.now();
+        setBarrelState(null);
+        setIsInitialized(true);
         setShowRoundEndModal(false);
-        if (piratePopTimeoutRef.current) {
-          clearTimeout(piratePopTimeoutRef.current);
-        }
-        piratePopTimeoutRef.current = setTimeout(() => {
-          setShowRoundEndModal(true);
-        }, PIRATE_POP_DELAY_MS);
       });
     } else {
       // No Pusher - poll for updates every 2 seconds
@@ -145,6 +140,25 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       }
     };
   }, [tableId]);
+
+  // Handle showing the round end modal with a delay
+  useEffect(() => {
+    if (barrelState?.status === 'ROUND_END') {
+      piratePopTimeRef.current = Date.now();
+      if (piratePopTimeoutRef.current) {
+        clearTimeout(piratePopTimeoutRef.current);
+      }
+      piratePopTimeoutRef.current = setTimeout(() => {
+        setShowRoundEndModal(true);
+      }, PIRATE_POP_DELAY_MS);
+    } else {
+      setShowRoundEndModal(false);
+      if (piratePopTimeoutRef.current) {
+        clearTimeout(piratePopTimeoutRef.current);
+        piratePopTimeoutRef.current = null;
+      }
+    }
+  }, [barrelState?.status]);
 
   // Handle page unload
   useEffect(() => {
