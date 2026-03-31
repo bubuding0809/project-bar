@@ -309,6 +309,11 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
             {[...towerState.results]
               .sort((a, b) => {
                 if (a.busted !== b.busted) return a.busted ? 1 : -1;
+                if (!a.busted) {
+                  // Both not busted: sort by closest to 0.82
+                  return Math.abs(a.fill - 0.82) - Math.abs(b.fill - 0.82);
+                }
+                // Both busted: sort by highest fill
                 return b.fill - a.fill;
               })
               .map((r, i) => {
@@ -339,8 +344,11 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
           <ul className="space-y-2 mb-6">
             {[...towerState.results]
               .sort((a, b) => {
-                // Sort: non-busted desc, then busted desc
+                // Sort: non-busted (closest to 0.82), then busted (highest fill)
                 if (a.busted !== b.busted) return a.busted ? 1 : -1;
+                if (!a.busted) {
+                  return Math.abs(a.fill - 0.82) - Math.abs(b.fill - 0.82);
+                }
                 return b.fill - a.fill;
               })
               .map((r, i) => {

@@ -62,15 +62,22 @@ export async function POST(request: Request) {
     }
 
     // All players done — compute winner and wrap up round
+    // Winner is closest to 0.82 (82%) without busting (going over 1.0)
+    // We compute the distance to 0.82.
+    const TARGET = 0.82;
     const nonBusted = state.results.filter(r => !r.busted);
     let winnerId: string;
 
     if (nonBusted.length > 0) {
-      // Closest to 1.0 without busting
-      const winner = nonBusted.reduce((best, r) => (r.fill > best.fill ? r : best));
+      // Closest to TARGET without busting
+      const winner = nonBusted.reduce((best, r) => {
+        const bestDist = Math.abs(best.fill - TARGET);
+        const rDist = Math.abs(r.fill - TARGET);
+        return rDist < bestDist ? r : best;
+      });
       winnerId = winner.userId;
     } else {
-      // All busted — highest fill still wins (closest to the edge)
+      // All busted — highest fill still wins (closest to 1.0)
       const winner = state.results.reduce((best, r) => (r.fill > best.fill ? r : best));
       winnerId = winner.userId;
     }
