@@ -212,6 +212,13 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
   }, [tableId, userId]);
 
   const handleClose = useCallback(async () => {
+    if (piratePopTimeoutRef.current) {
+      clearTimeout(piratePopTimeoutRef.current);
+      piratePopTimeoutRef.current = null;
+    }
+    setShowRoundEndModal(false);
+    setBarrelState(null);
+    setIsInitialized(true);
     try {
       await fetch('/api/barrel/close', {
         method: 'POST',
