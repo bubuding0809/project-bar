@@ -28,6 +28,7 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
   const [showRoundEndModal, setShowRoundEndModal] = useState(false);
   const barrelStateRef = useRef<BarrelState | null>(null);
   const piratePopTimeRef = useRef<number | null>(null);
+  const piratePopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
 
@@ -105,7 +106,10 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       pusherChannel.bind('barrel-game-over', () => {
         piratePopTimeRef.current = Date.now();
         setShowRoundEndModal(false);
-        setTimeout(() => {
+        if (piratePopTimeoutRef.current) {
+          clearTimeout(piratePopTimeoutRef.current);
+        }
+        piratePopTimeoutRef.current = setTimeout(() => {
           setShowRoundEndModal(true);
         }, PIRATE_POP_DELAY_MS);
       });
@@ -135,6 +139,9 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       }
       if (pollInterval) {
         clearInterval(pollInterval);
+      }
+      if (piratePopTimeoutRef.current) {
+        clearTimeout(piratePopTimeoutRef.current);
       }
     };
   }, [tableId]);
