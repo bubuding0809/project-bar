@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useState, useEffect } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 import Barrel from './Barrel';
 import Pirate from './Pirate';
 
@@ -24,6 +24,9 @@ export default function BarrelScene({
 }: BarrelSceneProps) {
   const [scale, setScale] = useState(1);
   const [cameraZ, setCameraZ] = useState(4);
+  const [rotationY, setRotationY] = useState(0);
+  const isDragging = useRef(false);
+  const lastX = useRef(0);
 
   useEffect(() => {
     const updateScale = () => {
@@ -39,13 +42,33 @@ export default function BarrelScene({
     return () => window.removeEventListener('resize', updateScale);
   }, []);
 
+  const handlePointerDown = (e: React.PointerEvent) => {
+    isDragging.current = true;
+    lastX.current = e.clientX;
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDragging.current) return;
+    const deltaX = e.clientX - lastX.current;
+    setRotationY((prev) => prev + deltaX * 0.01);
+    lastX.current = e.clientX;
+  };
+
+  const handlePointerUp = () => {
+    isDragging.current = false;
+  };
+
   return (
     <div
       style={{
         width: '100%',
         height: '100%',
-        touchAction: 'manipulation',
+        touchAction: 'none',
       }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
     >
       <Canvas
         camera={{ position: [0, 1.5, cameraZ], fov: 50 }}
@@ -68,6 +91,7 @@ export default function BarrelScene({
               onSlotTap={onSlotTap}
               isMyTurn={isMyTurn}
               insertingSlot={insertingSlot}
+              rotationY={rotationY}
             />
             <Pirate popped={piratePopped} />
           </group>

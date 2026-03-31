@@ -11,6 +11,8 @@ import { useWebHaptics } from 'web-haptics/react';
 
 const BarrelScene = dynamic(() => import('./BarrelScene'), { ssr: false });
 
+const PIRATE_POP_DELAY_MS = 1500;
+
 interface BarrelGameProps {
   tableId: string;
   onGameActiveChange?: (active: boolean) => void;
@@ -23,7 +25,9 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
   const [insertingSlot, setInsertingSlot] = useState<number | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [showRoundEndModal, setShowRoundEndModal] = useState(false);
   const barrelStateRef = useRef<BarrelState | null>(null);
+  const piratePopTimeRef = useRef<number | null>(null);
 
   const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
 
@@ -89,22 +93,21 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
         if (data.playerId === userId && barrelStateRef.current?.triggerSlot === data.slotIndex) {
           haptic('triggerLoser');
         } else {
-          haptic('tick');
+          haptic('success');
         }
         setTimeout(() => setInsertingSlot(null), 300);
       });
 
-      pusherChannel.bind('barrel-trigger-hit', (data: { userId: string; slotIndex: number }) => {
-        if (data.userId === userId) {
-          haptic('triggerLoser');
-        } else {
-          haptic('triggerOthers');
-        }
+      pusherChannel.bind('barrel-trigger-hit', () => {
+        haptic('buzz');
       });
 
       pusherChannel.bind('barrel-game-over', () => {
-        setBarrelState(null);
-        setIsInitialized(true);
+        piratePopTimeRef.current = Date.now();
+        setShowRoundEndModal(false);
+        setTimeout(() => {
+          setShowRoundEndModal(true);
+        }, PIRATE_POP_DELAY_MS);
       });
     } else {
       // No Pusher - poll for updates every 2 seconds
@@ -285,7 +288,7 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
         />
       )}
 
-      {barrelState.status === 'ROUND_END' && loser && barrelState.forfeitCategory && barrelState.forfeitText && (
+      {showRoundEndModal && loser && barrelState.forfeitCategory && barrelState.forfeitText && (
         <RoundEndModal
           loser={loser}
           forfeitCategory={barrelState.forfeitCategory}
