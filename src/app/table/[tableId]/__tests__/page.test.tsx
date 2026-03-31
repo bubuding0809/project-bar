@@ -3,6 +3,12 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import React, { Suspense } from 'react';
 import Page from '../page';
 
+vi.mock('next/navigation', () => ({
+  useSearchParams: vi.fn(() => new URLSearchParams('view=games')),
+  useParams: vi.fn(() => ({ tableId: '1' })),
+  usePathname: vi.fn(() => '/table/1'),
+}));
+
 class IntersectionObserver {
   observe = vi.fn();
   disconnect = vi.fn();
@@ -33,7 +39,7 @@ test('opens bottom sheet and shows stepper', async () => {
     );
   });
 
-  const button = await screen.findByText('Play Drink Roulette');
+  const button = await screen.findByText('Play Roulette');
   fireEvent.click(button);
   
   expect(screen.getByText('Set the Stakes')).toBeTruthy();
