@@ -17,7 +17,7 @@ export const FloatingCartButton = ({ tableId }: FloatingCartButtonProps) => {
   if (items.length === 0) return null;
   
   return (
-    <div className="fixed bottom-20 left-0 w-full px-6 flex justify-center z-50">
+    <div className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] left-0 w-full px-6 flex justify-center z-50">
       <Button 
         onClick={() => router.push(tableId ? `/table/${tableId}/cart` : '/cart')}
         className="w-full max-w-[345px] rounded-full h-14 text-base font-semibold shadow-lg"

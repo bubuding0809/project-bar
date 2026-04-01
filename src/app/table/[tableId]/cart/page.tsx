@@ -105,7 +105,7 @@ export default function CartPage({ params }: { params: Promise<{ tableId: string
         </div>
       </ScrollArea>
 
-      <div className="p-4 pb-20 border-t z-10 bg-background">
+      <div className="p-4 pb-[calc(5rem+env(safe-area-inset-bottom))] border-t z-10 bg-background">
         <Button onClick={() => router.push(`/table/${tableId}/payment`)} className="w-full text-lg h-14" size="lg">
           Submit Order to Tab
         </Button>

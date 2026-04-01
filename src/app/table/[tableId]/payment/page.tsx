@@ -84,7 +84,7 @@ export default function PaymentPage({ params }: { params: Promise<{ tableId: str
 
       </main>
 
-      <footer className="px-6 pb-12 pt-6 mt-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
+      <footer className="px-6 pb-[calc(3rem+env(safe-area-inset-bottom))] pt-6 mt-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both">
         <div className="flex items-start gap-3 bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl">
           <Info className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
           <p className="text-sm text-blue-200/80 leading-relaxed">

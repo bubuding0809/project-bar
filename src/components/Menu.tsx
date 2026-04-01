@@ -6,7 +6,6 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { MenuItem } from '@/components/menu/MenuItem';
 import { FloatingCartButton } from '@/components/menu/FloatingCartButton';
-import { BottomNav } from '@/components/menu/BottomNav';
 import { menuData } from '@/data/menu';
 import { generateItemId } from '@/lib/utils';
 
@@ -124,9 +123,6 @@ export default function Menu({ tableId }: MenuProps) {
 
       {/* Floating Cart Button */}
       <FloatingCartButton tableId={tableId} />
-
-      {/* Bottom Navigation */}
-      <BottomNav />
     </div>
   );
 }

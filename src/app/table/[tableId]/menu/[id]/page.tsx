@@ -53,7 +53,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ tableId: 
   };
 
   return (
-    <div className="min-h-screen bg-background pb-[100px]">
+    <div className="min-h-screen bg-background pb-[calc(100px+env(safe-area-inset-bottom))]">
       <div className="relative w-full h-[300px] bg-muted">
         <button
           onClick={() => router.back()}
@@ -119,7 +119,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ tableId: 
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t">
+      <div className="fixed bottom-0 left-0 right-0 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-background border-t">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-4 bg-muted rounded-full px-2 py-1">
             <button

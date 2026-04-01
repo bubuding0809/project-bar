@@ -59,11 +59,6 @@ test('renders search button', () => {
   expect(buttons[0]).toBeInTheDocument();
 });
 
-test('renders BottomNav', () => {
-  render(<Menu />);
-  expect(BottomNavSpy).toHaveBeenCalled();
-});
-
 test('switches active category when clicking tab', () => {
   render(<Menu />);
   const wineTab = screen.getByRole('button', { name: 'Wine' });

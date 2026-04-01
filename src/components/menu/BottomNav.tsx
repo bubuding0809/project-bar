@@ -43,7 +43,8 @@ export const BottomNav = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-background border-t h-14 flex items-center justify-around px-4 z-50">
+    <div className="fixed bottom-0 left-0 w-full bg-background border-t z-50 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex items-center justify-around px-4 h-14">
       {navItems.map((item) => {
         const Icon = item.icon;
         const active = isActive(item);
@@ -60,6 +61,7 @@ export const BottomNav = () => {
           </Link>
         );
       })}
+      </div>
     </div>
   );
 };

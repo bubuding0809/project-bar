@@ -167,7 +167,7 @@ export default function TableMenuPage({ params }: Props) {
   const isAnyGameActive = isRouletteActive || isTowerActive || isBarrelActive;
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-36 relative">
+    <div className="min-h-screen bg-background text-foreground pb-[calc(9rem+env(safe-area-inset-bottom))] relative">
       <GameOverlay tableId={tableId} onGameActiveChange={setIsRouletteActive} hostInitiatedGame={hostCreatedGame} />
       <TowerOverlay tableId={tableId} onGameActiveChange={setIsTowerActive} />
       <BarrelGame key={tableId} tableId={tableId} onGameActiveChange={setIsBarrelActive} />
