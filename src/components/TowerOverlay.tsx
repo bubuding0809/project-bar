@@ -9,7 +9,6 @@ import TowerWatchScreen from './TowerWatchScreen';
 import TowerForfeitScreen from './TowerForfeitScreen';
 import { ForfeitCategory } from '@/data/forfeits';
 import Confetti from 'react-confetti';
-import { useWebHaptics } from 'web-haptics/react';
 
 interface TowerOverlayProps {
   tableId: string;
@@ -30,8 +29,6 @@ export default function TowerOverlay({ tableId, onGameActiveChange }: TowerOverl
   const [activePlayerId, setActivePlayerId] = useState<string | null>(null);
   const [currentFill, setCurrentFill] = useState(0);
   const towerStateRef = useRef<TowerState | null>(null);
-
-  const { trigger: haptic, isSupported } = useWebHaptics({ debug: false, showSwitch: true });
 
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   useEffect(() => {
