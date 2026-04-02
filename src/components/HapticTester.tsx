@@ -7,6 +7,10 @@ import { defaultPatterns } from "web-haptics";
 
 const PRESETS = [...Object.keys(defaultPatterns), ...Object.keys(HAPTIC_PATTERNS)];
 
+function isGameHapticPattern(preset: string): preset is keyof typeof HAPTIC_PATTERNS {
+  return preset in HAPTIC_PATTERNS;
+}
+
 export function HapticTester() {
   const [debugAudio, setDebugAudio] = useState(false);
   const [customInput, setCustomInput] = useState("100, 50, 100, 50, 200");
@@ -15,8 +19,8 @@ export function HapticTester() {
   const { trigger, isSupported } = useGameHaptics({ debug: debugAudio });
 
   const handlePresetClick = (preset: string) => {
-    if (preset in HAPTIC_PATTERNS) {
-      trigger(HAPTIC_PATTERNS[preset as keyof typeof HAPTIC_PATTERNS]);
+    if (isGameHapticPattern(preset)) {
+      trigger(HAPTIC_PATTERNS[preset]);
     } else {
       trigger(preset);
     }

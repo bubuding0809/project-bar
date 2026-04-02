@@ -6,10 +6,10 @@ interface UseGameHapticsOptions {
   showSwitch?: boolean;
 }
 
-export function useGameHaptics(options?: UseGameHapticsOptions) {
+export function useGameHaptics(options: UseGameHapticsOptions = { debug: false, showSwitch: true }) {
   const { trigger, ...rest } = useWebHaptics({ 
-    debug: options?.debug ?? false, 
-    showSwitch: options?.showSwitch ?? true 
+    debug: options.debug ?? false, 
+    showSwitch: options.showSwitch ?? true 
   });
 
   const hapticTick = () => trigger(HAPTIC_PATTERNS.tick);
