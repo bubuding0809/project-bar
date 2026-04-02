@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { getClientPusher } from '@/lib/pusher-client';
 import { BarrelState } from '@/types/barrel';
-import { useWebHaptics } from 'web-haptics/react';
+import { useGameHaptics } from '@/hooks/useGameHaptics';
 
 interface UseBarrelGameOptions {
   tableId: string;
@@ -30,7 +30,7 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
   const [insertingSlot, setInsertingSlot] = useState<number | null>(null);
   const barrelStateRef = useRef<BarrelState | null>(null);
 
-  const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
+  const { hapticTick, hapticLoser, hapticOthers } = useGameHaptics();
 
   useEffect(() => {
     barrelStateRef.current = barrelState;
@@ -82,7 +82,7 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
 
     channel.bind('barrel-sword-inserted', (data: { slotIndex: number; playerId: string }) => {
       setInsertingSlot(data.slotIndex);
-      haptic([10]);
+      hapticTick();
       setTimeout(() => setInsertingSlot(null), 500);
     });
 
@@ -90,9 +90,9 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
       setBarrelState(prev => prev ? { ...prev, loserId: data.userId } : null);
       
       if (data.userId === storedId) {
-        haptic([300, 100, 500]);
+        hapticLoser();
       } else {
-        haptic([150, 50, 150]);
+        hapticOthers();
       }
     });
 
@@ -105,7 +105,7 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
       channel.unbind_all();
       channel.unsubscribe();
     };
-  }, [tableId, haptic, onGameOver]);
+  }, [tableId, hapticTick, hapticLoser, hapticOthers, onGameOver]);
 
   const handleJoin = useCallback(async (nickname: string, emoji: string) => {
     if (!userId || isJoining) return;
