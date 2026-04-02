@@ -92,7 +92,7 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       pusherChannel.bind('barrel-sword-inserted', (data: { slotIndex: number; playerId: string }) => {
         setInsertingSlot(data.slotIndex);
         if (data.playerId === userId && barrelStateRef.current?.triggerSlot === data.slotIndex) {
-          haptic('triggerLoser');
+          haptic([300, 100, 500]);
         } else {
           haptic('success');
         }

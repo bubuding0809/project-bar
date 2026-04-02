@@ -82,7 +82,7 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
 
     channel.bind('barrel-sword-inserted', (data: { slotIndex: number; playerId: string }) => {
       setInsertingSlot(data.slotIndex);
-      haptic('tick');
+      haptic([10]);
       setTimeout(() => setInsertingSlot(null), 500);
     });
 
@@ -90,9 +90,9 @@ export function useBarrelGame({ tableId, onGameOver }: UseBarrelGameOptions): Us
       setBarrelState(prev => prev ? { ...prev, loserId: data.userId } : null);
       
       if (data.userId === storedId) {
-        haptic('triggerLoser');
+        haptic([300, 100, 500]);
       } else {
-        haptic('triggerOthers');
+        haptic([150, 50, 150]);
       }
     });
 
