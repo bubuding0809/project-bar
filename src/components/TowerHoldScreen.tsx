@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import TowerMeter from './TowerMeter';
-import { useWebHaptics } from 'web-haptics/react';
+import { useGameHaptics } from '@/hooks/useGameHaptics';
 
 const TARGET = 0.82;
 // v=0.08, k=3; busts at t ≈ 4.17s
@@ -26,7 +26,7 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
   const rafIdRef = useRef<number | null>(null);
   const lastHapticRef = useRef<number>(0);
   
-  const { trigger: haptic, cancel: cancelHaptic } = useWebHaptics({ debug: false, showSwitch: true });
+  const { hapticBuzz, cancel: cancelHaptic } = useGameHaptics();
 
   const cancelRaf = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -41,11 +41,11 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
     cancelRaf();
     cancelHaptic?.();
     if (isUserAction) {
-      haptic('buzz'); // Play long buzz immediately if user released
+      hapticBuzz(); // Play long buzz immediately if user released
     }
     setPhase('releasing');
     await onSubmit(fill);
-  }, [submitted, cancelRaf, cancelHaptic, haptic, onSubmit]);
+  }, [submitted, cancelRaf, cancelHaptic, hapticBuzz, onSubmit]);
 
   const startHolding = useCallback(() => {
     if (phase !== 'idle' || submitted) return;
@@ -75,12 +75,12 @@ export default function TowerHoldScreen({ playerName, emoji, onSubmit, onProgres
       // so we can finally fire the buzz now that they let go!
       if (submitted) {
         cancelHaptic?.();
-        haptic('buzz');
+        hapticBuzz();
       }
       return;
     }
     submit(fillRef.current, true);
-  }, [phase, submit, submitted, haptic, cancelHaptic]);
+  }, [phase, submit, submitted, hapticBuzz, cancelHaptic]);
 
   if (phase === 'releasing') {
     return (

@@ -1,20 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { useWebHaptics } from "web-haptics/react";
+import { useGameHaptics } from "@/hooks/useGameHaptics";
+import { HAPTIC_PATTERNS } from "@/lib/haptics";
 import { defaultPatterns } from "web-haptics";
 
-const PRESETS = Object.keys(defaultPatterns);
+const PRESETS = [...Object.keys(defaultPatterns), ...Object.keys(HAPTIC_PATTERNS)];
+
+function isGameHapticPattern(preset: string): preset is keyof typeof HAPTIC_PATTERNS {
+  return preset in HAPTIC_PATTERNS;
+}
 
 export function HapticTester() {
   const [debugAudio, setDebugAudio] = useState(false);
   const [customInput, setCustomInput] = useState("100, 50, 100, 50, 200");
   const [error, setError] = useState<string | null>(null);
 
-  const { trigger, isSupported } = useWebHaptics({ debug: debugAudio });
+  const { trigger, isSupported } = useGameHaptics({ debug: debugAudio });
 
   const handlePresetClick = (preset: string) => {
-    trigger(preset);
+    if (isGameHapticPattern(preset)) {
+      trigger(HAPTIC_PATTERNS[preset]);
+    } else {
+      trigger(preset);
+    }
   };
 
   const handleCustomTrigger = () => {

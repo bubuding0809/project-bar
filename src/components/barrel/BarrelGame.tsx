@@ -7,7 +7,7 @@ import { BarrelState } from '@/types/barrel';
 import LobbyScreen from './LobbyScreen';
 import PlayerTurnBanner from './PlayerTurnBanner';
 import RoundEndModal from './RoundEndModal';
-import { useWebHaptics } from 'web-haptics/react';
+import { useGameHaptics } from '@/hooks/useGameHaptics';
 
 const BarrelScene = dynamic(() => import('./BarrelScene'), { ssr: false });
 
@@ -30,7 +30,7 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
   const piratePopTimeRef = useRef<number | null>(null);
   const piratePopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const { trigger: haptic } = useWebHaptics({ debug: false, showSwitch: true });
+  const { hapticLoser, hapticSuccess, hapticBuzz } = useGameHaptics();
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -92,15 +92,15 @@ export default function BarrelGame({ tableId, onGameActiveChange }: BarrelGamePr
       pusherChannel.bind('barrel-sword-inserted', (data: { slotIndex: number; playerId: string }) => {
         setInsertingSlot(data.slotIndex);
         if (data.playerId === userId && barrelStateRef.current?.triggerSlot === data.slotIndex) {
-          haptic([300, 100, 500]);
+          hapticLoser();
         } else {
-          haptic('success');
+          hapticSuccess();
         }
         setTimeout(() => setInsertingSlot(null), 300);
       });
 
       pusherChannel.bind('barrel-trigger-hit', () => {
-        haptic('buzz');
+        hapticBuzz();
       });
 
       pusherChannel.bind('barrel-game-over', () => {
